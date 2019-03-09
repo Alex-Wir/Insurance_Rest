@@ -12,5 +12,6 @@
         <property name="hbm2ddl.auto">create</property>
         <mapping class="by.it.model.Insurance"></mapping>
         <mapping class="by.it.model.Car"></mapping>
+        <mapping class="by.it.model.Shift"></mapping>
     </session-factory>
 </hibernate-configuration>

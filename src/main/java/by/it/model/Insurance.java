@@ -20,6 +20,10 @@ public class Insurance {
     @JoinColumn(name = "car_id", referencedColumnName = "id")
     private Car car;
 
+    @ManyToOne
+    @JoinColumn(name = "shift_id", nullable = false)
+    private Shift shift;
+
     public Long getId() {
         return id;
     }
@@ -66,5 +70,13 @@ public class Insurance {
 
     public void setCar(Car car) {
         this.car = car;
+    }
+
+    public Shift getShift() {
+        return shift;
+    }
+
+    public void setShift(Shift shift) {
+        this.shift = shift;
     }
 }
