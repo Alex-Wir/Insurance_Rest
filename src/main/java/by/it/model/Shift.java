@@ -18,6 +18,18 @@ public class Shift {
     @OneToMany(mappedBy = "shift")
     private Set<Insurance> insurances;
 
+    @ManyToOne
+    @JoinColumn(name = "pos_id", nullable = false)
+    private Pos pos;
+
+    public Pos getPos() {
+        return pos;
+    }
+
+    public void setPos(Pos pos) {
+        this.pos = pos;
+    }
+
     public Set<Insurance> getInsurances() {
         return insurances;
     }

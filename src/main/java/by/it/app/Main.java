@@ -8,7 +8,9 @@ public class Main extends DAOImport {
 
     public static void main(String[] args) {
 
-        createShift();
+        createPos();
+
+        createShift(posDAO.getOne(1L));
 
         createCar("FR", "PRS123", "JKHFJ123");
         createCar("BY", "AA1234", "Q1W2E3R4");

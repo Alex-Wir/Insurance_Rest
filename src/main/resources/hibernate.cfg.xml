@@ -13,5 +13,6 @@
         <mapping class="by.it.model.Insurance"></mapping>
         <mapping class="by.it.model.Car"></mapping>
         <mapping class="by.it.model.Shift"></mapping>
+        <mapping class="by.it.model.Pos"></mapping>
     </session-factory>
 </hibernate-configuration>
