@@ -1,16 +1,13 @@
 package by.it.app;
 
-import by.it.model.Car;
-import by.it.model.Insurance;
-import by.it.model.Pos;
-import by.it.model.Shift;
+import by.it.model.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static java.time.temporal.ChronoUnit.HOURS;
 
-class Initialization extends DAOImport {
+class Initialization extends DAOInstance {
 
     static void createCar(String country, String carNumber, String vin) {
         Car transientCar = new Car();
@@ -39,10 +36,31 @@ class Initialization extends DAOImport {
         shiftDAO.save(transientShift);
     }
 
-    static void createPos() {
+    static void createPos(Point point) {
         Pos transientPos = new Pos();
         transientPos.setNumber("POS123");
+        transientPos.setPoint(point);
         posDAO.save(transientPos);
+    }
+
+    static void createPoint() {
+        Point transientPoint = new Point();
+        transientPoint.setName("Point01");
+        pointDAO.save(transientPoint);
+    }
+
+    static void createAddress() {
+        Address transientAddress = new Address();
+        transientAddress.setCity("Grodno");
+        transientAddress.setStreet("Central street");
+        transientAddress.setHouseNumber("1A");
+        transientAddress.setPostcode("230000");
+        addressDAO.save(transientAddress);
+    }
+
+    static void updatePointAddress(Point persistentPoint, Address address) {
+        persistentPoint.setAddress(address);
+        pointDAO.update(persistentPoint);
     }
 
     static void updateInsuranceAmount(Insurance persistentInsurance, Float amount) {

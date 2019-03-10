@@ -9,10 +9,12 @@
         <property name="connection.password">pasformysql</property>
         <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
         <property name="show_sql">true</property>
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hbm2ddl.auto">create-drop</property>
         <mapping class="by.it.model.Insurance"></mapping>
         <mapping class="by.it.model.Car"></mapping>
         <mapping class="by.it.model.Shift"></mapping>
         <mapping class="by.it.model.Pos"></mapping>
+        <mapping class="by.it.model.Point"></mapping>
+        <mapping class="by.it.model.Address"></mapping>
     </session-factory>
 </hibernate-configuration>

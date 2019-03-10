@@ -16,6 +16,18 @@ public class Pos {
     @OneToMany(mappedBy = "pos")
     private Set<Shift> shifts;
 
+    @ManyToOne
+    @JoinColumn(name = "point_id", nullable = false)
+    private Point point;
+
+    public Point getPoint() {
+        return point;
+    }
+
+    public void setPoint(Point point) {
+        this.point = point;
+    }
+
     public Long getId() {
         return id;
     }

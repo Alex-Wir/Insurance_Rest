@@ -4,12 +4,15 @@ import static by.it.app.Initialization.*;
 import static java.time.LocalDate.now;
 import static java.time.temporal.ChronoUnit.MONTHS;
 
-public class Main extends DAOImport {
+public class Main extends DAOInstance {
 
     public static void main(String[] args) {
 
-        createPos();
+        createPoint();
+        createAddress();
+        updatePointAddress(pointDAO.getOne(1L), addressDAO.getOne(1L));
 
+        createPos(pointDAO.getOne(1L));
         createShift(posDAO.getOne(1L));
 
         createCar("FR", "PRS123", "JKHFJ123");

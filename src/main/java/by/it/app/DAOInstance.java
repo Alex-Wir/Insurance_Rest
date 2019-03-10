@@ -1,17 +1,13 @@
 package by.it.app;
 
-import by.it.dao.CarDAO;
-import by.it.dao.InsuranceDAO;
-import by.it.dao.PosDAO;
-import by.it.dao.ShiftDAO;
-import by.it.dao.impl.CarDAOImpl;
-import by.it.dao.impl.InsuranceDAOImpl;
-import by.it.dao.impl.PosDAOImpl;
-import by.it.dao.impl.ShiftDAOImpl;
+import by.it.dao.*;
+import by.it.dao.impl.*;
 
-class DAOImport {
+class DAOInstance {
     protected static final CarDAO carDAO = CarDAOImpl.getInstance();
     protected static final InsuranceDAO insuranceDAO = InsuranceDAOImpl.getInstance();
     protected static final ShiftDAO shiftDAO = ShiftDAOImpl.getInstance();
     protected static final PosDAO posDAO = PosDAOImpl.getInstance();
+    protected static final PointDAO pointDAO = PointDAOImpl.getInstance();
+    protected static final AddressDAO addressDAO = AddressDAOImpl.getInstance();
 }
