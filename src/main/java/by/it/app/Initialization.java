@@ -59,10 +59,17 @@ class Initialization extends DAOInstance {
         addressDAO.save(transientAddress);
     }
 
-    static void createUser(String name) {
+    static void createUser(String name, Role role) {
         User transientUser = new User();
         transientUser.setName(name);
+        transientUser.setRole(role);
         userDAO.save(transientUser);
+    }
+
+    static void createRole(RoleEnum roleEnum) {
+        Role transientRole = new Role();
+        transientRole.setRole(roleEnum);
+        roleDAO.save(transientRole);
     }
 
     static void updatePointAddress(Point persistentPoint, Address address) {

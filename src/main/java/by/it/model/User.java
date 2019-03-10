@@ -24,6 +24,18 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Shift> shifts;
 
+    @ManyToOne
+    @JoinColumn(name = "role_id", nullable = false)
+    private Role role;
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     public Set<Shift> getShifts() {
         return shifts;
     }

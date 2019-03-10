@@ -1,5 +1,7 @@
 package by.it.app;
 
+import by.it.model.RoleEnum;
+
 import static by.it.app.Initialization.*;
 import static java.time.LocalDate.now;
 import static java.time.temporal.ChronoUnit.MONTHS;
@@ -8,8 +10,12 @@ public class Main extends DAOInstance {
 
     public static void main(String[] args) {
 
-        createUser("John");
-        createUser("Jane");
+        createRole(RoleEnum.EMPLOYEE);
+        createRole(RoleEnum.MANAGER);
+        createRole(RoleEnum.CUSTOMER);
+
+        createUser("John", roleDAO.getOne(1L));
+        createUser("Jane", roleDAO.getOne(2L));
 
         createPoint("Grodno Office");
         createPoint("Minsk Office");

@@ -11,4 +11,5 @@ class DAOInstance {
     static final PointDAO pointDAO = PointDAOImpl.getInstance();
     static final AddressDAO addressDAO = AddressDAOImpl.getInstance();
     static final UserDAO userDAO = UserDAOImpl.getInstance();
+    static final RoleDAO roleDAO = RoleDAOImpl.getInstance();
 }
