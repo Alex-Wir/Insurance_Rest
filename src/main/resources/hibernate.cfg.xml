@@ -16,5 +16,6 @@
         <mapping class="by.it.model.Pos"></mapping>
         <mapping class="by.it.model.Point"></mapping>
         <mapping class="by.it.model.Address"></mapping>
+        <mapping class="by.it.model.User"></mapping>
     </session-factory>
 </hibernate-configuration>

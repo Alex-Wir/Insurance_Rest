@@ -20,6 +20,9 @@ public class Point {
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
+    @ManyToMany(mappedBy = "points", fetch = FetchType.LAZY)
+    private Set<User> users;
+
     public Address getAddress() {
         return address;
     }

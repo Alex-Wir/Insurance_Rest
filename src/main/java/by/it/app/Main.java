@@ -8,12 +8,20 @@ public class Main extends DAOInstance {
 
     public static void main(String[] args) {
 
-        createPoint();
+        createUser("John");
+        createUser("Jane");
+
+        createPoint("Grodno Office");
+        createPoint("Minsk Office");
         createAddress();
         updatePointAddress(pointDAO.getOne(1L), addressDAO.getOne(1L));
 
+        updateUserPoint(userDAO.getOne(1L), pointDAO.getOne(1L));
+        updateUserPoint(userDAO.getOne(2L), pointDAO.getOne(1L));
+        updateUserPoint(userDAO.getOne(2L), pointDAO.getOne(2L));
+
         createPos(pointDAO.getOne(1L));
-        createShift(posDAO.getOne(1L));
+        createShift(posDAO.getOne(1L), userDAO.getOne(1L));
 
         createCar("FR", "PRS123", "JKHFJ123");
         createCar("BY", "AA1234", "Q1W2E3R4");

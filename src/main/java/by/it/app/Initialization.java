@@ -28,11 +28,12 @@ class Initialization extends DAOInstance {
         insuranceDAO.save(transientInsurance);
     }
 
-    static void createShift(Pos pos) {
+    static void createShift(Pos pos, User user) {
         Shift transientShift = new Shift();
         transientShift.setOpeningTime(LocalDateTime.now().minus(6, HOURS));
         transientShift.setClosingTime(LocalDateTime.now().plus(6, HOURS));
         transientShift.setPos(pos);
+        transientShift.setUser(user);
         shiftDAO.save(transientShift);
     }
 
@@ -43,9 +44,9 @@ class Initialization extends DAOInstance {
         posDAO.save(transientPos);
     }
 
-    static void createPoint() {
+    static void createPoint(String name) {
         Point transientPoint = new Point();
-        transientPoint.setName("Point01");
+        transientPoint.setName(name);
         pointDAO.save(transientPoint);
     }
 
@@ -58,6 +59,12 @@ class Initialization extends DAOInstance {
         addressDAO.save(transientAddress);
     }
 
+    static void createUser(String name) {
+        User transientUser = new User();
+        transientUser.setName(name);
+        userDAO.save(transientUser);
+    }
+
     static void updatePointAddress(Point persistentPoint, Address address) {
         persistentPoint.setAddress(address);
         pointDAO.update(persistentPoint);
@@ -66,5 +73,10 @@ class Initialization extends DAOInstance {
     static void updateInsuranceAmount(Insurance persistentInsurance, Float amount) {
         persistentInsurance.setAmount(amount);
         insuranceDAO.update(persistentInsurance);
+    }
+
+    static void updateUserPoint(User persistentUser, Point point) {
+        persistentUser.getPoints().add(point);
+        userDAO.update(persistentUser);
     }
 }
