@@ -16,6 +16,7 @@ public class Main extends DAOInstance {
 
         createUser("John", roleDAO.getOne(1L));
         createUser("Jane", roleDAO.getOne(2L));
+        createUser("Jack", roleDAO.getOne(3L));
 
         createPoint("Grodno Office");
         createPoint("Minsk Office");
@@ -33,9 +34,9 @@ public class Main extends DAOInstance {
         createCar("BY", "AA1234", "Q1W2E3R4");
 
         createInsurance(1L, 10F, 900F,
-                now().plus(6, MONTHS), carDAO.getOne(1L), shiftDAO.getOne(1L));
+                now().plus(6, MONTHS), carDAO.getOne(1L), shiftDAO.getOne(1L), userDAO.getOne(3L));
         createInsurance(1L, 8F, 700F,
-                now().plus(3, MONTHS), carDAO.getOne(2L), shiftDAO.getOne(1L));
+                now().plus(3, MONTHS), carDAO.getOne(2L), shiftDAO.getOne(1L), userDAO.getOne(3L));
 
         updateInsuranceAmount(insuranceDAO.getOne(1L), 1000F);
     }

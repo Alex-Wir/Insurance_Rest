@@ -17,7 +17,8 @@ class Initialization extends DAOInstance {
         carDAO.save(transientCar);
     }
 
-    static void createInsurance(Long number, Float payment, Float amount, LocalDate period, Car car, Shift shift) {
+    static void createInsurance(Long number, Float payment, Float amount,
+                                LocalDate period, Car car, Shift shift, User user) {
         Insurance transientInsurance = new Insurance();
         transientInsurance.setNumber(number);
         transientInsurance.setPayment(payment);
@@ -25,6 +26,7 @@ class Initialization extends DAOInstance {
         transientInsurance.setPeriod(period);
         transientInsurance.setCar(car);
         transientInsurance.setShift(shift);
+        transientInsurance.setUser(user);
         insuranceDAO.save(transientInsurance);
     }
 

@@ -24,9 +24,20 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Shift> shifts;
 
+    @OneToMany(mappedBy = "user")
+    private Set<Insurance> insurances;
+
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
+
+    public Set<Insurance> getInsurances() {
+        return insurances;
+    }
+
+    public void setInsurances(Set<Insurance> insurances) {
+        this.insurances = insurances;
+    }
 
     public Role getRole() {
         return role;
