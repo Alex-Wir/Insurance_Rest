@@ -2,6 +2,7 @@ package by.it.app;
 
 import by.it.model.Car;
 import by.it.model.RoleEnum;
+import by.it.model.Shift;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class Main extends DAOInstance {
 
     public static void main(String[] args) {
 
-        //CRUD section - create, read, update
+        //CRUD
         createRole(RoleEnum.EMPLOYEE);
         createRole(RoleEnum.MANAGER);
         createRole(RoleEnum.CUSTOMER);
@@ -44,16 +45,22 @@ public class Main extends DAOInstance {
 
         updateInsuranceAmount(insuranceDAO.getOne(1L), 1000F);
 
-        //HQL section
+        //HQL
         hqlExample();
 
-        //CRUD section - delete
+        //CRUD - delete
 
     }
 
     private static void hqlExample() {
-        List<Car> cars = carDAO.findAll(0, 10);
-        System.out.println("Car:" + cars.get(0).getCarNumber());
-        System.out.println("Car:" + cars.get(1).getCarNumber());
+        System.out.println("=== HQL section ===");
+
+        List<Car> cars = carDAO.findAll(0, 5);
+        System.out.println("Car: " + cars.get(0).getCarNumber());
+        System.out.println("Car: " + cars.get(1).getCarNumber());
+
+        List<Shift> shiftsListWithInsurances = shiftDAO.findAllWithInsurances(0, 5);
+        System.out.println("Shift with ID=" + shiftsListWithInsurances.get(0).getId() +
+                " has " + shiftsListWithInsurances.get(0).getInsurances().size() + " insurances");
     }
 }

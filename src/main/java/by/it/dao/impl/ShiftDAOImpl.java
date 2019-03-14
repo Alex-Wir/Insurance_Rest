@@ -2,6 +2,11 @@ package by.it.dao.impl;
 
 import by.it.dao.ShiftDAO;
 import by.it.model.Shift;
+import by.it.util.HibernateUtil;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+
+import java.util.List;
 
 public class ShiftDAOImpl extends GenericDAOImpl<Shift, Long> implements ShiftDAO {
     private static ShiftDAOImpl instance;
@@ -15,5 +20,24 @@ public class ShiftDAOImpl extends GenericDAOImpl<Shift, Long> implements ShiftDA
             instance = new ShiftDAOImpl();
         }
         return instance;
+    }
+
+    /**
+     * Find all shifts and fetching insurances
+     * HQL implementation
+     *
+     * @param firstResult
+     * @param maxResult
+     * @return List of shifts
+     */
+    @Override
+    public List<Shift> findAllWithInsurances(Integer firstResult, Integer maxResult) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "FROM Shift shift JOIN FETCH shift.insurances";
+            Query query = session.createQuery(hql);
+            query.setFirstResult(firstResult);
+            query.setMaxResults(maxResult);
+            return query.list();
+        }
     }
 }
