@@ -7,14 +7,14 @@ import javax.persistence.*;
 public class Car {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String country;
     private String carNumber;
     private String vin;
 
-    @OneToOne (mappedBy = "car")
+    @OneToOne(mappedBy = "car")
     private Insurance insurance;
 
     public Long getId() {

@@ -1,6 +1,9 @@
 package by.it.app;
 
+import by.it.model.Car;
 import by.it.model.RoleEnum;
+
+import java.util.List;
 
 import static by.it.app.Initialization.*;
 import static java.time.LocalDate.now;
@@ -10,6 +13,7 @@ public class Main extends DAOInstance {
 
     public static void main(String[] args) {
 
+        //CRUD section - create, read, update
         createRole(RoleEnum.EMPLOYEE);
         createRole(RoleEnum.MANAGER);
         createRole(RoleEnum.CUSTOMER);
@@ -39,5 +43,17 @@ public class Main extends DAOInstance {
                 now().plus(3, MONTHS), carDAO.getOne(2L), shiftDAO.getOne(1L), userDAO.getOne(3L));
 
         updateInsuranceAmount(insuranceDAO.getOne(1L), 1000F);
+
+        //HQL section
+        hqlExample();
+
+        //CRUD section - delete
+
+    }
+
+    private static void hqlExample() {
+        List<Car> cars = carDAO.findAll(0, 10);
+        System.out.println("Car:" + cars.get(0).getCarNumber());
+        System.out.println("Car:" + cars.get(1).getCarNumber());
     }
 }
