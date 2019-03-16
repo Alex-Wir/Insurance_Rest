@@ -13,6 +13,23 @@ public class Main extends DAOInstance {
     public static void main(String[] args) {
 
         //CRUD
+        exampleCRUD();
+
+        //HQL
+        hqlExample();
+
+        //NativeSQL
+        nsqlExample();
+
+        //Criteria
+        criteriaExample();
+
+        //CRUD - delete
+        deleteExample();
+    }
+
+    private static void exampleCRUD() {
+        System.out.println("=== CRUD section ===");
         createRole(RoleEnum.EMPLOYEE);
         createRole(RoleEnum.MANAGER);
         createRole(RoleEnum.CUSTOMER);
@@ -42,18 +59,6 @@ public class Main extends DAOInstance {
                 now().plus(3, MONTHS), carDAO.getOne(2L), shiftDAO.getOne(1L), userDAO.getOne(3L));
 
         updateInsuranceAmount(insuranceDAO.getOne(1L), 1000F);
-
-        //HQL
-        hqlExample();
-
-        //NativeSQL
-        nsqlExample();
-
-        //Criteria
-        criteriaExample();
-
-        //CRUD - delete
-
     }
 
     private static void hqlExample() {
@@ -88,5 +93,12 @@ public class Main extends DAOInstance {
         System.out.println("=== Criteria section ===");
         System.out.println("### Quantity of users with role = EMPLOYEE: "
                 + roleDAO.getQuantityOfUsersByRole(RoleEnum.EMPLOYEE));
+    }
+
+    private static void deleteExample() {
+        System.out.println("=== CRUD - Delete section ===");
+        userDAO.delete(2L);
+        pointDAO.delete(2L);
+        carDAO.delete(2L);
     }
 }

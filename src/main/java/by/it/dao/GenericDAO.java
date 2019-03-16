@@ -1,12 +1,12 @@
 package by.it.dao;
 
-public interface GenericDAO <T, U>{
+public interface GenericDAO<T, U> {
 
-    T getOne (U id);
+    T getOne(U id);
 
-    void delete (U id);
+    void delete(U id);
 
-    void save (T entity);
+    void save(T entity);
 
-    void update (T entity);
+    void update(T entity);
 }
