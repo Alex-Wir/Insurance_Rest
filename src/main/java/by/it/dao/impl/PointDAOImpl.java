@@ -28,7 +28,7 @@ public class PointDAOImpl extends GenericDAOImpl<Point, Long> implements PointDA
      *
      * @param firstResult - firstResult
      * @param maxResult   - maxResult
-     * @return List<Car>
+     * @return List<Point>
      */
     @Override
     public List<Point> findAll(Integer firstResult, Integer maxResult) {

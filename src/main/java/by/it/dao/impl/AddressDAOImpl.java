@@ -23,7 +23,7 @@ public class AddressDAOImpl extends GenericDAOImpl<Address, Long> implements Add
     }
 
     /**
-     * Find page of Address by City
+     * Find page of Addresses by City
      * HQL implementation
      *
      * @param firstResult - first result

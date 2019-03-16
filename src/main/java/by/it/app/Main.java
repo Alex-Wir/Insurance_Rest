@@ -36,9 +36,9 @@ public class Main extends DAOInstance {
         createCar("FR", "PRS123", "JKHFJ123");
         createCar("BY", "AA1234", "Q1W2E3R4");
 
-        createInsurance(1L, 10F, 900F,
+        createInsurance(100L, 10F, 900F,
                 now().plus(6, MONTHS), carDAO.getOne(1L), shiftDAO.getOne(1L), userDAO.getOne(3L));
-        createInsurance(1L, 8F, 700F,
+        createInsurance(101L, 8F, 700F,
                 now().plus(3, MONTHS), carDAO.getOne(2L), shiftDAO.getOne(1L), userDAO.getOne(3L));
 
         updateInsuranceAmount(insuranceDAO.getOne(1L), 1000F);
@@ -48,6 +48,8 @@ public class Main extends DAOInstance {
 
         //NativeSQL
         nsqlExample();
+
+        //Criteria
 
         //CRUD - delete
 
@@ -71,6 +73,8 @@ public class Main extends DAOInstance {
 
         List<Address> addresses = addressDAO.findByCity(0, 5, "Grodno");
         System.out.println("### Find " + addresses.size() + " address with city \"Grodno\"");
+
+        insuranceDAO.deleteByNumber(101L);
     }
 
     public static void nsqlExample() {
