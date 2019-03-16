@@ -16,7 +16,7 @@ public class Pos {
     @OneToMany(mappedBy = "pos")
     private Set<Shift> shifts;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "point_id", nullable = false)
     private Point point;
 

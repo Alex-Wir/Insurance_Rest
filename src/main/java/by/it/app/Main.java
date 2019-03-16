@@ -1,9 +1,6 @@
 package by.it.app;
 
-import by.it.model.Car;
-import by.it.model.Point;
-import by.it.model.RoleEnum;
-import by.it.model.Shift;
+import by.it.model.*;
 
 import java.util.List;
 
@@ -49,6 +46,9 @@ public class Main extends DAOInstance {
         //HQL
         hqlExample();
 
+        //NativeSQL
+        nsqlExample();
+
         //CRUD - delete
 
     }
@@ -66,5 +66,11 @@ public class Main extends DAOInstance {
         List<Shift> shiftsListWithInsurances = shiftDAO.findAllWithInsurances(0, 5);
         System.out.println("### Shift with ID = " + shiftsListWithInsurances.get(0).getId() +
                 " has " + shiftsListWithInsurances.get(0).getInsurances().size() + " insurances");
+    }
+
+    public static void nsqlExample() {
+        System.out.println("=== NativeSQL section ===");
+        List<User> users = userDAO.findByName(0, 5, "Jane");
+        System.out.println("### Find " + users.size() + " user(s) with name \"Jane\"");
     }
 }

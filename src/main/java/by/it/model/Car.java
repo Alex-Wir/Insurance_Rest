@@ -14,7 +14,7 @@ public class Car {
     private String carNumber;
     private String vin;
 
-    @OneToOne(mappedBy = "car")
+    @OneToOne(mappedBy = "car", fetch = FetchType.LAZY)
     private Insurance insurance;
 
     public Long getId() {

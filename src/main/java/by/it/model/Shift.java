@@ -15,14 +15,14 @@ public class Shift {
     private LocalDateTime openingTime;
     private LocalDateTime closingTime;
 
-    @OneToMany(mappedBy = "shift")
+    @OneToMany(mappedBy = "shift", fetch = FetchType.LAZY)
     private Set<Insurance> insurances;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pos_id", nullable = false)
     private Pos pos;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 

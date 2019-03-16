@@ -15,7 +15,7 @@ public class Address {
     private String houseNumber;
     private String postcode;
 
-    @OneToOne(mappedBy = "address")
+    @OneToOne(mappedBy = "address", fetch = FetchType.LAZY)
     private Point point;
 
     public Long getId() {
