@@ -38,7 +38,7 @@ public class PosDAOImpl extends GenericDAOImpl<Pos, Long> implements PosDAO {
             query.setParameter("newNumber", newNumber);
             int result = query.executeUpdate();
             transaction.commit();
-            System.out.println("Rows affected " + result);
+            System.out.println("Rows affected " + result + " in Pos");
             if (transaction.isActive()) {
                 transaction.rollback();
             }

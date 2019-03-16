@@ -68,6 +68,9 @@ public class Main extends DAOInstance {
                 " has " + shiftsListWithInsurances.get(0).getInsurances().size() + " insurances");
 
         posDAO.updateNumber(1L, "POS456");
+
+        List<Address> addresses = addressDAO.findByCity(0, 5, "Grodno");
+        System.out.println("### Find " + addresses.size() + " address with city \"Grodno\"");
     }
 
     public static void nsqlExample() {
