@@ -1,6 +1,7 @@
 package by.it.app;
 
 import by.it.model.Car;
+import by.it.model.Point;
 import by.it.model.RoleEnum;
 import by.it.model.Shift;
 
@@ -55,12 +56,15 @@ public class Main extends DAOInstance {
     private static void hqlExample() {
         System.out.println("=== HQL section ===");
 
-        List<Car> cars = carDAO.findAll(0, 5);
-        System.out.println("Car: " + cars.get(0).getCarNumber());
-        System.out.println("Car: " + cars.get(1).getCarNumber());
+        List<Point> points = pointDAO.findAll(0, 5);
+        System.out.println("### Point: " + points.get(0).getName());
+        System.out.println("### Point: " + points.get(1).getName());
+
+        Car car = carDAO.findByCountryAndNumber("BY", "AA1234");
+        System.out.println("### Car [BY AA1234] has ID = " + car.getId());
 
         List<Shift> shiftsListWithInsurances = shiftDAO.findAllWithInsurances(0, 5);
-        System.out.println("Shift with ID=" + shiftsListWithInsurances.get(0).getId() +
+        System.out.println("### Shift with ID = " + shiftsListWithInsurances.get(0).getId() +
                 " has " + shiftsListWithInsurances.get(0).getInsurances().size() + " insurances");
     }
 }

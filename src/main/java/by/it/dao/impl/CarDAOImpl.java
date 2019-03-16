@@ -2,12 +2,9 @@ package by.it.dao.impl;
 
 import by.it.dao.CarDAO;
 import by.it.model.Car;
-import by.it.model.Insurance;
 import by.it.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-
-import java.util.List;
 
 public class CarDAOImpl extends GenericDAOImpl<Car, Long> implements CarDAO {
     private static CarDAOImpl instance;
@@ -24,21 +21,21 @@ public class CarDAOImpl extends GenericDAOImpl<Car, Long> implements CarDAO {
     }
 
     /**
-     * Find all Cars
-     * HQL implementation
+     * Find Car by country and number
+     * HQL implemantation
      *
-     * @param firstResult - firstResult
-     * @param maxResult   - maxResult
-     * @return List<Car>
+     * @param country - country
+     * @param number  - number
+     * @return Car
      */
     @Override
-    public List<Car> findAll(Integer firstResult, Integer maxResult) {
+    public Car findByCountryAndNumber(String country, String number) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            String hql = "FROM Car";
+            String hql = "FROM Car car WHERE car.country = :country and car.carNumber = :number";
             Query query = session.createQuery(hql);
-            query.setFirstResult(firstResult);
-            query.setMaxResults(maxResult);
-            return query.list();
+            query.setParameter("country", country);
+            query.setParameter("number", number);
+            return (Car) query.getSingleResult();
         }
     }
 }
