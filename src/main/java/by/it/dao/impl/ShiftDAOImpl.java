@@ -23,12 +23,12 @@ public class ShiftDAOImpl extends GenericDAOImpl<Shift, Long> implements ShiftDA
     }
 
     /**
-     * Find all shifts and fetching insurances
+     * Find all Shifts and fetching Insurances
      * HQL implementation
      *
-     * @param firstResult
-     * @param maxResult
-     * @return List of shifts
+     * @param firstResult - first result
+     * @param maxResult   - max result
+     * @return List<Shift>
      */
     @Override
     public List<Shift> findAllWithInsurances(Integer firstResult, Integer maxResult) {

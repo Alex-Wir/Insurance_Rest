@@ -66,6 +66,8 @@ public class Main extends DAOInstance {
         List<Shift> shiftsListWithInsurances = shiftDAO.findAllWithInsurances(0, 5);
         System.out.println("### Shift with ID = " + shiftsListWithInsurances.get(0).getId() +
                 " has " + shiftsListWithInsurances.get(0).getInsurances().size() + " insurances");
+
+        posDAO.updateNumber(1L, "POS456");
     }
 
     public static void nsqlExample() {

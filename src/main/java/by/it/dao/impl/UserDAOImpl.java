@@ -23,12 +23,13 @@ public class UserDAOImpl extends GenericDAOImpl<User, Long> implements UserDAO {
     }
 
     /**
-     * Find page of users by name
+     * Find page of Users by Name
      * NativeSQL implementation
      *
      * @param firstResult - first result
      * @param maxResult   - max result
-     * @return List of Users
+     * @param name        - user name
+     * @return List<User>
      */
     @Override
     public List<User> findByName(Integer firstResult, Integer maxResult, String name) {
