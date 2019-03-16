@@ -16,7 +16,7 @@ public class Insurance {
     private Float amount;
     private LocalDate period;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "car_id", referencedColumnName = "id")
     private Car car;
 

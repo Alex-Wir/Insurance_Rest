@@ -50,6 +50,7 @@ public class Main extends DAOInstance {
         nsqlExample();
 
         //Criteria
+        criteriaExample();
 
         //CRUD - delete
 
@@ -77,9 +78,15 @@ public class Main extends DAOInstance {
         insuranceDAO.deleteByNumber(101L);
     }
 
-    public static void nsqlExample() {
+    private static void nsqlExample() {
         System.out.println("=== NativeSQL section ===");
         List<User> users = userDAO.findByName(0, 5, "Jane");
         System.out.println("### Find " + users.size() + " user(s) with name \"Jane\"");
+    }
+
+    private static void criteriaExample() {
+        System.out.println("=== Criteria section ===");
+        System.out.println("### Quantity of users with role = EMPLOYEE: "
+                + roleDAO.getQuantityOfUsersByRole(RoleEnum.EMPLOYEE));
     }
 }
