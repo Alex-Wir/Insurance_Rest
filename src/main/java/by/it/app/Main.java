@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
-
 @Component
 public class Main {
 
@@ -56,13 +54,29 @@ public class Main {
         main.getRoleRepository().findById(2L).ifPresent(System.out::println);
         main.getRoleRepository().findById(3L).ifPresent(System.out::println);
 
-        Optional<User> one = main.getUserRepository().findById(1L);
-        if (one != null) {
-            System.out.println(one.toString());
-        } else {
-            System.out.println("don't exist");
+        User user1 = new User();
+        user1.setName("John");
+        user1.setRole(roleEmployee);
+        main.getUserRepository().save(user1);
 
-            //one.ifPresent(System.out::println);
+        User user2 = new User();
+        user2.setName("Jane");
+        user2.setRole(roleManager);
+        main.getUserRepository().save(user2);
+
+        User user3 = new User();
+        user3.setName("Jack");
+        user3.setRole(roleEmployee);
+        main.getUserRepository().save(user3);
+
+        main.getUserRepository().findById(1L).ifPresent(System.out::println);
+        main.getUserRepository().findById(2L).ifPresent(System.out::println);
+        main.getUserRepository().findById(3L).ifPresent(System.out::println);
+
+
+
+
+        //one.ifPresent(System.out::println);
 
      /*   one.ifPresent(main.getUserRepository()::delete);
         one = main.getUserRepository().findById(1L);
@@ -93,13 +107,10 @@ public class Main {
 
         //CRUD - delete
         deleteExample();*/
-        }
+    }
 
   /*  private static void exampleCRUD() {
         System.out.println("=== CRUD section ===");
-        createUser("John", roleDAO.getOne(1L));
-        createUser("Jane", roleDAO.getOne(2L));
-        createUser("Jack", roleDAO.getOne(3L));
 
         createPoint("Grodno Office");
         createPoint("Minsk Office");
@@ -164,5 +175,5 @@ public class Main {
         pointDAO.delete(2L);
         carDAO.delete(2L);
     }*/
-    }
 }
+
