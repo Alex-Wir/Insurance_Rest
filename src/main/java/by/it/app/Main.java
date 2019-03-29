@@ -1,8 +1,8 @@
 package by.it.app;
 
-import by.it.app.model.Role;
-import by.it.app.model.RoleEnum;
-import by.it.app.model.User;
+import by.it.app.model.*;
+import by.it.app.repository.AddressRepository;
+import by.it.app.repository.PointRepository;
 import by.it.app.repository.RoleRepository;
 import by.it.app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +16,26 @@ public class Main {
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private PointRepository pointRepository;
+    @Autowired
+    private AddressRepository addressRepository;
+
+    public AddressRepository getAddressRepository() {
+        return addressRepository;
+    }
+
+    public void setAddressRepository(AddressRepository addressRepository) {
+        this.addressRepository = addressRepository;
+    }
+
+    public PointRepository getPointRepository() {
+        return pointRepository;
+    }
+
+    public void setPointRepository(PointRepository pointRepository) {
+        this.pointRepository = pointRepository;
+    }
 
     public RoleRepository getRoleRepository() {
         return roleRepository;
@@ -73,7 +93,32 @@ public class Main {
         main.getUserRepository().findById(2L).ifPresent(System.out::println);
         main.getUserRepository().findById(3L).ifPresent(System.out::println);
 
+        user3.setName("new Jack");
+        main.getUserRepository().save(user3);
+        main.getUserRepository().findById(3L).ifPresent(System.out::println);
 
+        Point point1 = new Point();
+        point1.setName("NY office");
+        main.getPointRepository().save(point1);
+
+        Point point2 = new Point();
+        point2.setName("LA office");
+        main.getPointRepository().save(point2);
+
+        main.getPointRepository().findById(1L).ifPresent(System.out::println);
+        main.getPointRepository().findById(2L).ifPresent(System.out::println);
+
+        Address address = new Address();
+        address.setCity("NY");
+        address.setStreet("Central");
+        address.setHouseNumber("1");
+        address.setPostcode("11122");
+        main.getAddressRepository().save(address);
+
+        main.getAddressRepository().findById(1L).ifPresent(System.out::println);
+
+        point1.setAddress(address);
+        main.getPointRepository().findById(1L).ifPresent(System.out::println);
 
 
         //one.ifPresent(System.out::println);
@@ -112,8 +157,6 @@ public class Main {
   /*  private static void exampleCRUD() {
         System.out.println("=== CRUD section ===");
 
-        createPoint("Grodno Office");
-        createPoint("Minsk Office");
         createAddress();
         updatePointAddress(pointDAO.getOne(1L), addressDAO.getOne(1L));
 

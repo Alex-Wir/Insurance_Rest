@@ -18,6 +18,16 @@ public class Address {
     @OneToOne(mappedBy = "address", fetch = FetchType.LAZY)
     private Point point;
 
+    @Override
+    public String toString() {
+        return "Address{" +
+                "city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", houseNumber='" + houseNumber + '\'' +
+                ", postcode='" + postcode + '\'' +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }

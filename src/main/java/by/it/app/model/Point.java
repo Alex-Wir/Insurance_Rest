@@ -23,6 +23,15 @@ public class Point {
     @ManyToMany(mappedBy = "points", fetch = FetchType.LAZY)
     private Set<User> users;
 
+    @Override
+    public String toString() {
+        return "Point{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address=" + address +
+                '}';
+    }
+
     public Address getAddress() {
         return address;
     }
