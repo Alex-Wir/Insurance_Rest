@@ -108,18 +108,29 @@ public class Main {
         main.getPointRepository().findById(1L).ifPresent(System.out::println);
         main.getPointRepository().findById(2L).ifPresent(System.out::println);
 
-        Address address = new Address();
-        address.setCity("NY");
-        address.setStreet("Central");
-        address.setHouseNumber("1");
-        address.setPostcode("11122");
-        main.getAddressRepository().save(address);
+        Address address1 = new Address();
+        address1.setCity("NY");
+        address1.setStreet("Central");
+        address1.setHouseNumber("1");
+        address1.setPostcode("11122");
+        main.getAddressRepository().save(address1);
 
         main.getAddressRepository().findById(1L).ifPresent(System.out::println);
 
-        point1.setAddress(address);
+        Address address2 = new Address();
+        address2.setCity("LA");
+        address2.setStreet("West");
+        address2.setHouseNumber("2");
+        address2.setPostcode("55566");
+        main.getAddressRepository().save(address2);
+        main.getAddressRepository().findById(2L).ifPresent(System.out::println);
+
+        point1.setAddress(address1);
+        point2.setAddress(address2);
         main.getPointRepository().save(point1);
+        main.getPointRepository().save(point2);
         main.getPointRepository().findById(1L).ifPresent(System.out::println);
+        main.getPointRepository().findById(2L).ifPresent(System.out::println);
 
 
         //one.ifPresent(System.out::println);
