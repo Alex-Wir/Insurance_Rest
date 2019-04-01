@@ -63,4 +63,12 @@ public class Point {
     public void setPoses(Set<Pos> poses) {
         this.poses = poses;
     }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
 }

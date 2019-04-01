@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Component
 public class Main {
 
@@ -132,6 +135,25 @@ public class Main {
         main.getPointRepository().findById(1L).ifPresent(System.out::println);
         main.getPointRepository().findById(2L).ifPresent(System.out::println);
 
+        Set<Point> pointsUser1 = new HashSet<Point>();
+        Set<Point> pointsUser2 = new HashSet<Point>();
+
+        Point point3 = new Point();
+        point3.setName("New Point");
+        main.getPointRepository().save(point3);
+
+        pointsUser1.add(point1);
+        pointsUser1.add(point2);
+        pointsUser1.add(point3);
+        user1.setPoints(pointsUser1);
+        main.getUserRepository().save(user1);
+
+        pointsUser2.add(point3);
+        user2.setPoints(pointsUser2);
+        main.getUserRepository().save(user2);
+
+        printSetOfPoints(user1);
+        printSetOfPoints(user2);
 
         //one.ifPresent(System.out::println);
 
@@ -168,13 +190,6 @@ public class Main {
 
   /*  private static void exampleCRUD() {
         System.out.println("=== CRUD section ===");
-
-        createAddress();
-        updatePointAddress(pointDAO.getOne(1L), addressDAO.getOne(1L));
-
-        updateUserPoint(userDAO.getOne(1L), pointDAO.getOne(1L));
-        updateUserPoint(userDAO.getOne(2L), pointDAO.getOne(1L));
-        updateUserPoint(userDAO.getOne(2L), pointDAO.getOne(2L));
 
         createPos(pointDAO.getOne(1L));
         createShift(posDAO.getOne(1L), userDAO.getOne(1L));
@@ -230,5 +245,13 @@ public class Main {
         pointDAO.delete(2L);
         carDAO.delete(2L);
     }*/
+
+    private static void printSetOfPoints(User user) {
+        Set<Point> userPoints = user.getPoints();
+        System.out.println(user + " has " + userPoints.size() + " point(s):");
+        for (Point point : userPoints)
+            System.out.println("    " + point);
+    }
+
 }
 
