@@ -16,7 +16,7 @@ public class Point {
     @OneToMany(mappedBy = "point")
     private Set<Pos> poses;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 

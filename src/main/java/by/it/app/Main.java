@@ -118,6 +118,7 @@ public class Main {
         main.getAddressRepository().findById(1L).ifPresent(System.out::println);
 
         point1.setAddress(address);
+        main.getPointRepository().save(point1);
         main.getPointRepository().findById(1L).ifPresent(System.out::println);
 
 
