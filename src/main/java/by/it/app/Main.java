@@ -199,9 +199,7 @@ public class Main {
         main.getInsuranceRepository().save(insurance);
         main.getInsuranceRepository().findById(1L).ifPresent(System.out::println);
 
-
         //main.getPosRepository().findById(2L).ifPresent(System.out::println);
-
 
         //one.ifPresent(System.out::println);
 
@@ -234,6 +232,13 @@ public class Main {
 
         //CRUD - delete
         deleteExample();*/
+    }
+
+    private static void printSetOfPoints(User user) {
+        Set<Point> userPoints = user.getPoints();
+        System.out.println(user + " has " + userPoints.size() + " point(s):");
+        for (Point point : userPoints)
+            System.out.println("    " + point);
     }
 
   /*  private static void exampleCRUD() {
@@ -273,19 +278,6 @@ public class Main {
         System.out.println("### Quantity of users with role = EMPLOYEE: "
                 + roleDAO.getQuantityOfUsersByRole(RoleEnum.EMPLOYEE));
     }
-
-    private static void deleteExample() {
-        System.out.println("=== CRUD - Delete section ===");
-        userDAO.delete(2L);
-        pointDAO.delete(2L);
-        carDAO.delete(2L);
-    }*/
-
-    private static void printSetOfPoints(User user) {
-        Set<Point> userPoints = user.getPoints();
-        System.out.println(user + " has " + userPoints.size() + " point(s):");
-        for (Point point : userPoints)
-            System.out.println("    " + point);
-    }
+*/
 }
 
