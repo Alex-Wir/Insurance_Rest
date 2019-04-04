@@ -16,9 +16,18 @@ public class Pos {
     @OneToMany(mappedBy = "pos")
     private Set<Shift> shifts;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "point_id", nullable = false)
     private Point point;
+
+    @Override
+    public String toString() {
+        return "Pos{" +
+                "id=" + id +
+                ", number='" + number + '\'' +
+                ", point=" + point +
+                '}';
+    }
 
     public Point getPoint() {
         return point;

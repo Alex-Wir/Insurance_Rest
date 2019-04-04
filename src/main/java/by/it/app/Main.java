@@ -1,15 +1,13 @@
 package by.it.app;
 
 import by.it.app.model.*;
-import by.it.app.repository.AddressRepository;
-import by.it.app.repository.PointRepository;
-import by.it.app.repository.RoleRepository;
-import by.it.app.repository.UserRepository;
+import by.it.app.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Component
@@ -23,6 +21,16 @@ public class Main {
     private PointRepository pointRepository;
     @Autowired
     private AddressRepository addressRepository;
+    @Autowired
+    private PosRepository posRepository;
+
+    public PosRepository getPosRepository() {
+        return posRepository;
+    }
+
+    public void setPosRepository(PosRepository posRepository) {
+        this.posRepository = posRepository;
+    }
 
     public AddressRepository getAddressRepository() {
         return addressRepository;
@@ -61,6 +69,7 @@ public class Main {
         AnnotationConfigApplicationContext annotatedClassApplicationContext = new AnnotationConfigApplicationContext(by.it.app.config.AppConfiguration.class);
         Main main = annotatedClassApplicationContext.getBean("main", Main.class);
 
+        System.out.println("=== ROLE ===");
         Role roleCustomer = new Role();
         roleCustomer.setRole(RoleEnum.CUSTOMER);
         main.getRoleRepository().save(roleCustomer);
@@ -77,6 +86,7 @@ public class Main {
         main.getRoleRepository().findById(2L).ifPresent(System.out::println);
         main.getRoleRepository().findById(3L).ifPresent(System.out::println);
 
+        System.out.println("=== USER ===");
         User user1 = new User();
         user1.setName("John");
         user1.setRole(roleEmployee);
@@ -100,6 +110,7 @@ public class Main {
         main.getUserRepository().save(user3);
         main.getUserRepository().findById(3L).ifPresent(System.out::println);
 
+        System.out.println("=== POINT ===");
         Point point1 = new Point();
         point1.setName("NY office");
         main.getPointRepository().save(point1);
@@ -154,6 +165,24 @@ public class Main {
 
         printSetOfPoints(user1);
         printSetOfPoints(user2);
+
+        System.out.println("=== POS ===");
+        Pos pos1 = new Pos();
+        pos1.setNumber("POS_1111");
+        pos1.setPoint(point1);
+        main.getPosRepository().save(pos1);
+
+        Pos pos2 = new Pos();
+        pos2.setNumber("POS_2222");
+        pos2.setPoint(point2);
+        main.getPosRepository().save(pos2);
+
+        main.getPosRepository().findById(1L).ifPresent(System.out::println);
+        main.getPosRepository().findById(2L).ifPresent(System.out::println);
+        
+
+        //main.getPosRepository().findById(2L).ifPresent(System.out::println);
+
 
         //one.ifPresent(System.out::println);
 
