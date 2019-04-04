@@ -16,7 +16,7 @@ public class Insurance {
     private Float amount;
     private LocalDate period;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn(name = "car_id", referencedColumnName = "id")
     private Car car;
 
@@ -27,6 +27,17 @@ public class Insurance {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @Override
+    public String toString() {
+        return "Insurance{" +
+                "id=" + id +
+                ", payment=" + payment +
+                ", car=" + car +
+                ", shiftId=" + shift.getId() +
+                ", userId=" + user.getId() +
+                '}';
+    }
 
     public User getUser() {
         return user;

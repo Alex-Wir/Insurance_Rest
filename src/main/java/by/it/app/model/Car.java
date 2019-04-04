@@ -17,6 +17,15 @@ public class Car {
     @OneToOne(mappedBy = "car", fetch = FetchType.LAZY, orphanRemoval = true)
     private Insurance insurance;
 
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", country='" + country + '\'' +
+                ", carNumber='" + carNumber + '\'' +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }

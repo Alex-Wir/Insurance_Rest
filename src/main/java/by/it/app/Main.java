@@ -7,7 +7,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 @Component
@@ -23,46 +22,45 @@ public class Main {
     private AddressRepository addressRepository;
     @Autowired
     private PosRepository posRepository;
+    @Autowired
+    private ShiftRepository shiftRepository;
+    @Autowired
+    private CarRepository carRepository;
+    @Autowired
+    private InsuranceRepository insuranceRepository;
+
+    public InsuranceRepository getInsuranceRepository() {
+        return insuranceRepository;
+    }
+
+    public CarRepository getCarRepository() {
+        return carRepository;
+    }
+
+    public ShiftRepository getShiftRepository() {
+        return shiftRepository;
+    }
 
     public PosRepository getPosRepository() {
         return posRepository;
-    }
-
-    public void setPosRepository(PosRepository posRepository) {
-        this.posRepository = posRepository;
     }
 
     public AddressRepository getAddressRepository() {
         return addressRepository;
     }
 
-    public void setAddressRepository(AddressRepository addressRepository) {
-        this.addressRepository = addressRepository;
-    }
-
     public PointRepository getPointRepository() {
         return pointRepository;
-    }
-
-    public void setPointRepository(PointRepository pointRepository) {
-        this.pointRepository = pointRepository;
     }
 
     public RoleRepository getRoleRepository() {
         return roleRepository;
     }
 
-    public void setRoleRepository(RoleRepository roleRepository) {
-        this.roleRepository = roleRepository;
-    }
-
     public UserRepository getUserRepository() {
         return userRepository;
     }
 
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     public static void main(String[] args) {
 
@@ -98,17 +96,17 @@ public class Main {
         main.getUserRepository().save(user2);
 
         User user3 = new User();
-        user3.setName("Jack");
-        user3.setRole(roleEmployee);
+        user3.setName("Jack Customer");
+        user3.setRole(roleCustomer);
         main.getUserRepository().save(user3);
 
         main.getUserRepository().findById(1L).ifPresent(System.out::println);
         main.getUserRepository().findById(2L).ifPresent(System.out::println);
         main.getUserRepository().findById(3L).ifPresent(System.out::println);
 
-        user3.setName("new Jack");
-        main.getUserRepository().save(user3);
-        main.getUserRepository().findById(3L).ifPresent(System.out::println);
+        user1.setName("new John");
+        main.getUserRepository().save(user1);
+        main.getUserRepository().findById(1L).ifPresent(System.out::println);
 
         System.out.println("=== POINT ===");
         Point point1 = new Point();
@@ -179,7 +177,28 @@ public class Main {
 
         main.getPosRepository().findById(1L).ifPresent(System.out::println);
         main.getPosRepository().findById(2L).ifPresent(System.out::println);
-        
+
+        System.out.println("=== Shift ===");
+        Shift shift1 = new Shift();
+        shift1.setPos(pos1);
+        shift1.setUser(user1);
+        main.getShiftRepository().save(shift1);
+
+        main.getShiftRepository().findById(1L).ifPresent(System.out::println);
+
+        System.out.println("=== Insurance ===");
+        Car car = new Car();
+        car.setCountry("GB");
+        car.setCarNumber("QWE123");
+
+        Insurance insurance = new Insurance();
+        insurance.setCar(car);
+        insurance.setPayment(500F);
+        insurance.setUser(user3);
+        insurance.setShift(shift1);
+        main.getInsuranceRepository().save(insurance);
+        main.getInsuranceRepository().findById(1L).ifPresent(System.out::println);
+
 
         //main.getPosRepository().findById(2L).ifPresent(System.out::println);
 
@@ -218,19 +237,6 @@ public class Main {
     }
 
   /*  private static void exampleCRUD() {
-        System.out.println("=== CRUD section ===");
-
-        createPos(pointDAO.getOne(1L));
-        createShift(posDAO.getOne(1L), userDAO.getOne(1L));
-
-        createCar("FR", "PRS123", "JKHFJ123");
-        createCar("BY", "AA1234", "Q1W2E3R4");
-
-        createInsurance(100L, 10F, 900F,
-                now().plus(6, MONTHS), carDAO.getOne(1L), shiftDAO.getOne(1L), userDAO.getOne(3L));
-        createInsurance(101L, 8F, 700F,
-                now().plus(3, MONTHS), carDAO.getOne(2L), shiftDAO.getOne(1L), userDAO.getOne(3L));
-
         updateInsuranceAmount(insuranceDAO.getOne(1L), 1000F);
     }
 
@@ -281,6 +287,5 @@ public class Main {
         for (Point point : userPoints)
             System.out.println("    " + point);
     }
-
 }
 

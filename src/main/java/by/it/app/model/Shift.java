@@ -26,6 +26,15 @@ public class Shift {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @Override
+    public String toString() {
+        return "Shift{" +
+                "id=" + id +
+                ", posId=" + pos.getId() +
+                ", userId=" + user.getId() +
+                '}';
+    }
+
     public User getUser() {
         return user;
     }
