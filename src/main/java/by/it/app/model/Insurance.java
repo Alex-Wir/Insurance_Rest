@@ -3,6 +3,9 @@ package by.it.app.model;
 import javax.persistence.*;
 import java.time.LocalDate;
 
+/**
+ * Class for represent insurance information
+ */
 @Entity
 @Table
 public class Insurance {

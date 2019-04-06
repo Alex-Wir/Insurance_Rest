@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+/**
+ * Class for represent shift information
+ */
 @Entity
 @Table
 public class Shift {

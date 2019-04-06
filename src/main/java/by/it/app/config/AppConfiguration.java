@@ -7,8 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -19,6 +17,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
+
+/**
+ * Spring Data JPA configuration class
+ */
 
 @Configuration
 @PropertySource("classpath:database.properties")
@@ -41,6 +43,11 @@ public class AppConfiguration {
     @Value("${connection.password}")
     private String password;
 
+    /**
+     * Return driver for using factory for connections to the physical data source
+     *
+     * @return DataSource
+     */
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource driver = new DriverManagerDataSource();
@@ -51,6 +58,12 @@ public class AppConfiguration {
         return driver;
     }
 
+    /**
+     * Set up a sharedJPA EntityManagerFactory in a Spring application context
+     * The EntityManagerFactory can then be passed to JPA-based DAOs via dependency injection
+     *
+     * @return - ContainerEntityManagerFactoryBean
+     */
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
@@ -62,6 +75,12 @@ public class AppConfiguration {
         return localContainerEntityManagerFactoryBean;
     }
 
+    /**
+     * Return a central interface in Spring's transaction infrastructure
+     *
+     * @param emf - EntityManagerFactory emf
+     * @return PlatformTransactionManager
+     */
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();

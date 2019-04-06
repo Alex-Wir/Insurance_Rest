@@ -6,6 +6,9 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
+/**
+ * Auto implemented CRUD for Insurance-entity
+ */
 public interface InsuranceRepository extends JpaRepository<Insurance, Long> {
 
     @Query("SELECT i FROM Insurance i WHERE i.payment BETWEEN ?1 AND ?2")

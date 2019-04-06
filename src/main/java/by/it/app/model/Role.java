@@ -3,6 +3,9 @@ package by.it.app.model;
 import javax.persistence.*;
 import java.util.Set;
 
+/**
+ * Class for represent user's role information
+ */
 @Entity
 @Table
 public class Role {

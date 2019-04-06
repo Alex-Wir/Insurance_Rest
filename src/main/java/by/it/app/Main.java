@@ -8,9 +8,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
+/**
+ * Class with examples CRUD operations for all entities
+ */
 @Component
 public class Main {
 
@@ -63,6 +65,11 @@ public class Main {
         return userRepository;
     }
 
+    /**
+     * Entry point in app
+     *
+     * @param args
+     */
     public static void main(String[] args) {
 
         AnnotationConfigApplicationContext annotatedClassApplicationContext = new AnnotationConfigApplicationContext(by.it.app.config.AppConfiguration.class);

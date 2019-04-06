@@ -2,6 +2,9 @@ package by.it.app.model;
 
 import javax.persistence.*;
 
+/**
+ * Class for represent car information
+ */
 @Entity
 @Table
 public class Car {

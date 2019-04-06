@@ -3,6 +3,9 @@ package by.it.app.model;
 import javax.persistence.*;
 import java.util.Set;
 
+/**
+ * Class for represent point information
+ */
 @Entity
 @Table
 public class Point {
