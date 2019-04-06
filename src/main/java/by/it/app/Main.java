@@ -238,6 +238,16 @@ public class Main {
             }
         }
 
+        List<Car> cars = main.getCarRepository().findByCarNumberIsEndingWith("123");
+        if (cars.isEmpty()) {
+            System.out.println("Car(s) with number is ending with '123' not found");
+        } else {
+            System.out.println("Car(s) with number is ending with '123':");
+            for (Car car : cars) {
+                System.out.println(car);
+            }
+        }
+
 
 
 
