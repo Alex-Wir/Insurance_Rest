@@ -7,6 +7,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Component
@@ -66,6 +67,7 @@ public class Main {
         AnnotationConfigApplicationContext annotatedClassApplicationContext = new AnnotationConfigApplicationContext(by.it.app.config.AppConfiguration.class);
         Main main = annotatedClassApplicationContext.getBean("main", Main.class);
 
+        /*System.out.println("=== === CRUD EXAMPLE === ===");
         System.out.println("=== ROLE ===");
         Role roleCustomer = new Role();
         roleCustomer.setRole(RoleEnum.CUSTOMER);
@@ -202,16 +204,22 @@ public class Main {
         Insurance insurance2 = main.getInsuranceRepository().findById(1L).get();
         insurance2.setPayment(300F);
         main.getInsuranceRepository().save(insurance2);
-        main.getInsuranceRepository().findById(1L).ifPresent(System.out::println);
+        main.getInsuranceRepository().findById(1L).ifPresent(System.out::println);*/
 
-        //System.out.println(insurance2.getPayment());
-        /*      System.out.println(insurance2.toString());*/
-  /*      main.getInsuranceRepository().save(insurance2);
-        main.getInsuranceRepository().findById(1L).ifPresent(System.out::println);
-*/
-        //main.getPosRepository().findById(2L).ifPresent(System.out::println);
+        System.out.println("=== === QUERY & NAMED QUERY === ===");
 
-        //one.ifPresent(System.out::println);
+        List<User> users = main.getUserRepository().findByName("Jane");
+        if (users.isEmpty()) {
+            System.out.println("User(s) with name 'Jane' not found");
+        } else {
+            System.out.println("User(s) with name 'Jane':");
+            for (User user : users) {
+                System.out.println(user);
+            }
+        }
+
+        
+
 
      /*   one.ifPresent(main.getUserRepository()::delete);
         one = main.getUserRepository().findById(1L);
@@ -228,28 +236,6 @@ public class Main {
         three = main.getUserRepository().findById(3L);
         three.ifPresent(System.out::println);*/
 
-        /*       //CRUD
-        exampleCRUD();
-
-        //HQL
-        hqlExample();
-
-        //NativeSQL
-        nsqlExample();
-
-        //Criteria
-        criteriaExample();
-
-        //CRUD - delete
-        deleteExample();*/
-    }
-
-    private static void printSetOfPoints(User user) {
-        Set<Point> userPoints = user.getPoints();
-        System.out.println(user + " has " + userPoints.size() + " point(s):");
-        for (Point point : userPoints)
-            System.out.println("    " + point);
-    }
 
   /*  private static void exampleCRUD() {
         updateInsuranceAmount(insuranceDAO.getOne(1L), 1000F);
@@ -289,5 +275,14 @@ public class Main {
                 + roleDAO.getQuantityOfUsersByRole(RoleEnum.EMPLOYEE));
     }
 */
+    }
+
+    private static void printSetOfPoints(User user) {
+        Set<Point> userPoints = user.getPoints();
+        System.out.println(user + " has " + userPoints.size() + " point(s):");
+        for (Point point : userPoints)
+            System.out.println("    " + point);
+    }
+
 }
 
