@@ -61,7 +61,6 @@ public class Main {
         return userRepository;
     }
 
-
     public static void main(String[] args) {
 
         AnnotationConfigApplicationContext annotatedClassApplicationContext = new AnnotationConfigApplicationContext(by.it.app.config.AppConfiguration.class);
@@ -199,6 +198,17 @@ public class Main {
         main.getInsuranceRepository().save(insurance);
         main.getInsuranceRepository().findById(1L).ifPresent(System.out::println);
 
+        System.out.println("Set payment 300:");
+        Insurance insurance2 = main.getInsuranceRepository().findById(1L).get();
+        insurance2.setPayment(300F);
+        main.getInsuranceRepository().save(insurance2);
+        main.getInsuranceRepository().findById(1L).ifPresent(System.out::println);
+
+        //System.out.println(insurance2.getPayment());
+        /*      System.out.println(insurance2.toString());*/
+  /*      main.getInsuranceRepository().save(insurance2);
+        main.getInsuranceRepository().findById(1L).ifPresent(System.out::println);
+*/
         //main.getPosRepository().findById(2L).ifPresent(System.out::println);
 
         //one.ifPresent(System.out::println);
