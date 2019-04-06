@@ -248,7 +248,25 @@ public class Main {
             }
         }
 
+        List<Insurance> insurances = main.getInsuranceRepository().findInsuranceByPaymentBetween1(100F, 200F);
+        if (insurances.isEmpty()) {
+            System.out.println("Insurance(s) with payment between 100 and 200 not found");
+        } else {
+            System.out.println("Insurance(s) with payment between 100 and 200:");
+            for (Insurance insurance : insurances) {
+                System.out.println(insurance);
+            }
+        }
 
+        insurances = main.getInsuranceRepository().findInsuranceByPaymentBetween1(250F, 500F);
+        if (insurances.isEmpty()) {
+            System.out.println("Insurance(s) with payment between 250 and 500 not found");
+        } else {
+            System.out.println("Insurance(s) with payment between 250 and 500:");
+            for (Insurance insurance : insurances) {
+                System.out.println(insurance);
+            }
+        }
 
 
 
@@ -307,6 +325,8 @@ public class Main {
                 + roleDAO.getQuantityOfUsersByRole(RoleEnum.EMPLOYEE));
     }
 */
+
+
     }
 
     private static void printSetOfPoints(User user) {
