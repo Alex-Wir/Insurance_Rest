@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Component
@@ -67,7 +68,7 @@ public class Main {
         AnnotationConfigApplicationContext annotatedClassApplicationContext = new AnnotationConfigApplicationContext(by.it.app.config.AppConfiguration.class);
         Main main = annotatedClassApplicationContext.getBean("main", Main.class);
 
-        /*System.out.println("=== === CRUD EXAMPLE === ===");
+        System.out.println("=== === CRUD EXAMPLE === ===");
         System.out.println("=== ROLE ===");
         Role roleCustomer = new Role();
         roleCustomer.setRole(RoleEnum.CUSTOMER);
@@ -188,23 +189,23 @@ public class Main {
         main.getShiftRepository().findById(1L).ifPresent(System.out::println);
 
         System.out.println("=== Insurance ===");
-        Car car = new Car();
-        car.setCountry("GB");
-        car.setCarNumber("QWE123");
+        Car car1 = new Car();
+        car1.setCountry("GB");
+        car1.setCarNumber("QWE123");
 
-        Insurance insurance = new Insurance();
-        insurance.setCar(car);
-        insurance.setPayment(500F);
-        insurance.setUser(user3);
-        insurance.setShift(shift1);
-        main.getInsuranceRepository().save(insurance);
+        Insurance insurance1 = new Insurance();
+        insurance1.setCar(car1);
+        insurance1.setPayment(500F);
+        insurance1.setUser(user3);
+        insurance1.setShift(shift1);
+        main.getInsuranceRepository().save(insurance1);
         main.getInsuranceRepository().findById(1L).ifPresent(System.out::println);
 
         System.out.println("Set payment 300:");
         Insurance insurance2 = main.getInsuranceRepository().findById(1L).get();
         insurance2.setPayment(300F);
         main.getInsuranceRepository().save(insurance2);
-        main.getInsuranceRepository().findById(1L).ifPresent(System.out::println);*/
+        main.getInsuranceRepository().findById(1L).ifPresent(System.out::println);
 
         System.out.println("=== === QUERY & NAMED QUERY === ===");
 
@@ -214,7 +215,7 @@ public class Main {
         } else {
             System.out.println("User(s) with name like'Ja':");
             for (User user : users) {
-                System.out.println(user);
+                System.out.println("   " + user);
             }
         }
 
@@ -224,7 +225,7 @@ public class Main {
         } else {
             System.out.println("Point(s) in city 'NY':");
             for (Point point : points) {
-                System.out.println(point);
+                System.out.println("   " + point);
             }
         }
 
@@ -234,7 +235,7 @@ public class Main {
         } else {
             System.out.println("Address(es) with house number after '1':");
             for (Address address : addresses) {
-                System.out.println(address);
+                System.out.println("   " + address);
             }
         }
 
@@ -244,7 +245,7 @@ public class Main {
         } else {
             System.out.println("Car(s) with number is ending with '123':");
             for (Car car : cars) {
-                System.out.println(car);
+                System.out.println("   " + car);
             }
         }
 
@@ -254,7 +255,7 @@ public class Main {
         } else {
             System.out.println("Insurance(s) with payment between 100 and 200:");
             for (Insurance insurance : insurances) {
-                System.out.println(insurance);
+                System.out.println("   " + insurance);
             }
         }
 
@@ -264,7 +265,7 @@ public class Main {
         } else {
             System.out.println("Insurance(s) with payment between 250 and 500:");
             for (Insurance insurance : insurances) {
-                System.out.println(insurance);
+                System.out.println("   " + insurance);
             }
         }
 
@@ -274,71 +275,9 @@ public class Main {
         } else {
             System.out.println("Pos(es) with number like '11':");
             for (Pos pos : poses) {
-                System.out.println(pos);
+                System.out.println("   " + pos);
             }
         }
-
-
-
-
-
-
-     /*   one.ifPresent(main.getUserRepository()::delete);
-        one = main.getUserRepository().findById(1L);
-        System.out.println(one.isPresent());
-
-        User user = new User();
-        user.setName("TESTA");
-        main.getUserRepository().save(user);
-        Optional<User> three = main.getUserRepository().findById(3L);
-        three.ifPresent(System.out::println);
-
-        user.setName("TESTB");
-        main.getUserRepository().saveAndFlush(user);
-        three = main.getUserRepository().findById(3L);
-        three.ifPresent(System.out::println);*/
-
-
-  /*  private static void exampleCRUD() {
-        updateInsuranceAmount(insuranceDAO.getOne(1L), 1000F);
-    }
-
-    private static void hqlExample() {
-        System.out.println("=== HQL section ===");
-
-        List<Point> points = pointDAO.findAll(0, 5);
-        System.out.println("### Point: " + points.get(0).getName());
-        System.out.println("### Point: " + points.get(1).getName());
-
-        Car car = carDAO.findByCountryAndNumber("BY", "AA1234");
-        System.out.println("### Car [BY AA1234] has ID = " + car.getId());
-
-        List<Shift> shiftsListWithInsurances = shiftDAO.findAllWithInsurances(0, 5);
-        System.out.println("### Shift with ID = " + shiftsListWithInsurances.get(0).getId() +
-                " has " + shiftsListWithInsurances.get(0).getInsurances().size() + " insurances");
-
-        posDAO.updateNumber(1L, "POS456");
-
-        List<Address> addresses = addressDAO.findByCity(0, 5, "Grodno");
-        System.out.println("### Find " + addresses.size() + " address with city \"Grodno\"");
-
-        insuranceDAO.deleteByNumber(101L);
-    }
-
-    private static void nsqlExample() {
-        System.out.println("=== NativeSQL section ===");
-        List<User> users = userDAO.findByName(0, 5, "Jane");
-        System.out.println("### Find " + users.size() + " user(s) with name \"Jane\"");
-    }
-
-    private static void criteriaExample() {
-        System.out.println("=== Criteria section ===");
-        System.out.println("### Quantity of users with role = EMPLOYEE: "
-                + roleDAO.getQuantityOfUsersByRole(RoleEnum.EMPLOYEE));
-    }
-*/
-
-
     }
 
     private static void printSetOfPoints(User user) {
@@ -347,6 +286,5 @@ public class Main {
         for (Point point : userPoints)
             System.out.println("    " + point);
     }
-
 }
 
