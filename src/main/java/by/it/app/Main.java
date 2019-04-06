@@ -228,6 +228,16 @@ public class Main {
             }
         }
 
+        List<Address> addresses = main.getAddressRepository().findAllByHouseNumberAfter("1");
+        if (addresses.isEmpty()) {
+            System.out.println("Address(es) with house number after '1' not found");
+        } else {
+            System.out.println("Address(es) with house number after '1':");
+            for (Address address : addresses) {
+                System.out.println(address);
+            }
+        }
+
 
 
 
