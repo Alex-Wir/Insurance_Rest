@@ -208,17 +208,29 @@ public class Main {
 
         System.out.println("=== === QUERY & NAMED QUERY === ===");
 
-        List<User> users = main.getUserRepository().findByName("Jane");
+        List<User> users = main.getUserRepository().findByNameContains("Ja");
         if (users.isEmpty()) {
-            System.out.println("User(s) with name 'Jane' not found");
+            System.out.println("User(s) with name like 'Ja' not found");
         } else {
-            System.out.println("User(s) with name 'Jane':");
+            System.out.println("User(s) with name like'Ja':");
             for (User user : users) {
                 System.out.println(user);
             }
         }
 
-        
+        List<Point> points = main.getPointRepository().findByAddressCityContains("NY");
+        if (points.isEmpty()) {
+            System.out.println("Point(s) in city 'NY' not found");
+        } else {
+            System.out.println("Point(s) in city 'NY':");
+            for (Point point : points) {
+                System.out.println(point);
+            }
+        }
+
+
+
+
 
 
      /*   one.ifPresent(main.getUserRepository()::delete);
