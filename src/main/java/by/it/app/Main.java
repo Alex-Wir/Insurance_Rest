@@ -268,6 +268,18 @@ public class Main {
             }
         }
 
+        List<Pos> poses = main.getPosRepository().findByNumberLike1("11");
+        if (poses.isEmpty()) {
+            System.out.println("Pos(es) not found");
+        } else {
+            System.out.println("Pos(es) with number like '11':");
+            for (Pos pos : poses) {
+                System.out.println(pos);
+            }
+        }
+
+
+
 
 
 
