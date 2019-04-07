@@ -59,7 +59,7 @@ public class AppConfiguration {
     }
 
     /**
-     * Set up a sharedJPA EntityManagerFactory in a Spring application context
+     * Set up a shared JPA EntityManagerFactory in a Spring application context
      * The EntityManagerFactory can then be passed to JPA-based DAOs via dependency injection
      *
      * @return - ContainerEntityManagerFactoryBean
