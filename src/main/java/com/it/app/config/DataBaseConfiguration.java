@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -22,20 +21,18 @@ import java.util.Properties;
  * Spring Data JPA configuration class
  */
 
-//@Configuration
 @PropertySource("classpath:database.properties")
-//@ComponentScan("com.it.app")
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = {
         "com.it.app.repository"
 })
 public class DataBaseConfiguration {
 
-    @Value("${connection.driver_class}")
+/*    @Value("${connection.driver_class}")
     private String driverClass;
 
     @Value("${connection.url}")
-    private String url;
+    private String url;*/
 
     @Value("${connection.username}")
     private String username;
@@ -55,18 +52,18 @@ public class DataBaseConfiguration {
     @Value("${hibernate.hbm2ddl.auto}")
     private String hibernateHBM2DDLAuto;
 
-/*    @Value("${h2.connection.driver_class}")
+    @Value("${h2.connection.driver_class}")
     private String driverClass;
 
     @Value("${h2.connection.url}")
-    private String url;*/
+    private String url;
 
     /**
      * Return driver for using factory for connections to the physical data source
      *
      * @return DataSource
      */
-
+/*
     //enable for MySQL database
     @Bean
     public DataSource dataSource() {
@@ -76,14 +73,14 @@ public class DataBaseConfiguration {
         driver.setUsername(username);
         driver.setPassword(password);
         return driver;
-    }
+    }*/
 
-/*    //enable for H2 database
+    //enable for H2 database
     @Bean
     public DataSource dataSource() {
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-        return builder.setType(EmbeddedDatabaseType.H2).addScript("/start.sql").build();
-    }*/
+        return builder.setType(EmbeddedDatabaseType.H2).build();
+    }
 
     /**
      * Set up a shared JPA EntityManagerFactory in a Spring application context
