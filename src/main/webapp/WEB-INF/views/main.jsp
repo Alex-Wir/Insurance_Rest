@@ -13,8 +13,11 @@
     <p>Enter User name:</p>
     <form method="GET" action="/addUser">
         <input type="text" name="name"> <br />
-        <input type="submit" value="Add User">
+        <p><input type="submit" value="Add User"></p>
     </form>
+</div>
+<div>
+    <a href="/allUsers">All users</a>
 </div>
 <%--<div>
     <p>viewName:</p>

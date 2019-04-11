@@ -1,5 +1,6 @@
 package com.it.app.controller;
 
+import com.it.app.model.User;
 import com.it.app.service.UserService;
 import com.it.app.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -28,6 +31,14 @@ public class UserController {
         userService.addUser(name);
         model.addAttribute("name", name);
         return "ok";
+    }
+
+    @RequestMapping(value = "/allUsers", method = RequestMethod.GET)
+    public String allUsers(@ModelAttribute("name") String name, ModelMap model) {
+        List<User> users = userService.findAll();
+        int number = users.size();
+        model.addAttribute("number", number);
+        return "allusers";
     }
 
 /*    @RequestMapping(value = "/viewName", method = RequestMethod.GET)
