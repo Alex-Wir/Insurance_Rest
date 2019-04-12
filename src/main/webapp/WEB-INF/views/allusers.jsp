@@ -6,30 +6,28 @@
             body {
                 margin: 0 15%;
             }
-            td {
+            table, td {
                 border: solid 1px black;
+            }
+            td{
+                width:100px;
+                height:20px;
             }
         </style>
     </head>
     <body>
-    <a href="/addUser">Return to main page</a>
+    <p id="userstable"></p>
+    <a href="/main">Return to main page</a>
     <script>
         function printTable(j) {
-            var table = document.createElement('table');
-            var str = "";
-            for (var i = 1; i < j; i++) {
-                str += "<tr>1</tr>";
+            var str = "<table>";
+            for (var i = 1; i <= j; i++) {
+                str += "<tr><td>" + i + " user </td></tr>";
             }
-            table.innerHTML = str;
-            table.display;
-            document.write("<br />");
-            document.write(str);
-            document.write("<br />");
-            document.write("1231231232321");
-            document.write("<br />");
-            document.write("Number of users: " + j);
+            str+="</table>";
+            return(str);
         }
-       printTable(${number});
+        document.getElementById("userstable").innerHTML = printTable(${number});
     </script>
     </body>
 </html>

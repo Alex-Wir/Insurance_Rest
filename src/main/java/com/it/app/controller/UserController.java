@@ -2,14 +2,12 @@ package com.it.app.controller;
 
 import com.it.app.model.User;
 import com.it.app.service.UserService;
-import com.it.app.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -27,7 +25,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/addUser", method = RequestMethod.GET)
-    public String modelAttribute(@ModelAttribute("name") String name, ModelMap model) {
+    public String ok(@ModelAttribute("name") String name, ModelMap model) {
         userService.addUser(name);
         model.addAttribute("name", name);
         return "ok";

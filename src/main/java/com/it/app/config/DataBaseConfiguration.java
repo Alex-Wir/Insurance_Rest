@@ -17,10 +17,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-/**
- * Spring Data JPA configuration class
- */
-
 @PropertySource("classpath:database.properties")
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = {
@@ -58,11 +54,6 @@ public class DataBaseConfiguration {
     @Value("${h2.connection.url}")
     private String url;
 
-    /**
-     * Return driver for using factory for connections to the physical data source
-     *
-     * @return DataSource
-     */
 /*
     //enable for MySQL database
     @Bean
@@ -82,12 +73,6 @@ public class DataBaseConfiguration {
         return builder.setType(EmbeddedDatabaseType.H2).build();
     }
 
-    /**
-     * Set up a shared JPA EntityManagerFactory in a Spring application context
-     * The EntityManagerFactory can then be passed to JPA-based DAOs via dependency injection
-     *
-     * @return - ContainerEntityManagerFactoryBean
-     */
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
@@ -99,12 +84,6 @@ public class DataBaseConfiguration {
         return localContainerEntityManagerFactoryBean;
     }
 
-    /**
-     * Return a central interface in Spring's transaction infrastructure
-     *
-     * @param emf - EntityManagerFactory emf
-     * @return PlatformTransactionManager
-     */
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();

@@ -10,6 +10,7 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan(basePackages = "com.it.app")
 @EnableWebMvc
 public class WebConfiguration {
+
     @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
@@ -19,5 +20,4 @@ public class WebConfiguration {
 
         return viewResolver;
     }
-
 }
