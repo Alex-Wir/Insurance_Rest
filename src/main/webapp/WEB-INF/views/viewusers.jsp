@@ -29,6 +29,7 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
+                <th>Edit</th>
             </tr>
         </thead>
         <tbody>
@@ -36,6 +37,7 @@
                 <tr>
                     <td class="id">${user.id}</td>
                     <td>${user.name}</td>
+                    <td><a href="edituser/${user.id}">Edit</a></td>
                 </tr>
             </c:forEach>
         </tbody>

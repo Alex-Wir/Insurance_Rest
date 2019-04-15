@@ -3,17 +3,18 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>main</title>
+    <title>Add user</title>
     <style>
         body{margin: 0 15%;}
     </style>
 </head>
 <body>
 <div>
-    <p>Enter User name:</p>
+    <h2>Create new user</h2>
     <form method="GET" action="/useradded">
-        <input type="text" name="name"> <br />
-        <p><input type="submit" value="Add User"></p>
+        <label for="name">Enter user name:</label>
+        <input type="text" name="name" id="name"><br />
+        <p><input type="submit" value="Add User">
     </form>
 </div>
 <div>

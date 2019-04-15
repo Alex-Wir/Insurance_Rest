@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,8 +27,8 @@ public class UserController {
 
     @RequestMapping(value = "/useradded", method = RequestMethod.GET)
     public String userAdded(@ModelAttribute("name") String name, ModelMap model) {
-        userService.addUser(name);
-        model.addAttribute("name", name);
+        User savedUser = userService.addUser(name);
+        model.addAttribute("user", savedUser);
         return "useradded";
     }
 
@@ -37,6 +38,21 @@ public class UserController {
         model.addAttribute("users", users);
         return "viewusers";
     }
+
+    @RequestMapping(value = "/edituser/{id}")
+    public String edit(@PathVariable Long id, ModelMap model) {
+        User user = userService.findById(id);
+        model.addAttribute("command", user);
+        return "useredit";
+    }
+
+    @RequestMapping(value = "/userupdate", method = RequestMethod.POST)
+    public String userAdded(@ModelAttribute("user") User user, ModelMap model) {
+        User updatedUser = userService.update(user);
+        model.addAttribute("user", updatedUser);
+        return "userupdated";
+    }
+
 
 /*    @RequestMapping(value = "/viewName", method = RequestMethod.GET)
     public String viewName(@RequestParam("value") String value, ModelMap model) {

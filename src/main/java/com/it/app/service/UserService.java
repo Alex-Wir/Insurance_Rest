@@ -11,4 +11,8 @@ public interface UserService {
     User addUser(String name);
 
     List<User> findAll();
+
+    User findById(Long id);
+
+    User update(User user);
 }

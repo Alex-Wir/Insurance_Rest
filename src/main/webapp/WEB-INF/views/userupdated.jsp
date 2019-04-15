@@ -4,14 +4,14 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>User added</title>
+    <title>User updated</title>
     <style>
         body{margin: 0 15%;}
     </style>
 </head>
 <body>
     <div>
-        <p>User <b>${user.name}</b> added!</p>
+        <p>User <b>${user.name}</b> updated!</p>
     </div>
     <a href="/adduser">Add new user</a>
     <br />
