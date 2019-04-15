@@ -34,8 +34,7 @@ public class UserController {
     @RequestMapping(value = "/viewusers", method = RequestMethod.GET)
     public String viewUsers(@ModelAttribute("name") String name, ModelMap model) {
         List<User> users = userService.findAll();
-        int number = users.size();
-        model.addAttribute("number", number);
+        model.addAttribute("users", users);
         return "viewusers";
     }
 
