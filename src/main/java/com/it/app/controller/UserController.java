@@ -18,25 +18,25 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = {"/", "/main"}, method = RequestMethod.GET)
-    public ModelAndView main() {
+    @RequestMapping(value = {"/", "/adduser"}, method = RequestMethod.GET)
+    public ModelAndView addUser() {
 
-        return new ModelAndView("main", "", "");
+        return new ModelAndView("adduser", "", "");
     }
 
-    @RequestMapping(value = "/addUser", method = RequestMethod.GET)
-    public String ok(@ModelAttribute("name") String name, ModelMap model) {
+    @RequestMapping(value = "/useradded", method = RequestMethod.GET)
+    public String userAdded(@ModelAttribute("name") String name, ModelMap model) {
         userService.addUser(name);
         model.addAttribute("name", name);
-        return "ok";
+        return "useradded";
     }
 
-    @RequestMapping(value = "/allUsers", method = RequestMethod.GET)
-    public String allUsers(@ModelAttribute("name") String name, ModelMap model) {
+    @RequestMapping(value = "/viewusers", method = RequestMethod.GET)
+    public String viewUsers(@ModelAttribute("name") String name, ModelMap model) {
         List<User> users = userService.findAll();
         int number = users.size();
         model.addAttribute("number", number);
-        return "allusers";
+        return "viewusers";
     }
 
 /*    @RequestMapping(value = "/viewName", method = RequestMethod.GET)

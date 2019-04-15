@@ -10,6 +10,8 @@
     <div>
         <p>User <b>${name}</b> added!</p>
     </div>
-    <a href="/main">Return to main page</a>
+    <a href="/adduser">To add user</a>
+    <br />
+    <a href="/viewusers">View all users</a>
 </body>
 </html>

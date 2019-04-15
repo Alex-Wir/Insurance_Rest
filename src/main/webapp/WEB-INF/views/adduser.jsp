@@ -11,19 +11,13 @@
 <body>
 <div>
     <p>Enter User name:</p>
-    <form method="GET" action="/addUser">
+    <form method="GET" action="/useradded">
         <input type="text" name="name"> <br />
         <p><input type="submit" value="Add User"></p>
     </form>
 </div>
 <div>
-    <a href="/allUsers">All users</a>
+    <a href="/viewusers">All users</a>
 </div>
-<%--<div>
-    <p>viewName:</p>
-    <form method="GET" action="/viewName">
-        <input type="text" name="value"> <input type="submit" value="add">
-    </form>
-</div>--%>
 </body>
 </html>

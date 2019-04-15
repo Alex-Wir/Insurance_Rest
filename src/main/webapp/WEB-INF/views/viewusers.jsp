@@ -17,7 +17,7 @@
     </head>
     <body>
     <p id="userstable"></p>
-    <a href="/main">Return to main page</a>
+    <a href="/adduser">Return to main page</a>
     <script>
         function printTable(j) {
             var str = "<table>";
