@@ -1,6 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>User added</title>
     <style>
         body{margin: 0 15%;}
@@ -10,7 +13,7 @@
     <div>
         <p>User <b>${name}</b> added!</p>
     </div>
-    <a href="/adduser">To add user</a>
+    <a href="/adduser">Add new user</a>
     <br />
     <a href="/viewusers">View all users</a>
 </body>

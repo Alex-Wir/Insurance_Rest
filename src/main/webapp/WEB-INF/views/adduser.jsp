@@ -17,7 +17,7 @@
     </form>
 </div>
 <div>
-    <a href="/viewusers">All users</a>
+    <a href="/viewusers">View all users</a>
 </div>
 </body>
 </html>

@@ -1,9 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>--%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
         <title>All Users</title>
         <style>
             body {
@@ -39,19 +40,6 @@
             </c:forEach>
         </tbody>
      </table>
-
-<%--    <p id="userstable"></p>
-    <a href="/adduser">Return to main page</a>
-    <script>
-        function printTable(j) {
-            var str = "<table>";
-            for (var i = 1; i <= j; i++) {
-                str += "<tr><td>" + i + " user </td></tr>";
-            }
-            str+="</table>";
-            return(str);
-        }
-        document.getElementById("userstable").innerHTML = printTable(${number});
-    </script>--%>
+    <a href="/adduser">Add new user</a>
     </body>
 </html>
