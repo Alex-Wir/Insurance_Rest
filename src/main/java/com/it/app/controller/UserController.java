@@ -47,10 +47,16 @@ public class UserController {
     }
 
     @RequestMapping(value = "/userupdate", method = RequestMethod.POST)
-    public String userAdded(@ModelAttribute("user") User user, ModelMap model) {
+    public String userUpdated(@ModelAttribute("user") User user, ModelMap model) {
         User updatedUser = userService.update(user);
         model.addAttribute("user", updatedUser);
         return "userupdated";
+    }
+
+    @RequestMapping(value = "/deleteuser/{id}")
+    public String delete(@PathVariable Long id, ModelMap model) {
+        userService.delete(id);
+        return "redirect:/viewusers";
     }
 
 

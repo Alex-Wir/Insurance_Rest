@@ -20,6 +20,9 @@
             td.id{
                 width:20px;
             }
+            th{
+                background-color: silver;
+            }
         </style>
     </head>
     <body>
@@ -30,6 +33,7 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -38,6 +42,7 @@
                     <td class="id">${user.id}</td>
                     <td>${user.name}</td>
                     <td><a href="edituser/${user.id}">Edit</a></td>
+                    <td><a href="deleteuser/${user.id}">Delete</a></td>
                 </tr>
             </c:forEach>
         </tbody>
