@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 /**
- * Auto implemented CRUD for Point-entity
+ * JPA repository for for Point entity
  */
 public interface PointRepository extends JpaRepository<Point, Long> {
 

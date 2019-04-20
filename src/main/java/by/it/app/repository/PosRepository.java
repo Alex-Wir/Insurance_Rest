@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 /**
- * Auto implemented CRUD for Pos-entity
+ * JPA repository for for Pos entity
  */
 public interface PosRepository extends JpaRepository<Pos, Long> {
 

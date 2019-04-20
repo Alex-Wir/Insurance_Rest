@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 /**
- * Auto implemented CRUD for Insurance-entity
+ * JPA repository for for Insurance entity
  */
 public interface InsuranceRepository extends JpaRepository<Insurance, Long> {
 

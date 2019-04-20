@@ -153,8 +153,8 @@ public class Main {
         main.getPointRepository().findById(1L).ifPresent(System.out::println);
         main.getPointRepository().findById(2L).ifPresent(System.out::println);
 
-        Set<Point> pointsUser1 = new HashSet<Point>();
-        Set<Point> pointsUser2 = new HashSet<Point>();
+        Set<Point> pointsUser1 = new HashSet<>();
+        Set<Point> pointsUser2 = new HashSet<>();
 
         Point point3 = new Point();
         point3.setName("New Point");
