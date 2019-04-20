@@ -4,9 +4,13 @@ import com.it.app.component.LocalizedMessageSource;
 import com.it.app.model.Car;
 import com.it.app.repository.CarRepository;
 import com.it.app.service.CarService;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Service
+@Transactional
 public class CarServiceImpl implements CarService {
 
     private final LocalizedMessageSource localizedMessageSource;
@@ -34,10 +38,10 @@ public class CarServiceImpl implements CarService {
         return carRepository.saveAndFlush(car);
     }
 
-    //~!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111
     @Override
     public Car update(Car car) {
-        return null;
+        validate(car.getId() == null, localizedMessageSource.getMessage("error.car.haveId", new Object[]{}));
+        return carRepository.saveAndFlush(car);
     }
 
     @Override

@@ -2,9 +2,6 @@ package com.it.app.model;
 
 import javax.persistence.*;
 
-/**
- * Class for represent car information
- */
 @Entity
 @Table
 public class Car {
@@ -14,7 +11,7 @@ public class Car {
     private Long id;
 
     private String country;
-    private String carNumber;
+    private String number;
 
     public Long getId() {
         return id;
@@ -32,12 +29,12 @@ public class Car {
         this.country = country;
     }
 
-    public String getCarNumber() {
-        return carNumber;
+    public String getNumber() {
+        return number;
     }
 
-    public void setCarNumber(String carNumber) {
-        this.carNumber = carNumber;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
 }
