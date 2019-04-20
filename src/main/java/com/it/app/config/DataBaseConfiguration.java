@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -24,29 +25,63 @@ import java.util.Properties;
 })
 public class DataBaseConfiguration {
 
+    @Value("${connection.username}")
+    private String username;
+
+    @Value("${connection.password}")
+    private String password;
+
+    @Value("${entitymanager.packages.to.scan}")
+    private String packageToScan;
+
+    @Value("${hibernate.dialect}")
+    private String hibernateDialect;
+
+    @Value("${hibernate.show_sql}")
+    private String hibernateShowSQL;
+
+    @Value("${hibernate.hbm2ddl.auto}")
+    private String hibernateHBM2DDLAuto;
+
+/*    @Value("${h2.connection.driver_class}")
+    private String driverClass;
+
+    @Value("${h2.connection.url}")
+    private String url;*/
+
     @Value("${connection.driver_class}")
     private String driverClass;
 
     @Value("${connection.url}")
     private String url;
 
+    //enable for MySQL database
+    @Bean
+    public DataSource dataSource() {
+        DriverManagerDataSource driver = new DriverManagerDataSource();
+        driver.setDriverClassName(driverClass);
+        driver.setUrl(url);
+        driver.setUsername(username);
+        driver.setPassword(password);
 
+        return driver;
+    }
+
+/*    //enable for H2 database
     @Bean
     public DataSource dataSource() {
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-        return builder.setType(EmbeddedDatabaseType.H2)
-                .addScript("/start.sql")
-                .build();
-    }
+        return builder.setType(EmbeddedDatabaseType.H2).addScript("/import.sql").build();
+    }*/
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         localContainerEntityManagerFactoryBean.setDataSource(dataSource());
-        localContainerEntityManagerFactoryBean.setPackagesToScan("com.it.app.model");
+        localContainerEntityManagerFactoryBean.setPackagesToScan(packageToScan);
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         localContainerEntityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
-        localContainerEntityManagerFactoryBean.setJpaProperties(additionalProperties());
+        localContainerEntityManagerFactoryBean.setJpaProperties(getHibernateProperties());
         return localContainerEntityManagerFactoryBean;
     }
 
@@ -57,11 +92,11 @@ public class DataBaseConfiguration {
         return transactionManager;
     }
 
-    private Properties additionalProperties() {
+    private Properties getHibernateProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-        properties.setProperty("hibernate.show_sql", "true");
-        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+        properties.setProperty("hibernate.hbm2ddl.auto", hibernateHBM2DDLAuto);
+        properties.setProperty("hibernate.dialect", hibernateDialect);
+        properties.setProperty("hibernate.show_sql", hibernateShowSQL);
         return properties;
     }
 }
