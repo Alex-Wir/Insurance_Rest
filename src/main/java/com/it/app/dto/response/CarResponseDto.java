@@ -5,6 +5,7 @@ public class CarResponseDto {
     private Long id;
     private String number;
     private String country;
+    private CarResponseDto car;
 
     public Long getId() {
         return id;
@@ -28,5 +29,13 @@ public class CarResponseDto {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public CarResponseDto getCar() {
+        return car;
+    }
+
+    public void setCar(CarResponseDto car) {
+        this.car = car;
     }
 }
