@@ -12,10 +12,12 @@ public class Insurance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     @NotNull(message = "insurance.payment.notNull")
     @Positive(message = "insurance.payment.positive")
     private Float payment;
 
+    @Column(nullable = false)
     @NotNull(message = "insurance.amount.notNull")
     @Positive(message = "insurance.amount.positive")
     private Float amount;

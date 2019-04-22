@@ -18,10 +18,6 @@ public class Role {
     @Size(min = 3, max = 50, message = "{role.name.size}")
     private String name;
 
-    public Role() {
-
-    }
-
     public Role(Long id, String name) {
         this.id = id;
         this.name = name;
