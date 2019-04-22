@@ -19,7 +19,8 @@ public class User {
     @Size(min = 3, max = 50, message = "{user.name.size}")
     private String name;
 
-    @ManyToOne
+    //LAZY
+    @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id", nullable = false)
     @NotNull(message = "{user.role.notNull}")
     private Role role;

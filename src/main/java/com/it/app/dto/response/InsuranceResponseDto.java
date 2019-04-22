@@ -5,7 +5,7 @@ public class InsuranceResponseDto {
     private Long id;
     private Float payment;
     private Float amount;
-    private CarResponseDto car;
+    private Long carId;
 
     public Long getId() {
         return id;
@@ -31,11 +31,11 @@ public class InsuranceResponseDto {
         this.amount = amount;
     }
 
-    public CarResponseDto getCar() {
-        return car;
+    public Long getCarId() {
+        return carId;
     }
 
-    public void setCar(CarResponseDto car) {
-        this.car = car;
+    public void setCarId(Long carId) {
+        this.carId = carId;
     }
 }
