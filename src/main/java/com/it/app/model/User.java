@@ -13,7 +13,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     @NotNull(message = "{user.name.notNull}")
     @NotEmpty(message = "{user.name.notEmpty}")
     @Size(min = 3, max = 50, message = "{user.name.size}")
