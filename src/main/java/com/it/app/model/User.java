@@ -20,7 +20,7 @@ public class User {
     private String name;
 
     //LAZY
-    @ManyToOne (fetch = FetchType.EAGER)
+    @ManyToOne //(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id", nullable = false)
     @NotNull(message = "{user.role.notNull}")
     private Role role;
