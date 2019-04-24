@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS car (
 
 INSERT INTO car (id, number, country) VALUES (1, 'AB1234', 'BY');
 INSERT INTO car (id, number, country) VALUES (2, 'ABC987', 'LT');
+INSERT INTO car (id, number, country) VALUES (3, '1234KW', 'PL');
 
 CREATE TABLE IF NOT EXISTS insurance (
   id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,

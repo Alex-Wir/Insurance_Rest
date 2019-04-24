@@ -1,18 +1,19 @@
 package com.it.app.controller;
 
 import com.it.app.component.LocalizedMessageSource;
+import com.it.app.dto.request.InsuranceRequestDto;
 import com.it.app.dto.response.InsuranceResponseDto;
-import com.it.app.dto.response.UserResponseDto;
+import com.it.app.model.Car;
 import com.it.app.model.Insurance;
 import com.it.app.service.InsuranceService;
 import org.dozer.Mapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RequestMapping("/insurances")
@@ -39,6 +40,40 @@ public class InsuranceController {
         return new ResponseEntity<>(insuranceResponseDtoList, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<InsuranceResponseDto> getOne(@PathVariable Long id) {
+        final InsuranceResponseDto insuranceResponseDto = mapper.map(insuranceService.findById(id), InsuranceResponseDto.class);
+        return new ResponseEntity<>(insuranceResponseDto, HttpStatus.OK);
+    }
 
-    //waiting for other methods
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<InsuranceResponseDto> save(@Valid @RequestBody InsuranceRequestDto insuranceRequestDto) {
+        insuranceRequestDto.setId(null);
+        final InsuranceResponseDto insuranceResponseDto = mapper.map(insuranceService.save(getInsurance(insuranceRequestDto)), InsuranceResponseDto.class);
+        return new ResponseEntity<>(insuranceResponseDto, HttpStatus.OK);
+    }
+
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<InsuranceResponseDto> update(@Valid @RequestBody InsuranceRequestDto insuranceRequestDto, @PathVariable Long id) {
+        if (!Objects.equals(id, insuranceRequestDto.getId())) {
+            throw new RuntimeException(localizedMessageSource.getMessage("controller.insurance.unexpectedId", new Object[]{}));
+        }
+        final InsuranceResponseDto insuranceResponseDto = mapper.map(insuranceService.update(getInsurance(insuranceRequestDto)), InsuranceResponseDto.class);
+        return new ResponseEntity<>(insuranceResponseDto, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void delete(@PathVariable Long id) {
+        insuranceService.deleteById(id);
+    }
+
+    private Insurance getInsurance(InsuranceRequestDto insuranceRequestDto) {
+        final Car car = new Car();
+        car.setId(insuranceRequestDto.getCarId());
+        final Insurance insurance = mapper.map(insuranceRequestDto, Insurance.class);
+        insurance.setCar(car);
+        return insurance;
+    }
 }
