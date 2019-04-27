@@ -12,11 +12,11 @@ public class Shift {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotNull(message = "{shift.opening.notNull")
     private LocalDateTime openingTime;
 
     //is null when shift is opening
-    @NotNull
+    @NotNull(message = "{shift.closing.notNull}")
     private LocalDateTime closingTime;
 
     //TODO LAZY
