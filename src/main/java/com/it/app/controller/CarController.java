@@ -72,12 +72,6 @@ public class CarController {
 
     private Car getCar(CarRequestDto carRequestDto) {
         final Car car = mapper.map(carRequestDto, Car.class);
-
-        /* ===here one-to-many and other relations===
-
-        final Insurance insurance = new Insurance();
-        insurance.setId(carRequestDto.getInsuranceId());
-        car.setInsurance(insurance);*/
         return car;
     }
 }

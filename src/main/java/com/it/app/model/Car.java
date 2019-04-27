@@ -14,7 +14,8 @@ public class Car {
 
     @Column(nullable = false)
     @NotNull(message = "car.country.notNull")
-    @Size(min = 2, max = 2, message = "{car.country.size}") //change size to @Pattern
+    //TODO change size to @Pattern
+    @Size(min = 2, max = 2, message = "{car.country.size}")
     private String country;
 
     @Column(nullable = false)

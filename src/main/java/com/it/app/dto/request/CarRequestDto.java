@@ -15,7 +15,8 @@ public class CarRequestDto {
 
     @NotNull(message = "{car.country.notNull}")
     @NotEmpty(message = "{car.country.notEmpty}")
-    @Size(min = 2, max = 2, message = "{car.country.size}") //change size to @Pattern
+    //TODO change size to @Pattern
+    @Size(min = 2, max = 2, message = "{car.country.size}")
     private String country;
 
     public Long getId() {

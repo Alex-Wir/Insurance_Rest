@@ -19,13 +19,13 @@ public class Shift {
     @NotNull
     private LocalDateTime closingTime;
 
-    //LAZY
+    //TODO LAZY
     //remove relation to insurance??
     @OneToMany //(fetch = FetchType.LAZY)
     @JoinColumn(name = "insurance_id", nullable = false)
     private Insurance insurance;
 
-    //LAZY
+    //TODO LAZY
     @ManyToOne //(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;

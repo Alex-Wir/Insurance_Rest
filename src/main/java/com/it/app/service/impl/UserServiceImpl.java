@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id).orElseThrow(() -> new RuntimeException(localizedMessageSource.getMessage("error.user.notExist", new Object[]{})));
     }
 
-    //delete existByName before pull request
+    //TODO delete existByName before pull request
     @Override
     public User save(User user) {
         validate(user.getId() != null, localizedMessageSource.getMessage("error.user.notHaveId", new Object[]{}));
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
         return saveAndFlush(user);
     }
 
-    //delete duplicateUser before pull request
+    //TODO delete duplicateUser before pull request
     @Override
     public User update(User user) {
         final Long id = user.getId();
