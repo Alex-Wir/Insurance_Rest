@@ -82,6 +82,19 @@
       <artifactId>dozer</artifactId>
       <version>${dozer}</version>
     </dependency>
+
+<!--    &lt;!&ndash; alternative Mapper &ndash;&gt;
+    <dependency>
+      <groupId>com.github.dozermapper</groupId>
+      <artifactId>dozer-core</artifactId>
+      <version>6.4.1</version>
+    </dependency>
+    <dependency>
+      <groupId>io.craftsman</groupId>
+      <artifactId>dozer-jdk8-support</artifactId>
+      <version>1.0.6</version>
+    </dependency>-->
+
     <dependency>
       <groupId>org.hibernate.validator</groupId>
       <artifactId>hibernate-validator</artifactId>

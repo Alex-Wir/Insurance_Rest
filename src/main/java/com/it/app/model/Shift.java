@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "user")
+@Table(name = "shift")
 public class Shift {
 
     @Id
@@ -18,12 +18,6 @@ public class Shift {
     //is null when shift is opening
     @NotNull(message = "{shift.closing.notNull}")
     private LocalDateTime closingTime;
-
-    //TODO LAZY
-    //remove relation to insurance??
-    @OneToMany //(fetch = FetchType.LAZY)
-    @JoinColumn(name = "insurance_id", nullable = false)
-    private Insurance insurance;
 
     //TODO LAZY
     @ManyToOne //(fetch = FetchType.LAZY)
@@ -52,14 +46,6 @@ public class Shift {
 
     public void setClosingTime(LocalDateTime closingTime) {
         this.closingTime = closingTime;
-    }
-
-    public Insurance getInsurance() {
-        return insurance;
-    }
-
-    public void setInsurance(Insurance insurance) {
-        this.insurance = insurance;
     }
 
     public User getUser() {

@@ -38,3 +38,14 @@ CREATE TABLE IF NOT EXISTS insurance (
 
 INSERT INTO insurance (id, payment, amount, car_id) VALUES (1, 12.5, 600, 1);
 INSERT INTO insurance (id, payment, amount, car_id) VALUES (2, 15, 800.45, 2);
+
+CREATE TABLE IF NOT EXISTS shift (
+  id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  openingTime DATETIME,
+  closingTime DATETIME,
+  user_id BIGINT,
+  FOREIGN KEY (user_id) REFERENCES user(id)
+);
+
+INSERT INTO shift (id, openingTime, closingTime, user_id) VALUES (1, '2019-05-05 09:00:00', '2019-05-05 20:59:59', 1);
+INSERT INTO shift (id, openingTime, closingTime, user_id) VALUES (2, '2019-05-05 21:00:00', '2019-05-06 08:30:00', 2)
