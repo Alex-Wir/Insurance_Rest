@@ -15,12 +15,12 @@ public class Shift {
     @NotNull(message = "{shift.opening.notNull")
     private LocalDateTime openingTime;
 
-    //is null when shift is opening
+    //must be Null when shift is opening?
     @NotNull(message = "{shift.closing.notNull}")
     private LocalDateTime closingTime;
 
-    //TODO LAZY
-    @ManyToOne //(fetch = FetchType.LAZY)
+    //TODO NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
