@@ -5,6 +5,7 @@ import com.it.app.component.LocalizedMessageSource;
 import com.it.app.dto.request.ShiftRequestDto;
 import com.it.app.dto.response.ShiftResponseDto;
 import com.it.app.model.Shift;
+import com.it.app.model.User;
 import com.it.app.service.ShiftService;
 
 import org.dozer.Mapper;
@@ -72,10 +73,10 @@ public class ShiftController {
 
     private Shift getShift(ShiftRequestDto shiftRequestDto) {
         final Shift shift = mapper.map(shiftRequestDto, Shift.class);
-        /*TODO All related entities
-        final Role role = new Role();
-        role.setId(shiftRequestDto.getRoleId());
-        shift.setRole(role);*/
+        /*TODO All related entities */
+        final User user = new User();
+        user.setId(shiftRequestDto.getUserId());
+        shift.setUser(user);
         return shift;
     }
 }
