@@ -4,6 +4,7 @@ import com.it.app.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
@@ -15,4 +16,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT u FROM User u LEFT JOIN FETCH u.role WHERE u.id =?1")
     Optional<User> findById(Long id);
 
+    @Query("SELECT u FROM User u LEFT JOIN FETCH u.role")
+    List<User> findAll();
 }
