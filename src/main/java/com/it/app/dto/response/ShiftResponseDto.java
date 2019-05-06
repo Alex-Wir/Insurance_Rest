@@ -6,7 +6,7 @@ public class ShiftResponseDto {
 
     private Long id;
 
-/*  TODO fix Mapper for LocalDateTime*/
+    /*  TODO fix Mapper for LocalDateTime*/
 
     private LocalDateTime openingTime;
     private LocalDateTime closingTime;
@@ -19,6 +19,7 @@ public class ShiftResponseDto {
     public void setId(Long id) {
         this.id = id;
     }
+
     public LocalDateTime getOpeningTime() {
         return openingTime;
     }
