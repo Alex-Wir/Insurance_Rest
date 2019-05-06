@@ -22,8 +22,7 @@ public class Insurance {
     @Positive(message = "insurance.amount.positive")
     private Float amount;
 
-    //TODO LAZY
-    @OneToOne //(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "car_id", nullable = false)
     @NotNull(message = "{insurance.car.notNull}")
     private Car car;
