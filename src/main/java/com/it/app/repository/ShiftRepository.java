@@ -9,9 +9,9 @@ import java.util.Optional;
 
 public interface  ShiftRepository extends JpaRepository<Shift, Long> {
 
-    @Query("SELECT s FROM Shift s LEFT JOIN FETCH s.user u LEFT JOIN FETCH u.role WHERE s.id = ?1")
+    @Query("SELECT s FROM Shift s LEFT JOIN FETCH s.user WHERE s.id = ?1")
     Optional<Shift> findById(Long id);
 
-    @Query("SELECT s FROM Shift s LEFT JOIN FETCH s.user u LEFT JOIN FETCH u.role")
+    @Query("SELECT s FROM Shift s LEFT JOIN FETCH s.user")
     List<Shift> findAll();
 }
