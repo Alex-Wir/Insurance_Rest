@@ -27,7 +27,7 @@ public class Insurance {
     @NotNull(message = "{insurance.car.notNull}")
     private Car car;
 
-    @ManyToOne (fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "shift_id", nullable = false)
     @NotNull(message = "{insurance.shift.notNull}")
     private Shift shift;
