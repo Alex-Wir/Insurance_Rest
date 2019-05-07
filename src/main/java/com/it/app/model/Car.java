@@ -2,6 +2,7 @@ package com.it.app.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -14,8 +15,7 @@ public class Car {
 
     @Column(nullable = false)
     @NotNull(message = "car.country.notNull")
-    //TODO change size to @Pattern
-    @Size(min = 2, max = 2, message = "{car.country.size}")
+    @Pattern(regexp = "^[A-Z]{2}$", message = "{car.country.pattern}")
     private String country;
 
     @Column(nullable = false)

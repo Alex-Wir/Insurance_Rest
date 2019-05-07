@@ -32,6 +32,8 @@ public class Insurance {
     @NotNull(message = "{insurance.shift.notNull}")
     private Shift shift;
 
+    //TODO add ManyToOne to User
+
     public Long getId() {
         return id;
     }

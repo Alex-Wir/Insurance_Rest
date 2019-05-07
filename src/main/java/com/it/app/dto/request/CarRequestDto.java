@@ -2,6 +2,7 @@ package com.it.app.dto.request;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class CarRequestDto {
@@ -15,8 +16,7 @@ public class CarRequestDto {
 
     @NotNull(message = "{car.country.notNull}")
     @NotEmpty(message = "{car.country.notEmpty}")
-    //TODO change size to @Pattern
-    @Size(min = 2, max = 2, message = "{car.country.size}")
+    @Pattern(regexp = "^[A-Z]{2}$", message = "{car.country.pattern}")
     private String country;
 
     public Long getId() {
