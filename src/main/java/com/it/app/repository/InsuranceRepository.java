@@ -9,9 +9,9 @@ import java.util.Optional;
 
 public interface InsuranceRepository extends JpaRepository<Insurance, Long> {
 
-    @Query("SELECT i FROM Insurance i LEFT JOIN FETCH i.car LEFT JOIN FETCH i.shift WHERE i.id = ?1")
+    @Query("SELECT i FROM Insurance i LEFT JOIN FETCH i.car LEFT JOIN FETCH i.shift LEFT JOIN FETCH i.user WHERE i.id = ?1")
     Optional<Insurance> findById(Long id);
 
-    @Query("SELECT i FROM Insurance i LEFT JOIN FETCH i.car LEFT JOIN FETCH i.shift")
+    @Query("SELECT i FROM Insurance i LEFT JOIN FETCH i.car LEFT JOIN FETCH i.shift LEFT JOIN FETCH i.user")
     List<Insurance> findAll();
 }

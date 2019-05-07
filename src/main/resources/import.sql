@@ -45,10 +45,12 @@ CREATE TABLE IF NOT EXISTS insurance (
   amount FLOAT,
   car_id BIGINT,
   shift_id BIGINT,
+  user_id BIGINT,
   FOREIGN KEY (car_id) REFERENCES car(id),
-  FOREIGN KEY (shift_id) REFERENCES shift(id)
+  FOREIGN KEY (shift_id) REFERENCES shift(id),
+  FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
-INSERT INTO insurance (id, payment, amount, car_id, shift_id) VALUES (1, 12.5, 600, 1, 1);
-INSERT INTO insurance (id, payment, amount, car_id, shift_id) VALUES (2, 15, 800.45, 2, 2)
+INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (1, 12.5, 600, 1, 1, 3);
+INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (2, 15, 800.45, 2, 2, 3)
 

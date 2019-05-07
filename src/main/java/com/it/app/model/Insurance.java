@@ -32,7 +32,10 @@ public class Insurance {
     @NotNull(message = "{insurance.shift.notNull}")
     private Shift shift;
 
-    //TODO add ManyToOne to User
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    @NotNull(message = "{insurance.user.notNull}")
+    private User user;
 
     public Long getId() {
         return id;
@@ -72,5 +75,13 @@ public class Insurance {
 
     public void setShift(Shift shift) {
         this.shift = shift;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

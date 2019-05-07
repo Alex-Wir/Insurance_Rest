@@ -6,6 +6,7 @@ import com.it.app.repository.InsuranceRepository;
 import com.it.app.service.CarService;
 import com.it.app.service.InsuranceService;
 import com.it.app.service.ShiftService;
+import com.it.app.service.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,12 +20,14 @@ public class InsuranceServiceImpl implements InsuranceService {
     private final InsuranceRepository insuranceRepository;
     private final CarService carService;
     private final ShiftService shiftService;
+    private final UserService userService;
 
-    public InsuranceServiceImpl(LocalizedMessageSource localizedMessageSource, InsuranceRepository insuranceRepository, CarService carService, ShiftService shiftService) {
+    public InsuranceServiceImpl(LocalizedMessageSource localizedMessageSource, InsuranceRepository insuranceRepository, CarService carService, ShiftService shiftService, UserService userService) {
         this.localizedMessageSource = localizedMessageSource;
         this.insuranceRepository = insuranceRepository;
         this.carService = carService;
         this.shiftService = shiftService;
+        this.userService = userService;
     }
 
     @Override
@@ -64,8 +67,10 @@ public class InsuranceServiceImpl implements InsuranceService {
     private Insurance saveAndFlush(Insurance insurance) {
         validate(insurance.getCar() == null || insurance.getCar().getId() == null, localizedMessageSource.getMessage("error.insurance.car.isNull", new Object[]{}));
         validate(insurance.getShift() == null || insurance.getShift().getId() == null, localizedMessageSource.getMessage("error.insurance.shift.isNull", new Object[]{}));
+        validate(insurance.getUser() == null || insurance.getUser().getId() == null, localizedMessageSource.getMessage("error.insurance.user.isNull", new Object[]{}));
         insurance.setCar(carService.findById(insurance.getCar().getId()));
         insurance.setShift(shiftService.findById(insurance.getShift().getId()));
+        insurance.setUser(userService.findById(insurance.getUser().getId()));
         return insuranceRepository.saveAndFlush(insurance);
     }
 

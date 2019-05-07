@@ -7,6 +7,7 @@ public class InsuranceResponseDto {
     private Float amount;
     private CarResponseDto car;
     private ShiftIdResponseDto shift;
+    private UserWithoutRoleResponseDto user;
 
     public Long getId() {
         return id;
@@ -46,5 +47,13 @@ public class InsuranceResponseDto {
 
     public void setShift(ShiftIdResponseDto shiftId) {
         this.shift = shiftId;
+    }
+
+    public UserWithoutRoleResponseDto getUser() {
+        return user;
+    }
+
+    public void setUser(UserWithoutRoleResponseDto user) {
+        this.user = user;
     }
 }

@@ -24,6 +24,9 @@ public class InsuranceRequestDto {
     @NotNull(message = "{insurance.shift.notNull}")
     private Long shiftId;
 
+    @NotNull(message = "{insurance.user.notNull}")
+    private Long userId;
+
     public Long getId() {
         return id;
     }
@@ -62,5 +65,13 @@ public class InsuranceRequestDto {
 
     public void setShiftId(Long shiftId) {
         this.shiftId = shiftId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }
