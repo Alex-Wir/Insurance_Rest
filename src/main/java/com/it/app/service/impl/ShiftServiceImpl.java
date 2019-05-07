@@ -3,7 +3,6 @@ package com.it.app.service.impl;
 import com.it.app.component.LocalizedMessageSource;
 import com.it.app.model.Shift;
 import com.it.app.repository.ShiftRepository;
-import com.it.app.service.InsuranceService;
 import com.it.app.service.ShiftService;
 import com.it.app.service.UserService;
 import org.springframework.stereotype.Service;
@@ -16,16 +15,13 @@ import java.util.List;
 public class ShiftServiceImpl implements ShiftService {
 
     private final LocalizedMessageSource localizedMessageSource;
-
     private final ShiftRepository shiftRepository;
-    private final InsuranceService insuranceService;
     private final UserService userService;
 
     public ShiftServiceImpl(LocalizedMessageSource localizedMessageSource, ShiftRepository shiftRepository,
-                            InsuranceService insuranceService, UserService userService) {
+                            UserService userService) {
         this.localizedMessageSource = localizedMessageSource;
         this.shiftRepository = shiftRepository;
-        this.insuranceService = insuranceService;
         this.userService = userService;
     }
 
@@ -62,7 +58,6 @@ public class ShiftServiceImpl implements ShiftService {
         shiftRepository.deleteById(id);
     }
 
-    //TODO add validation for insurance?
     private Shift saveAndFlush(Shift shift) {
         validate(shift.getUser() == null || shift.getUser().getId() == null, localizedMessageSource.getMessage("error.shift.user.isNull", new Object[]{}));
         shift.setUser(userService.findById(shift.getUser().getId()));

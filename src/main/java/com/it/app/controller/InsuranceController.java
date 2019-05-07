@@ -5,6 +5,7 @@ import com.it.app.dto.request.InsuranceRequestDto;
 import com.it.app.dto.response.InsuranceResponseDto;
 import com.it.app.model.Car;
 import com.it.app.model.Insurance;
+import com.it.app.model.Shift;
 import com.it.app.service.InsuranceService;
 import org.dozer.Mapper;
 import org.springframework.http.HttpStatus;
@@ -71,9 +72,12 @@ public class InsuranceController {
 
     private Insurance getInsurance(InsuranceRequestDto insuranceRequestDto) {
         final Car car = new Car();
+        final Shift shift = new Shift();
         car.setId(insuranceRequestDto.getCarId());
+        shift.setId(insuranceRequestDto.getShiftId());
         final Insurance insurance = mapper.map(insuranceRequestDto, Insurance.class);
         insurance.setCar(car);
+        insurance.setShift(shift);
         return insurance;
     }
 }
