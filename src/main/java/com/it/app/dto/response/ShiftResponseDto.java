@@ -1,15 +1,10 @@
 package com.it.app.dto.response;
 
-import java.time.LocalDateTime;
-
 public class ShiftResponseDto {
 
     private Long id;
-
-    /*  TODO fix Mapper for LocalDateTime*/
-
-    private LocalDateTime openingTime;
-    private LocalDateTime closingTime;
+    private String openingTime;
+    private String closingTime;
     private UserWithoutRoleResponseDto user;
 
     public Long getId() {
@@ -20,19 +15,19 @@ public class ShiftResponseDto {
         this.id = id;
     }
 
-    public LocalDateTime getOpeningTime() {
+    public String getOpeningTime() {
         return openingTime;
     }
 
-    public void setOpeningTime(LocalDateTime openingTime) {
+    public void setOpeningTime(String openingTime) {
         this.openingTime = openingTime;
     }
 
-    public LocalDateTime getClosingTime() {
+    public String getClosingTime() {
         return closingTime;
     }
 
-    public void setClosingTime(LocalDateTime closingTime) {
+    public void setClosingTime(String closingTime) {
         this.closingTime = closingTime;
     }
 
