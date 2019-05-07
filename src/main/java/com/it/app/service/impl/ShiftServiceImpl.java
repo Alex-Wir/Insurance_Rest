@@ -49,12 +49,15 @@ public class ShiftServiceImpl implements ShiftService {
 
     @Override
     public void delete(Shift shift) {
-        validate(shift.getId() == null, localizedMessageSource.getMessage("error.shift.haveId", new Object[]{}));
+        final Long id = shift.getId();
+        validate(id == null, localizedMessageSource.getMessage("error.shift.haveId", new Object[]{}));
+        findById(id);
         shiftRepository.delete(shift);
     }
 
     @Override
     public void deleteById(Long id) {
+        findById(id);
         shiftRepository.deleteById(id);
     }
 

@@ -46,12 +46,15 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void delete(Car car) {
-        validate(car.getId() == null, localizedMessageSource.getMessage("error.car.haveId", new Object[]{}));
+        final Long id = car.getId();
+        validate(id == null, localizedMessageSource.getMessage("error.car.haveId", new Object[]{}));
+        findById(id);
         carRepository.delete(car);
     }
 
     @Override
     public void deleteById(Long id) {
+        findById(id);
         carRepository.deleteById(id);
     }
 

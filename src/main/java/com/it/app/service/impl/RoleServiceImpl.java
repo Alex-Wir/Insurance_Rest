@@ -52,12 +52,15 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public void delete(Role role) {
-        validate(role.getId() == null, localizedMessageSource.getMessage("error.role.haveId", new Object[]{}));
+        final Long id = role.getId();
+        validate(id == null, localizedMessageSource.getMessage("error.role.haveId", new Object[]{}));
+        findById(id);
         roleRepository.delete(role);
     }
 
     @Override
     public void deleteById(Long id) {
+        findById(id);
         roleRepository.deleteById(id);
     }
 

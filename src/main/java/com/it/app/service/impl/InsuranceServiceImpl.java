@@ -55,12 +55,15 @@ public class InsuranceServiceImpl implements InsuranceService {
 
     @Override
     public void delete(Insurance insurance) {
-        validate(insurance.getId() == null, localizedMessageSource.getMessage("error.insurance.haveId", new Object[]{}));
+        final Long id = insurance.getId();
+        validate(id == null, localizedMessageSource.getMessage("error.insurance.haveId", new Object[]{}));
+        findById(id);
         insuranceRepository.delete(insurance);
     }
 
     @Override
     public void deleteById(Long id) {
+        findById(id);
         insuranceRepository.deleteById(id);
     }
 
