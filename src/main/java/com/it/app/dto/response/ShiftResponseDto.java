@@ -10,7 +10,7 @@ public class ShiftResponseDto {
 
     private LocalDateTime openingTime;
     private LocalDateTime closingTime;
-    private UserResponseDto user;
+    private UserWithoutRoleResponseDto user;
 
     public Long getId() {
         return id;
@@ -36,11 +36,11 @@ public class ShiftResponseDto {
         this.closingTime = closingTime;
     }
 
-    public UserResponseDto getUser() {
+    public UserWithoutRoleResponseDto getUser() {
         return user;
     }
 
-    public void setUser(UserResponseDto user) {
+    public void setUser(UserWithoutRoleResponseDto user) {
         this.user = user;
     }
 }
