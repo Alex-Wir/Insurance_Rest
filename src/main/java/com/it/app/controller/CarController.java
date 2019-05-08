@@ -54,11 +54,11 @@ public class CarController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<CarResponseDto> update(@Valid @RequestBody CarRequestDto userRequestDto, @PathVariable Long id) {
-        if (!Objects.equals(id, userRequestDto.getId())) {
+    public ResponseEntity<CarResponseDto> update(@Valid @RequestBody CarRequestDto carRequestDto, @PathVariable Long id) {
+        if (!Objects.equals(id, carRequestDto.getId())) {
             throw new RuntimeException(localizedMessageSource.getMessage("controller.car.unexpectedId", new Object[]{}));
         }
-        final CarResponseDto carResponseDto = mapper.map(carService.update(getCar(userRequestDto)), CarResponseDto.class);
+        final CarResponseDto carResponseDto = mapper.map(carService.update(getCar(carRequestDto)), CarResponseDto.class);
         return new ResponseEntity<>(carResponseDto, HttpStatus.OK);
     }
 
