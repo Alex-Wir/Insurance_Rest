@@ -64,7 +64,12 @@ INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (1
 INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (2, 15, 800.45, 2, 2, 3);
 
 INSERT INTO address (id, city, zipcode) VALUES (1, 'Grodno', 230000);
-INSERT INTO address (id, city, zipcode) VALUES (2, 'Lida', 231000)
+INSERT INTO address (id, city, zipcode) VALUES (2, 'Lida', 231000);
+
+INSERT INTO point (id, name, address_id) VALUES (1, 'Grodno office', 1);
+INSERT INTO point (id, name, address_id) VALUES (2, 'Lida office', 2)
+
+
 
 
 
