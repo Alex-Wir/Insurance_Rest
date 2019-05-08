@@ -28,13 +28,21 @@ INSERT INTO car (id, number, country) VALUES (1, 'AB1234', 'BY');
 INSERT INTO car (id, number, country) VALUES (2, 'ABC987', 'LT');
 INSERT INTO car (id, number, country) VALUES (3, '1234KW', 'PL');
 
+INSERT INTO address (id, city, zipcode) VALUES (1, 'Grodno', 230000);
+INSERT INTO address (id, city, zipcode) VALUES (2, 'Lida', 231000);
+
+INSERT INTO point (id, name, address_id) VALUES (1, 'Grodno office', 1);
+INSERT INTO point (id, name, address_id) VALUES (2, 'Lida office', 2);
+
 CREATE TABLE IF NOT EXISTS pos (
  id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
  name VARCHAR(20)
   );
 
-INSERT INTO pos (id, name) VALUES (1, 'main pos');
-INSERT INTO pos (id, name) VALUES (2, 'reserve pos');
+INSERT INTO pos (id, name, point_id) VALUES (1, 'Grodno main pos', 1);
+INSERT INTO pos (id, name, point_id) VALUES (2, 'Grodno reserve pos', 1);
+INSERT INTO pos (id, name, point_id) VALUES (3, 'Lida main pos', 2);
+INSERT INTO pos (id, name, point_id) VALUES (4, 'Lida reserve pos', 2);
 
 CREATE TABLE IF NOT EXISTS shift (
  id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -61,13 +69,9 @@ CREATE TABLE IF NOT EXISTS insurance (
 );
 
 INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (1, 12.5, 600, 1, 1, 3);
-INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (2, 15, 800.45, 2, 2, 3);
+INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (2, 15, 800.45, 2, 2, 3)
 
-INSERT INTO address (id, city, zipcode) VALUES (1, 'Grodno', 230000);
-INSERT INTO address (id, city, zipcode) VALUES (2, 'Lida', 231000);
 
-INSERT INTO point (id, name, address_id) VALUES (1, 'Grodno office', 1);
-INSERT INTO point (id, name, address_id) VALUES (2, 'Lida office', 2)
 
 
 

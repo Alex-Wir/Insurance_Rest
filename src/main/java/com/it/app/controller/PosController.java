@@ -3,6 +3,7 @@ package com.it.app.controller;
 import com.it.app.component.LocalizedMessageSource;
 import com.it.app.dto.request.PosRequestDto;
 import com.it.app.dto.response.PosResponseDto;
+import com.it.app.model.Point;
 import com.it.app.model.Pos;
 import com.it.app.service.PosService;
 import org.dozer.Mapper;
@@ -68,10 +69,9 @@ public class PosController {
 
     private Pos getPos(PosRequestDto posRequestDto) {
         final Pos pos = mapper.map(posRequestDto, Pos.class);
-        /*TODO    add all relations
-        final Role role = new Role();
-        role.setId(userRequestDto.getRoleId());
-        user.setRole(role);*/
+        final Point point = new Point();
+        point.setId(posRequestDto.getPointId());
+        pos.setPoint(point);
         return pos;
     }
 }

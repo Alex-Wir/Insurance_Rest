@@ -5,7 +5,7 @@ public class PosResponseDto {
     private Long id;
     private String name;
 
-    //TODO Point...
+    //TODO Point???
 
     public Long getId() {
         return id;

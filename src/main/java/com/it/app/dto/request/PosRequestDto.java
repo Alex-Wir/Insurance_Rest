@@ -13,9 +13,8 @@ public class PosRequestDto {
     @Size(min = 3, max = 20, message = "{pos.name.size}")
     private String name;
 
-/*    TODO add Point-entity
     @NotNull(message = "{pos.point.notNull}")
-    private Long pointId;*/
+    private Long pointId;
 
     public Long getId() {
         return id;
@@ -33,11 +32,11 @@ public class PosRequestDto {
         this.name = name;
     }
 
-/*    public Long getPointId() {
+    public Long getPointId() {
         return pointId;
     }
 
     public void setPointId(Long pointId) {
         this.pointId = pointId;
-    }*/
+    }
 }

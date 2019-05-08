@@ -19,7 +19,10 @@ public class Pos {
     @Size(min = 3, max = 20, message = "{pos.name.size}")
     private String name;
 
-    //TODO add ManyToOne to Point
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "point_id", nullable = false)
+    @NotNull(message = "{pos.point.notNull}")
+    private Point point;
 
     public Long getId() {
         return id;
@@ -35,5 +38,13 @@ public class Pos {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Point getPoint() {
+        return point;
+    }
+
+    public void setPoint(Point point) {
+        this.point = point;
     }
 }
