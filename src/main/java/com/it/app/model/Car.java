@@ -14,12 +14,12 @@ public class Car {
     private Long id;
 
     @Column(nullable = false)
-    @NotNull(message = "car.country.notNull")
+    @NotNull(message = "{car.country.notNull}")
     @Pattern(regexp = "^[A-Z]{2}$", message = "{car.country.pattern}")
     private String country;
 
     @Column(nullable = false)
-    @NotNull(message = "car.number.notNull")
+    @NotNull(message = "{car.number.notNull}")
     @Size(min = 4, max = 10, message = "{car.number.size}")
     private String number;
 
