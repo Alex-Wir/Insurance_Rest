@@ -12,6 +12,6 @@ public interface PointRepository extends JpaRepository<Point, Long> {
     @Query("SELECT p FROM Point p LEFT JOIN FETCH p.address")
     List<Point> findAll();
 
-    @Query("SELECT p FROM Point p LEFT JOIN FETCH p.address WHERE p.id = ?1")
+    @Query("SELECT p FROM Point p LEFT JOIN FETCH p.address LEFT JOIN FETCH p.users WHERE p.id = ?1")
     Optional<Point> findById(Long id);
 }

@@ -14,9 +14,17 @@ CREATE TABLE IF NOT EXISTS user (
   FOREIGN KEY (role_id) REFERENCES user_role(id)
 );
 
-INSERT INTO user (id, name, role_id) VALUES (1, 'user.emp', 1);
-INSERT INTO user (id, name, role_id) VALUES (2, 'user.manager', 2);
-INSERT INTO user (id, name, role_id) VALUES (3, 'user.customer', 3);
+INSERT INTO user (id, name, role_id) VALUES (1, 'grodno.emp1', 1);
+INSERT INTO user (id, name, role_id) VALUES (2, 'grodno.emp2', 1);
+INSERT INTO user (id, name, role_id) VALUES (3, 'grodno.manager', 2);
+INSERT INTO user (id, name, role_id) VALUES (4, 'lida.emp1', 1);
+INSERT INTO user (id, name, role_id) VALUES (5, 'lida.emp2', 1);
+INSERT INTO user (id, name, role_id) VALUES (6, 'lida.manager', 2);
+INSERT INTO user (id, name, role_id) VALUES (7, 'top.manager', 2);
+INSERT INTO user (id, name, role_id) VALUES (8, 'user.customer', 3);
+INSERT INTO user (id, name, role_id) VALUES (9, 'new.user1', 1);
+INSERT INTO user (id, name, role_id) VALUES (10, 'new.user2', 1);
+
 
 CREATE TABLE IF NOT EXISTS car (
   id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -36,8 +44,10 @@ INSERT INTO point (id, name, address_id) VALUES (2, 'Lida office', 2);
 
 CREATE TABLE IF NOT EXISTS pos (
  id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
- name VARCHAR(20)
-  );
+ name VARCHAR(20),
+ point_id BIGINT,
+ FOREIGN KEY (point_id) REFERENCES point(id)
+);
 
 INSERT INTO pos (id, name, point_id) VALUES (1, 'Grodno main pos', 1);
 INSERT INTO pos (id, name, point_id) VALUES (2, 'Grodno reserve pos', 1);
@@ -69,11 +79,16 @@ CREATE TABLE IF NOT EXISTS insurance (
 );
 
 INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (1, 12.5, 600, 1, 1, 3);
-INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (2, 15, 800.45, 2, 2, 3)
+INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (2, 15, 800.45, 2, 2, 3);
 
-
-
-
+INSERT INTO point_user (point_id, user_id) VALUES (1, 1);
+INSERT INTO point_user (point_id, user_id) VALUES (1, 2);
+INSERT INTO point_user (point_id, user_id) VALUES (1, 3);
+INSERT INTO point_user (point_id, user_id) VALUES (2, 4);
+INSERT INTO point_user (point_id, user_id) VALUES (2, 5);
+INSERT INTO point_user (point_id, user_id) VALUES (2, 6);
+INSERT INTO point_user (point_id, user_id) VALUES (1, 7);
+INSERT INTO point_user (point_id, user_id) VALUES (2, 7)
 
 
 

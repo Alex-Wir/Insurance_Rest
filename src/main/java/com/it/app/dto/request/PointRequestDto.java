@@ -3,6 +3,7 @@ package com.it.app.dto.request;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 public class PointRequestDto {
 
@@ -15,6 +16,17 @@ public class PointRequestDto {
 
     @NotNull(message = "{point.address.notNull}")
     private Long addressId;
+
+    @NotNull(message = "{point.users.notNull}")
+    private Set<Long> userIds;
+
+    public Set<Long> getUserIds() {
+        return userIds;
+    }
+
+    public void setUserIds(Set<Long> userIds) {
+        this.userIds = userIds;
+    }
 
     public Long getId() {
         return id;

@@ -3,9 +3,12 @@ package com.it.app.controller;
 import com.it.app.component.LocalizedMessageSource;
 import com.it.app.dto.request.PointRequestDto;
 import com.it.app.dto.response.PointResponseDto;
+import com.it.app.dto.response.PointWithUsersResponseDto;
 import com.it.app.model.Address;
 import com.it.app.model.Point;
+import com.it.app.model.User;
 import com.it.app.service.PointService;
+import com.it.app.service.UserService;
 import org.dozer.Mapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -22,12 +26,14 @@ public class PointController {
 
     private final Mapper mapper;
     private final PointService pointService;
+    private final UserService userService;
     private final LocalizedMessageSource localizedMessageSource;
 
-    public PointController(Mapper mapper, PointService pointService, LocalizedMessageSource localizedMessageSource) {
+    public PointController(Mapper mapper, PointService pointService, LocalizedMessageSource localizedMessageSource, UserService userService) {
         this.mapper = mapper;
         this.pointService = pointService;
         this.localizedMessageSource = localizedMessageSource;
+        this.userService = userService;
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -44,19 +50,31 @@ public class PointController {
         return new ResponseEntity<>(pointResponseDto, HttpStatus.OK);
     }
 
+    /**
+     * Return point info with users
+     *
+     * @param id - point id
+     * @return
+     */
+    @RequestMapping(value = "/{id}/users", method = RequestMethod.GET)
+    public ResponseEntity<PointWithUsersResponseDto> getOneWithUsers(@PathVariable Long id) {
+        final PointWithUsersResponseDto pointResponseDto = mapper.map(pointService.findById(id), PointWithUsersResponseDto.class);
+        return new ResponseEntity<>(pointResponseDto, HttpStatus.OK);
+    }
+
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<PointResponseDto> save(@Valid @RequestBody PointRequestDto pointRequestDto) {
+    public ResponseEntity<PointWithUsersResponseDto> save(@Valid @RequestBody PointRequestDto pointRequestDto) {
         pointRequestDto.setId(null);
-        final PointResponseDto pointResponseDto = mapper.map(pointService.save(getPoint(pointRequestDto)), PointResponseDto.class);
+        final PointWithUsersResponseDto pointResponseDto = mapper.map(pointService.save(getPoint(pointRequestDto)), PointWithUsersResponseDto.class);
         return new ResponseEntity<>(pointResponseDto, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<PointResponseDto> update(@Valid @RequestBody PointRequestDto pointRequestDto, @PathVariable Long id) {
+    public ResponseEntity<PointWithUsersResponseDto> update(@Valid @RequestBody PointRequestDto pointRequestDto, @PathVariable Long id) {
         if (!Objects.equals(id, pointRequestDto.getId())) {
             throw new RuntimeException(localizedMessageSource.getMessage("controller.point.unexpectedId", new Object[]{}));
         }
-        final PointResponseDto pointResponseDto = mapper.map(pointService.update(getPoint(pointRequestDto)), PointResponseDto.class);
+        final PointWithUsersResponseDto pointResponseDto = mapper.map(pointService.update(getPoint(pointRequestDto)), PointWithUsersResponseDto.class);
         return new ResponseEntity<>(pointResponseDto, HttpStatus.OK);
     }
 
@@ -69,9 +87,25 @@ public class PointController {
     private Point getPoint(PointRequestDto pointRequestDto) {
         final Address address = new Address();
         address.setId(pointRequestDto.getAddressId());
+        Set<User> users = pointRequestDto.getUserIds().stream()
+                .map(userService::findById)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toSet());
         final Point point = mapper.map(pointRequestDto, Point.class);
+        point.setUsers(users);
         point.setAddress(address);
         return point;
     }
+
+/*    TODO delete before Pull request
+        getPoint - without Users
+
+        private Point getPoint(PointRequestDto pointRequestDto) {
+        final Address address = new Address();
+        address.setId(pointRequestDto.getAddressId());
+        final Point point = mapper.map(pointRequestDto, Point.class);
+        point.setAddress(address);
+        return point;
+    }*/
 
 }
