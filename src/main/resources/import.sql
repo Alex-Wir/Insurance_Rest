@@ -52,5 +52,13 @@ CREATE TABLE IF NOT EXISTS insurance (
 );
 
 INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (1, 12.5, 600, 1, 1, 3);
-INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (2, 15, 800.45, 2, 2, 3)
+INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (2, 15, 800.45, 2, 2, 3);
+
+CREATE TABLE IF NOT EXISTS pos (
+ id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ name VARCHAR(20)
+);
+
+INSERT INTO pos (id, name) VALUES (1, 'main pos');
+INSERT INTO pos (id, name) VALUES (2, 'reserve pos')
 

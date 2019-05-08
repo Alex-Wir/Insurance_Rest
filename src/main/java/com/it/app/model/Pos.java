@@ -6,23 +6,20 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "pos")
+public class Pos {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true, nullable = false)
-    @NotNull(message = "{user.name.notNull}")
-    @NotEmpty(message = "{user.name.notEmpty}")
-    @Size(min = 3, max = 50, message = "{user.name.size}")
+    @NotNull(message = "{pos.name.notNull}")
+    @NotEmpty(message = "{pos.name.notEmpty}")
+    @Size(min = 3, max = 20, message = "{pos.name.size}")
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_id", nullable = false)
-    @NotNull(message = "{user.role.notNull}")
-    private Role role;
+    //TODO add ManyToOne to Point
 
     public Long getId() {
         return id;
@@ -38,13 +35,5 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
     }
 }
