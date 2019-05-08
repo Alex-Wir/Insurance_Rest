@@ -24,7 +24,10 @@ public class Shift {
     @NotNull(message = "{shift.user.notNull}")
     private User user;
 
-    //TODO add ManyToOne to Pos
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pos_id", nullable = false)
+    @NotNull(message = "{shift.pos.notNull}")
+    private Pos pos;
 
     public Long getId() {
         return id;
@@ -56,5 +59,13 @@ public class Shift {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Pos getPos() {
+        return pos;
+    }
+
+    public void setPos(Pos pos) {
+        this.pos = pos;
     }
 }

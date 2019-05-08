@@ -6,6 +6,7 @@ public class ShiftResponseDto {
     private String openingTime;
     private String closingTime;
     private UserWithoutRoleResponseDto user;
+    private PosResponseDto pos;
 
     public Long getId() {
         return id;
@@ -37,5 +38,13 @@ public class ShiftResponseDto {
 
     public void setUser(UserWithoutRoleResponseDto user) {
         this.user = user;
+    }
+
+    public PosResponseDto getPos() {
+        return pos;
+    }
+
+    public void setPos(PosResponseDto pos) {
+        this.pos = pos;
     }
 }

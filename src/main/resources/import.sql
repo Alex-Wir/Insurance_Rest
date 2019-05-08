@@ -28,16 +28,25 @@ INSERT INTO car (id, number, country) VALUES (1, 'AB1234', 'BY');
 INSERT INTO car (id, number, country) VALUES (2, 'ABC987', 'LT');
 INSERT INTO car (id, number, country) VALUES (3, '1234KW', 'PL');
 
+CREATE TABLE IF NOT EXISTS pos (
+ id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ name VARCHAR(20)
+  );
+
+INSERT INTO pos (id, name) VALUES (1, 'main pos');
+INSERT INTO pos (id, name) VALUES (2, 'reserve pos');
+
 CREATE TABLE IF NOT EXISTS shift (
  id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
  openingTime DATETIME,
  closingTime DATETIME,
  user_id BIGINT,
+ pos_id BIGINT,
  FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
-INSERT INTO shift (id, openingTime, closingTime, user_id) VALUES (1, '2019-05-05 09:00:00', '2019-05-05 20:59:59', 1);
-INSERT INTO shift (id, openingTime, closingTime, user_id) VALUES (2, '2019-05-05 21:00:00', '2019-05-06 08:30:00', 2);
+INSERT INTO shift (id, openingTime, closingTime, user_id, pos_id) VALUES (1, '2019-05-05 09:00:00', '2019-05-05 20:59:59', 1, 1);
+INSERT INTO shift (id, openingTime, closingTime, user_id, pos_id) VALUES (2, '2019-05-05 21:00:00', '2019-05-06 08:30:00', 2, 2);
 
 CREATE TABLE IF NOT EXISTS insurance (
   id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -52,13 +61,7 @@ CREATE TABLE IF NOT EXISTS insurance (
 );
 
 INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (1, 12.5, 600, 1, 1, 3);
-INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (2, 15, 800.45, 2, 2, 3);
+INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (2, 15, 800.45, 2, 2, 3)
 
-CREATE TABLE IF NOT EXISTS pos (
- id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
- name VARCHAR(20)
-);
 
-INSERT INTO pos (id, name) VALUES (1, 'main pos');
-INSERT INTO pos (id, name) VALUES (2, 'reserve pos')
 

@@ -4,10 +4,10 @@ package com.it.app.controller;
 import com.it.app.component.LocalizedMessageSource;
 import com.it.app.dto.request.ShiftRequestDto;
 import com.it.app.dto.response.ShiftResponseDto;
+import com.it.app.model.Pos;
 import com.it.app.model.Shift;
 import com.it.app.model.User;
 import com.it.app.service.ShiftService;
-
 import org.dozer.Mapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -73,10 +73,12 @@ public class ShiftController {
 
     private Shift getShift(ShiftRequestDto shiftRequestDto) {
         final Shift shift = mapper.map(shiftRequestDto, Shift.class);
-        /*TODO All related entities */
         final User user = new User();
+        final Pos pos = new Pos();
         user.setId(shiftRequestDto.getUserId());
+        pos.setId(shiftRequestDto.getPosId());
         shift.setUser(user);
+        shift.setPos(pos);
         return shift;
     }
 }

@@ -17,6 +17,9 @@ public class ShiftRequestDto {
     @NotNull(message = "{shift.user.notNull}")
     private Long userId;
 
+    @NotNull(message = "{shift.pos.notNull}")
+    private Long posId;
+
     public ShiftRequestDto() {
     }
 
@@ -35,6 +38,10 @@ public class ShiftRequestDto {
     public void setOpeningTime(String openingTime) {
         LocalDateTime openingTimeLdt = LocalDateTime.parse(openingTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         this.openingTime = openingTimeLdt;
+    }
+
+    public void setOpeningTime(LocalDateTime openingTime) {
+        this.openingTime = openingTime;
     }
 
     public LocalDateTime getClosingTime() {
@@ -56,5 +63,13 @@ public class ShiftRequestDto {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Long getPosId() {
+        return posId;
+    }
+
+    public void setPosId(Long posId) {
+        this.posId = posId;
     }
 }

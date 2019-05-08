@@ -3,6 +3,7 @@ package com.it.app.service.impl;
 import com.it.app.component.LocalizedMessageSource;
 import com.it.app.model.Shift;
 import com.it.app.repository.ShiftRepository;
+import com.it.app.service.PosService;
 import com.it.app.service.ShiftService;
 import com.it.app.service.UserService;
 import org.springframework.stereotype.Service;
@@ -17,12 +18,14 @@ public class ShiftServiceImpl implements ShiftService {
     private final LocalizedMessageSource localizedMessageSource;
     private final ShiftRepository shiftRepository;
     private final UserService userService;
+    private final PosService posService;
 
     public ShiftServiceImpl(LocalizedMessageSource localizedMessageSource, ShiftRepository shiftRepository,
-                            UserService userService) {
+                            UserService userService, PosService posService) {
         this.localizedMessageSource = localizedMessageSource;
         this.shiftRepository = shiftRepository;
         this.userService = userService;
+        this.posService = posService;
     }
 
     @Override
@@ -63,7 +66,9 @@ public class ShiftServiceImpl implements ShiftService {
 
     private Shift saveAndFlush(Shift shift) {
         validate(shift.getUser() == null || shift.getUser().getId() == null, localizedMessageSource.getMessage("error.shift.user.isNull", new Object[]{}));
+        validate(shift.getPos() == null || shift.getPos().getId() == null, localizedMessageSource.getMessage("error.shift.user.isNull", new Object[]{}));
         shift.setUser(userService.findById(shift.getUser().getId()));
+        shift.setPos(posService.findById(shift.getPos().getId()));
         return shiftRepository.saveAndFlush(shift);
     }
 
