@@ -6,6 +6,7 @@ import com.it.app.dto.response.UserResponseDto;
 import com.it.app.model.Role;
 import com.it.app.model.User;
 import com.it.app.service.InsuranceService;
+import com.it.app.service.ShiftService;
 import com.it.app.service.UserService;
 import lombok.AllArgsConstructor;
 import org.dozer.Mapper;
@@ -26,6 +27,7 @@ public class UserController {
 
     private final Mapper mapper;
     private final UserService userService;
+    private final ShiftService shiftService;
     private final InsuranceService insuranceService;
     private final LocalizedMessageSource localizedMessageSource;
 
@@ -63,10 +65,12 @@ public class UserController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
     public void delete(@PathVariable Long id) {
-        //TODO find shift for user
         //TODO delete point_user
         if (!insuranceService.findInsurancesByUserId(id).isEmpty()) {
             throw new RuntimeException(localizedMessageSource.getMessage("controller.user.hasInsurance", new Object[]{}));
+        }
+        if (!shiftService.findShiftsByUserId(id).isEmpty()) {
+            throw new RuntimeException(localizedMessageSource.getMessage("controller.user.hasShift", new Object[]{}));
         }
         userService.deleteById(id);
     }
