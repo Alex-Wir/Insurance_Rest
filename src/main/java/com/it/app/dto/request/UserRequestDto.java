@@ -6,6 +6,7 @@ import lombok.Setter;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -19,6 +20,6 @@ public class UserRequestDto {
     private String name;
 
     @NotNull(message = "{user.role.notNull}")
-    private Long roleId;
+    private Set<Long> roleIds;
 
 }

@@ -1,30 +1,40 @@
-CREATE TABLE IF NOT EXISTS user_role (
+CREATE TABLE IF NOT EXISTS role (
   id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(50)
 );
 
-INSERT INTO user_role (id, name) VALUES (1, 'employee');
-INSERT INTO user_role (id, name) VALUES (2, 'manager');
-INSERT INTO user_role (id, name) VALUES (3, 'customer');
+INSERT INTO role (id, name) VALUES (1, 'ROLE_USER');
+INSERT INTO role (id, name) VALUES (2, 'ROLE_ADMIN');
+INSERT INTO role (id, name) VALUES (3, 'ROLE_CUSTOMER');
 
 CREATE TABLE IF NOT EXISTS user (
   id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(50),
-  role_id BIGINT,
-  FOREIGN KEY (role_id) REFERENCES user_role(id)
+  name VARCHAR(50)
 );
 
-INSERT INTO user (id, name, role_id) VALUES (1, 'grodno.emp1', 1);
-INSERT INTO user (id, name, role_id) VALUES (2, 'grodno.emp2', 1);
-INSERT INTO user (id, name, role_id) VALUES (3, 'grodno.manager', 2);
-INSERT INTO user (id, name, role_id) VALUES (4, 'lida.emp1', 1);
-INSERT INTO user (id, name, role_id) VALUES (5, 'lida.emp2', 1);
-INSERT INTO user (id, name, role_id) VALUES (6, 'lida.manager', 2);
-INSERT INTO user (id, name, role_id) VALUES (7, 'top.manager', 2);
-INSERT INTO user (id, name, role_id) VALUES (8, 'user.customer', 3);
-INSERT INTO user (id, name, role_id) VALUES (9, 'new.user1', 1);
-INSERT INTO user (id, name, role_id) VALUES (10, 'new.user2', 1);
+INSERT INTO user (id, name) VALUES (1, 'grodno.emp1');
+INSERT INTO user (id, name) VALUES (2, 'grodno.emp2');
+INSERT INTO user (id, name) VALUES (3, 'grodno.manager');
+INSERT INTO user (id, name) VALUES (4, 'lida.emp1');
+INSERT INTO user (id, name) VALUES (5, 'lida.emp2');
+INSERT INTO user (id, name) VALUES (6, 'lida.manager');
+INSERT INTO user (id, name) VALUES (7, 'top.manager');
+INSERT INTO user (id, name) VALUES (8, 'user.customer');
+INSERT INTO user (id, name) VALUES (9, 'new.user1');
+INSERT INTO user (id, name) VALUES (10, 'new.user2');
 
+INSERT INTO user_role (user_id, role_id) VALUES (1, 1);
+INSERT INTO user_role (user_id, role_id) VALUES (2, 1);
+INSERT INTO user_role (user_id, role_id) VALUES (3, 1);
+INSERT INTO user_role (user_id, role_id) VALUES (3, 2);
+INSERT INTO user_role (user_id, role_id) VALUES (4, 1);
+INSERT INTO user_role (user_id, role_id) VALUES (5, 1);
+INSERT INTO user_role (user_id, role_id) VALUES (6, 1);
+INSERT INTO user_role (user_id, role_id) VALUES (6, 2);
+INSERT INTO user_role (user_id, role_id) VALUES (7, 2);
+INSERT INTO user_role (user_id, role_id) VALUES (8, 3);
+INSERT INTO user_role (user_id, role_id) VALUES (9, 1);
+INSERT INTO user_role (user_id, role_id) VALUES (10, 1);
 
 CREATE TABLE IF NOT EXISTS car (
   id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -78,8 +88,8 @@ CREATE TABLE IF NOT EXISTS insurance (
   FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
-INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (1, 12.5, 600, 1, 1, 3);
-INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (2, 15, 800.45, 2, 2, 3);
+INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (1, 12.5, 600, 1, 1, 8);
+INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (2, 15, 800.45, 2, 2, 8);
 
 INSERT INTO point_user (point_id, user_id) VALUES (1, 1);
 INSERT INTO point_user (point_id, user_id) VALUES (1, 2);

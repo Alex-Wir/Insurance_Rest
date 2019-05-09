@@ -4,6 +4,8 @@ import com.it.app.dto.RoleDto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Getter
 @Setter
 public class UserResponseDto {
@@ -12,6 +14,6 @@ public class UserResponseDto {
 
     private String name;
 
-    private RoleDto role;
+    private Set<RoleDto> roles;
 
 }

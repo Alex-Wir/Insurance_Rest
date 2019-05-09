@@ -69,8 +69,11 @@ public class UserServiceImpl implements UserService {
     }
 
     private User saveAndFlush(User user) {
-        validate(user.getRole() == null || user.getRole().getId() == null, localizedMessageSource.getMessage("error.user.role.isNull", new Object[]{}));
-        user.setRole(roleService.findById(user.getRole().getId()));
+        user.getRoles().forEach(role -> {
+            validate(role == null || role.getId() == null,
+                    localizedMessageSource.getMessage("error.user.role.isNull", new Object[]{}));
+            role.setName(roleService.findById(role.getId()).getName());
+        });
         return userRepository.saveAndFlush(user);
     }
 
