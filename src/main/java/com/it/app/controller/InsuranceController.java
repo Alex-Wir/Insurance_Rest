@@ -8,6 +8,8 @@ import com.it.app.model.Insurance;
 import com.it.app.model.Shift;
 import com.it.app.model.User;
 import com.it.app.service.InsuranceService;
+import com.it.app.service.UserService;
+import lombok.AllArgsConstructor;
 import org.dozer.Mapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,19 +22,14 @@ import java.util.stream.Collectors;
 
 @RequestMapping("/insurances")
 @RestController
+@AllArgsConstructor
 public class InsuranceController {
 
     private final Mapper mapper;
 
     private final InsuranceService insuranceService;
-
+    private final UserService userService;
     private final LocalizedMessageSource localizedMessageSource;
-
-    public InsuranceController(Mapper mapper, InsuranceService insuranceService, LocalizedMessageSource localizedMessageSource) {
-        this.mapper = mapper;
-        this.insuranceService = insuranceService;
-        this.localizedMessageSource = localizedMessageSource;
-    }
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<InsuranceResponseDto>> getAll() {
@@ -50,11 +47,15 @@ public class InsuranceController {
 
     /**
      * find insurances by user id
+     *
      * @param id - user id
      * @return
      */
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
     public ResponseEntity<List<InsuranceResponseDto>> getInsurancesByUserId(@PathVariable Long id) {
+        if (userService.findById(id) == null) {
+            throw new RuntimeException(localizedMessageSource.getMessage("controller.user.unexpectedId", new Object[]{}));
+        }
         final List<Insurance> insurances = insuranceService.findInsurancesByUserId(id);
         final List<InsuranceResponseDto> insuranceResponseDtoList = insurances.stream()
                 .map((insurance) -> mapper.map(insurance, InsuranceResponseDto.class)).collect(Collectors.toList());

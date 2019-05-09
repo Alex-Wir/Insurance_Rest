@@ -68,8 +68,9 @@ INSERT INTO user_role (user_id, role_id) VALUES (6, 1);
 INSERT INTO user_role (user_id, role_id) VALUES (6, 2);
 INSERT INTO user_role (user_id, role_id) VALUES (7, 2);
 INSERT INTO user_role (user_id, role_id) VALUES (8, 3);
-INSERT INTO user_role (user_id, role_id) VALUES (9, 1);
+INSERT INTO user_role (user_id, role_id) VALUES (9, 3);
 INSERT INTO user_role (user_id, role_id) VALUES (10, 1);
+INSERT INTO user_role (user_id, role_id) VALUES (11, 1);
 
 INSERT INTO car (id, number, country) VALUES (1, 'AB1234', 'BY');
 INSERT INTO car (id, number, country) VALUES (2, 'ABC987', 'LT');
@@ -101,9 +102,9 @@ INSERT INTO shift (id, openingTime, closingTime, user_id, pos_id) VALUES (3, '20
 INSERT INTO shift (id, openingTime, closingTime, user_id, pos_id) VALUES (4, '2019-05-05 21:00:00', '2019-05-06 08:30:00', 5, 3);
 
 INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (1, 12, 600, 1, 1, 8);
-INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (2, 15, 800, 2, 2, 10);
+INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (2, 15, 800, 2, 2, 9);
 INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (3, 20, 900, 3, 3, 8);
-INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (4, 10, 700, 1, 4, 10)
+INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (4, 10, 700, 1, 4, 9)
 
 
 
