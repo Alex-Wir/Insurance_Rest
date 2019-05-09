@@ -9,6 +9,7 @@ import com.it.app.model.Point;
 import com.it.app.model.User;
 import com.it.app.service.PointService;
 import com.it.app.service.UserService;
+import lombok.AllArgsConstructor;
 import org.dozer.Mapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/points")
+@AllArgsConstructor
 public class PointController {
 
     private final Mapper mapper;
@@ -29,16 +31,24 @@ public class PointController {
     private final UserService userService;
     private final LocalizedMessageSource localizedMessageSource;
 
-    public PointController(Mapper mapper, PointService pointService, LocalizedMessageSource localizedMessageSource, UserService userService) {
-        this.mapper = mapper;
-        this.pointService = pointService;
-        this.localizedMessageSource = localizedMessageSource;
-        this.userService = userService;
-    }
-
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<PointResponseDto>> getAll() {
         final List<Point> points = pointService.findAll();
+        final List<PointResponseDto> pointResponseDtoList = points.stream()
+                .map((point) -> mapper.map(point, PointResponseDto.class)).collect(Collectors.toList());
+        return new ResponseEntity<>(pointResponseDtoList, HttpStatus.OK);
+    }
+
+    /**
+     * find all points by user id
+     *
+     * @param id - user id
+     * @return
+     */
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
+    public ResponseEntity<List<PointResponseDto>> getAllByUserId(@PathVariable Long id) {
+        userService.findById(id);
+        final List<Point> points = pointService.findAllByUserId(id);
         final List<PointResponseDto> pointResponseDtoList = points.stream()
                 .map((point) -> mapper.map(point, PointResponseDto.class)).collect(Collectors.toList());
         return new ResponseEntity<>(pointResponseDtoList, HttpStatus.OK);
@@ -51,7 +61,7 @@ public class PointController {
     }
 
     /**
-     * Return point info with users
+     * Return info with users by point id
      *
      * @param id - point id
      * @return

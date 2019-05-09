@@ -32,4 +32,7 @@ public class User {
     @NotNull(message = "{user.role.notNull}")
     private Set<Role> roles;
 
+    @ManyToMany(mappedBy = "users")
+    private Set<Point> points;
+
 }

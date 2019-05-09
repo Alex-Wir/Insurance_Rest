@@ -8,6 +8,8 @@ public interface PointService {
 
     List<Point> findAll();
 
+    List<Point> findAllByUserId(Long id);
+
     Point findById(Long id);
 
     Point save(Point point);

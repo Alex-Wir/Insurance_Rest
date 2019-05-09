@@ -3,8 +3,10 @@ package com.it.app.service.impl;
 import com.it.app.component.LocalizedMessageSource;
 import com.it.app.model.User;
 import com.it.app.repository.UserRepository;
+import com.it.app.service.PointService;
 import com.it.app.service.RoleService;
 import com.it.app.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,19 +15,13 @@ import java.util.Objects;
 
 @Service
 @Transactional
+@AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final LocalizedMessageSource localizedMessageSource;
-
     private final RoleService roleService;
-
     private final UserRepository userRepository;
-
-    public UserServiceImpl(UserRepository userRepository, RoleService roleService, LocalizedMessageSource localizedMessageSource) {
-        this.userRepository = userRepository;
-        this.roleService = roleService;
-        this.localizedMessageSource = localizedMessageSource;
-    }
+    private final PointService pointService;
 
     @Override
     public List<User> findAll() {
@@ -65,6 +61,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteById(Long id) {
         findById(id);
+        //TODO delete user from all points
         userRepository.deleteById(id);
     }
 

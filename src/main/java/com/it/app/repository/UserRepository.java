@@ -18,4 +18,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("SELECT u FROM User u LEFT JOIN FETCH u.roles")
     List<User> findAll();
+
 }
