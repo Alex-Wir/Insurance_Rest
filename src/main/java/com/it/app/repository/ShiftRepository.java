@@ -14,4 +14,7 @@ public interface ShiftRepository extends JpaRepository<Shift, Long> {
 
     @Query("SELECT s FROM Shift s LEFT JOIN FETCH s.user LEFT JOIN FETCH s.pos")
     List<Shift> findAll();
+
+    @Query("SELECT s FROM Shift s LEFT JOIN FETCH s.user LEFT JOIN FETCH s.pos WHERE s.user.id = ?1")
+    List<Shift> findShiftsByUserId(Long id);
 }

@@ -39,6 +39,11 @@ public class ShiftServiceImpl implements ShiftService {
     }
 
     @Override
+    public List<Shift> findShiftsByUserId(Long id) {
+        return shiftRepository.findShiftsByUserId(id);
+    }
+
+    @Override
     public Shift save(Shift shift) {
         validate(shift.getId() != null, localizedMessageSource.getMessage("error.shift.notHaveId", new Object[]{}));
         return saveAndFlush(shift);
