@@ -25,6 +25,7 @@
     <dozer.jdk8.support>1.0.6</dozer.jdk8.support>
     <logback>1.2.3</logback>
     <lombok>1.18.6</lombok>
+    <swagger>2.9.2</swagger>
   </properties>
 
   <dependencies>
@@ -104,6 +105,21 @@
       <artifactId>lombok</artifactId>
       <version>${lombok}</version>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger2</artifactId>
+      <version>${swagger}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-data-rest</artifactId>
+      <version>${swagger}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger-ui</artifactId>
+      <version>${swagger}</version>
     </dependency>
   </dependencies>
 
