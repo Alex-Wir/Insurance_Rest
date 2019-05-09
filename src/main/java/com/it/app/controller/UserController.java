@@ -68,6 +68,8 @@ public class UserController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
     public void delete(@PathVariable Long id) {
+        //TODO find insurance for user
+
         userService.deleteById(id);
     }
 

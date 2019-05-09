@@ -53,9 +53,10 @@ INSERT INTO user (id, name) VALUES (4, 'lida.emp1');
 INSERT INTO user (id, name) VALUES (5, 'lida.emp2');
 INSERT INTO user (id, name) VALUES (6, 'lida.manager');
 INSERT INTO user (id, name) VALUES (7, 'top.manager');
-INSERT INTO user (id, name) VALUES (8, 'user.customer');
-INSERT INTO user (id, name) VALUES (9, 'new.user1');
-INSERT INTO user (id, name) VALUES (10, 'new.user2');
+INSERT INTO user (id, name) VALUES (8, 'customer1');
+INSERT INTO user (id, name) VALUES (9, 'customer2');
+INSERT INTO user (id, name) VALUES (10, 'new.user1');
+INSERT INTO user (id, name) VALUES (11, 'new.user2');
 
 INSERT INTO user_role (user_id, role_id) VALUES (1, 1);
 INSERT INTO user_role (user_id, role_id) VALUES (2, 1);
@@ -100,9 +101,9 @@ INSERT INTO shift (id, openingTime, closingTime, user_id, pos_id) VALUES (3, '20
 INSERT INTO shift (id, openingTime, closingTime, user_id, pos_id) VALUES (4, '2019-05-05 21:00:00', '2019-05-06 08:30:00', 5, 3);
 
 INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (1, 12, 600, 1, 1, 8);
-INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (2, 15, 800, 2, 2, 8);
+INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (2, 15, 800, 2, 2, 10);
 INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (3, 20, 900, 3, 3, 8);
-INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (4, 10, 700, 1, 4, 8)
+INSERT INTO insurance (id, payment, amount, car_id, shift_id, user_id) VALUES (4, 10, 700, 1, 4, 10)
 
 
 

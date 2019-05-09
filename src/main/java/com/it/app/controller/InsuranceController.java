@@ -48,6 +48,19 @@ public class InsuranceController {
         return new ResponseEntity<>(insuranceResponseDto, HttpStatus.OK);
     }
 
+    /**
+     * find insurances by user id
+     * @param id - user id
+     * @return
+     */
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
+    public ResponseEntity<List<InsuranceResponseDto>> getInsurancesByUserId(@PathVariable Long id) {
+        final List<Insurance> insurances = insuranceService.findInsurancesByUserId(id);
+        final List<InsuranceResponseDto> insuranceResponseDtoList = insurances.stream()
+                .map((insurance) -> mapper.map(insurance, InsuranceResponseDto.class)).collect(Collectors.toList());
+        return new ResponseEntity<>(insuranceResponseDtoList, HttpStatus.OK);
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<InsuranceResponseDto> save(@Valid @RequestBody InsuranceRequestDto insuranceRequestDto) {
         insuranceRequestDto.setId(null);

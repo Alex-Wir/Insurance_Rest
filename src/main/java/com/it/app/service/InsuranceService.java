@@ -3,6 +3,7 @@ package com.it.app.service;
 import com.it.app.model.Insurance;
 
 import java.util.List;
+import java.util.Set;
 
 public interface InsuranceService {
 
@@ -17,5 +18,7 @@ public interface InsuranceService {
     void delete(Insurance insurance);
 
     void deleteById(Long id);
+
+    List<Insurance> findInsurancesByUserId(Long id);
 
 }
