@@ -1,11 +1,16 @@
 package com.it.app.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 @Entity
 @Table(name = "insurance")
+@Getter
+@Setter
 public class Insurance {
 
     @Id
@@ -37,51 +42,4 @@ public class Insurance {
     @NotNull(message = "{insurance.user.notNull}")
     private User user;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Float getPayment() {
-        return payment;
-    }
-
-    public void setPayment(Float payment) {
-        this.payment = payment;
-    }
-
-    public Float getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Float amount) {
-        this.amount = amount;
-    }
-
-    public Car getCar() {
-        return car;
-    }
-
-    public void setCar(Car car) {
-        this.car = car;
-    }
-
-    public Shift getShift() {
-        return shift;
-    }
-
-    public void setShift(Shift shift) {
-        this.shift = shift;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

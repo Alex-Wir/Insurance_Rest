@@ -1,9 +1,14 @@
 package com.it.app.dto.request;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@Getter
+@NoArgsConstructor
 public class ShiftRequestDto {
 
     private Long id;
@@ -20,19 +25,8 @@ public class ShiftRequestDto {
     @NotNull(message = "{shift.pos.notNull}")
     private Long posId;
 
-    public ShiftRequestDto() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public LocalDateTime getOpeningTime() {
-        return openingTime;
     }
 
     public void setOpeningTime(String openingTime) {
@@ -44,10 +38,6 @@ public class ShiftRequestDto {
         this.openingTime = openingTime;
     }
 
-    public LocalDateTime getClosingTime() {
-        return closingTime;
-    }
-
     public void setClosingTime(LocalDateTime closingTime) {
         this.closingTime = closingTime;
     }
@@ -57,16 +47,8 @@ public class ShiftRequestDto {
         this.closingTime = closingTimeLdt;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
     public void setUserId(Long userId) {
         this.userId = userId;
-    }
-
-    public Long getPosId() {
-        return posId;
     }
 
     public void setPosId(Long posId) {

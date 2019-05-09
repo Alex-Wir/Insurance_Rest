@@ -1,9 +1,14 @@
 package com.it.app.dto.request;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
+@Getter
+@Setter
 public class InsuranceRequestDto {
 
     private Long id;
@@ -27,51 +32,4 @@ public class InsuranceRequestDto {
     @NotNull(message = "{insurance.user.notNull}")
     private Long userId;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Float getPayment() {
-        return payment;
-    }
-
-    public void setPayment(Float payment) {
-        this.payment = payment;
-    }
-
-    public Float getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Float amount) {
-        this.amount = amount;
-    }
-
-    public Long getCarId() {
-        return carId;
-    }
-
-    public void setCarId(Long carId) {
-        this.carId = carId;
-    }
-
-    public Long getShiftId() {
-        return shiftId;
-    }
-
-    public void setShiftId(Long shiftId) {
-        this.shiftId = shiftId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
 }

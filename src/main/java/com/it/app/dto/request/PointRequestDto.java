@@ -1,10 +1,15 @@
 package com.it.app.dto.request;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
+@Getter
+@Setter
 public class PointRequestDto {
 
     private Long id;
@@ -20,35 +25,4 @@ public class PointRequestDto {
     @NotNull(message = "{point.users.notNull}")
     private Set<Long> userIds;
 
-    public Set<Long> getUserIds() {
-        return userIds;
-    }
-
-    public void setUserIds(Set<Long> userIds) {
-        this.userIds = userIds;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Long getAddressId() {
-        return addressId;
-    }
-
-    public void setAddressId(Long addressId) {
-        this.addressId = addressId;
-    }
 }

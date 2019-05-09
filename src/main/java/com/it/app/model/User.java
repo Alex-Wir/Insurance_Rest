@@ -1,5 +1,8 @@
 package com.it.app.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -7,6 +10,8 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "user")
+@Getter
+@Setter
 public class User {
 
     @Id
@@ -24,27 +29,4 @@ public class User {
     @NotNull(message = "{user.role.notNull}")
     private Role role;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
 }

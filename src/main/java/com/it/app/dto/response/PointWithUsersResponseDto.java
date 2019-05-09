@@ -1,7 +1,12 @@
 package com.it.app.dto.response;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Set;
 
+@Getter
+@Setter
 public class PointWithUsersResponseDto {
 
     private Long id;
@@ -9,35 +14,4 @@ public class PointWithUsersResponseDto {
     private AddressResponseDto address;
     private Set<UserWithoutRoleResponseDto> users;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public AddressResponseDto getAddress() {
-        return address;
-    }
-
-    public void setAddress(AddressResponseDto address) {
-        this.address = address;
-    }
-
-    public Set<UserWithoutRoleResponseDto> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<UserWithoutRoleResponseDto> users) {
-        this.users = users;
-    }
 }

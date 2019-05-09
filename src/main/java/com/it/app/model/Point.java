@@ -1,5 +1,8 @@
 package com.it.app.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -8,6 +11,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "point")
+@Getter
+@Setter
 public class Point {
 
     @Id
@@ -31,35 +36,4 @@ public class Point {
     @NotNull(message = "{point.users.notNull}")
     private Set<User> users;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
 }

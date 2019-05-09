@@ -1,11 +1,16 @@
 package com.it.app.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "shift")
+@Getter
+@Setter
 public class Shift {
 
     @Id
@@ -29,43 +34,4 @@ public class Shift {
     @NotNull(message = "{shift.pos.notNull}")
     private Pos pos;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public LocalDateTime getOpeningTime() {
-        return openingTime;
-    }
-
-    public void setOpeningTime(LocalDateTime openingTime) {
-        this.openingTime = openingTime;
-    }
-
-    public LocalDateTime getClosingTime() {
-        return closingTime;
-    }
-
-    public void setClosingTime(LocalDateTime closingTime) {
-        this.closingTime = closingTime;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Pos getPos() {
-        return pos;
-    }
-
-    public void setPos(Pos pos) {
-        this.pos = pos;
-    }
 }
