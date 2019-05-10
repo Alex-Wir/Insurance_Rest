@@ -20,7 +20,6 @@ public class Shift {
     @NotNull(message = "{shift.opening.notNull")
     private LocalDateTime openingTime;
 
-    //TODO must be Null when shift is opening?
     @NotNull(message = "{shift.closing.notNull}")
     private LocalDateTime closingTime;
 

@@ -1,28 +1,19 @@
 package com.it.app.security.model;
 
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Objects;
 
-//TODO AllArgsConstr
+@AllArgsConstructor
 public class AuthenticationUserDetails implements UserDetails {
 
     private Long id;
-
     private String username;
-
     private String password;
-
     private Collection<? extends GrantedAuthority> authorities;
-
-    public AuthenticationUserDetails(Long id, String username, String password, Collection<? extends GrantedAuthority> authorities) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.authorities = authorities;
-    }
 
     public Long getId() {
         return id;

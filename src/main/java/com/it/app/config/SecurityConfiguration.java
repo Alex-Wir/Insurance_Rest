@@ -27,13 +27,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
+    //TODO fix /insurances/id for CUSTOMER
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().cors()
                 .and()
                 .authorizeRequests()
-                .mvcMatchers("/authentication/**").permitAll()
-                .mvcMatchers(HttpMethod.GET, "/roles/**", "/users/**").hasAnyRole("ADMIN", "USER")
+                .mvcMatchers("/authentication/**", "/points",
+                        "/v2/**", "/swagger**", "/api/**",
+                        "/v2/api-docs", "/swagger-resources/configuration/ui",
+                        "/swagger-resources", "/swagger-resources/configuration/security", "/swagger-ui.html",
+                        "/api/swagger-ui.html", "/webjars/**").permitAll()
+                .mvcMatchers("/insurances/1", "/insurances/2", "/insurances/3", "/insurances/4").hasRole("CUSTOMER")
+                .mvcMatchers(HttpMethod.GET, "/shifts/**", "/insurances/**", "/cars/**", "/users/**").hasRole("USER")
                 .anyRequest().hasRole("ADMIN");
         http.addFilterBefore(new AuthenticationTokenFilter(tokenService, userDetailsService), UsernamePasswordAuthenticationFilter.class);
     }

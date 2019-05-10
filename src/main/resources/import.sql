@@ -76,8 +76,8 @@ INSERT INTO car (id, number, country) VALUES (1, 'AB1234', 'BY');
 INSERT INTO car (id, number, country) VALUES (2, 'ABC987', 'LT');
 INSERT INTO car (id, number, country) VALUES (3, '1234KW', 'PL');
 
-INSERT INTO address (id, city, zipcode) VALUES (1, 'Grodno', 230000);
-INSERT INTO address (id, city, zipcode) VALUES (2, 'Lida', 231000);
+INSERT INTO address (id, city, zipcode, street, building) VALUES (1, 'Grodno', 230000, 'Central', '1');
+INSERT INTO address (id, city, zipcode, street, building) VALUES (2, 'Lida', 231000, 'Freedom square', '19-84');
 
 INSERT INTO point (id, name, address_id) VALUES (1, 'Grodno office', 1);
 INSERT INTO point (id, name, address_id) VALUES (2, 'Lida office', 2);
