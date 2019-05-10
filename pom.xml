@@ -27,6 +27,7 @@
     <logback>1.2.3</logback>
     <lombok>1.18.6</lombok>
     <swagger>2.9.2</swagger>
+    <io.jsonwebtoken.jjwt>0.9.1</io.jsonwebtoken.jjwt>
   </properties>
 
   <dependencies>
@@ -121,6 +122,26 @@
       <groupId>io.springfox</groupId>
       <artifactId>springfox-swagger-ui</artifactId>
       <version>${swagger}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <version>${org.spring.core}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-core</artifactId>
+      <version>${org.spring.core}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
+      <version>${org.spring.core}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt</artifactId>
+      <version>${io.jsonwebtoken.jjwt}</version>
     </dependency>
   </dependencies>
 

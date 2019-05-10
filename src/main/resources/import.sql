@@ -46,17 +46,17 @@ INSERT INTO role (id, name) VALUES (1, 'ROLE_USER');
 INSERT INTO role (id, name) VALUES (2, 'ROLE_ADMIN');
 INSERT INTO role (id, name) VALUES (3, 'ROLE_CUSTOMER');
 
-INSERT INTO user (id, name) VALUES (1, 'grodno.emp1');
-INSERT INTO user (id, name) VALUES (2, 'grodno.emp2');
-INSERT INTO user (id, name) VALUES (3, 'grodno.manager');
-INSERT INTO user (id, name) VALUES (4, 'lida.emp1');
-INSERT INTO user (id, name) VALUES (5, 'lida.emp2');
-INSERT INTO user (id, name) VALUES (6, 'lida.manager');
-INSERT INTO user (id, name) VALUES (7, 'top.manager');
-INSERT INTO user (id, name) VALUES (8, 'customer1');
-INSERT INTO user (id, name) VALUES (9, 'customer2');
-INSERT INTO user (id, name) VALUES (10, 'new.user1');
-INSERT INTO user (id, name) VALUES (11, 'new.user2');
+INSERT INTO user (id, name, password) VALUES (1, 'grodno.emp1', '$2a$10$661.BuekOdZ48NDR52qyE.hJ8ZAshFsxpiu3jnkcEoJSlaYvEHVUi');
+INSERT INTO user (id, name, password) VALUES (2, 'grodno.emp2', '$2a$10$661.BuekOdZ48NDR52qyE.hJ8ZAshFsxpiu3jnkcEoJSlaYvEHVUi');
+INSERT INTO user (id, name, password) VALUES (3, 'grodno.manager', '$2a$10$661.BuekOdZ48NDR52qyE.hJ8ZAshFsxpiu3jnkcEoJSlaYvEHVUi');
+INSERT INTO user (id, name, password) VALUES (4, 'lida.emp1', '$2a$10$661.BuekOdZ48NDR52qyE.hJ8ZAshFsxpiu3jnkcEoJSlaYvEHVUi');
+INSERT INTO user (id, name, password) VALUES (5, 'lida.emp2', '$2a$10$661.BuekOdZ48NDR52qyE.hJ8ZAshFsxpiu3jnkcEoJSlaYvEHVUi');
+INSERT INTO user (id, name, password) VALUES (6, 'lida.manager', '$2a$10$661.BuekOdZ48NDR52qyE.hJ8ZAshFsxpiu3jnkcEoJSlaYvEHVUi');
+INSERT INTO user (id, name, password) VALUES (7, 'top.manager', '$2a$10$661.BuekOdZ48NDR52qyE.hJ8ZAshFsxpiu3jnkcEoJSlaYvEHVUi');
+INSERT INTO user (id, name, password) VALUES (8, 'customer1', '$2a$10$661.BuekOdZ48NDR52qyE.hJ8ZAshFsxpiu3jnkcEoJSlaYvEHVUi');
+INSERT INTO user (id, name, password) VALUES (9, 'customer2', '$2a$10$661.BuekOdZ48NDR52qyE.hJ8ZAshFsxpiu3jnkcEoJSlaYvEHVUi');
+INSERT INTO user (id, name, password) VALUES (10, 'new.user1', '$2a$10$661.BuekOdZ48NDR52qyE.hJ8ZAshFsxpiu3jnkcEoJSlaYvEHVUi');
+INSERT INTO user (id, name, password) VALUES (11, 'new.user2', '$2a$10$661.BuekOdZ48NDR52qyE.hJ8ZAshFsxpiu3jnkcEoJSlaYvEHVUi');
 
 INSERT INTO user_role (user_id, role_id) VALUES (1, 1);
 INSERT INTO user_role (user_id, role_id) VALUES (2, 1);

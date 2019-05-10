@@ -32,6 +32,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findByName(String name) {
+        return userRepository.findByName(name);
+    }
+
+    @Override
     public User save(User user) {
         validate(user.getId() != null, localizedMessageSource.getMessage("error.user.notHaveId", new Object[]{}));
         validate(userRepository.existsByName(user.getName()), localizedMessageSource.getMessage("error.user.name.notUnique", new Object[]{}));
@@ -59,7 +64,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteById(Long id) {
         findById(id);
-        //TODO delete user from all points
         userRepository.deleteById(id);
     }
 

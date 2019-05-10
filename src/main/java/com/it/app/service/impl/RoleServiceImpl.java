@@ -30,6 +30,11 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    public Role findByName(String name) {
+        return roleRepository.findByName(name);
+    }
+
+    @Override
     public Role save(Role role) {
         validate(role.getId() != null, localizedMessageSource.getMessage("error.role.notHaveId", new Object[]{}));
         validate(roleRepository.existsByName(role.getName()), localizedMessageSource.getMessage("error.role.name.notUnique", new Object[]{}));
