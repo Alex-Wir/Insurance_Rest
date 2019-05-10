@@ -107,15 +107,4 @@ public class PointController {
         return point;
     }
 
-/*    TODO delete before Pull request
-        getPoint - without Users
-
-        private Point getPoint(PointRequestDto pointRequestDto) {
-        final Address address = new Address();
-        address.setId(pointRequestDto.getAddressId());
-        final Point point = mapper.map(pointRequestDto, Point.class);
-        point.setAddress(address);
-        return point;
-    }*/
-
 }

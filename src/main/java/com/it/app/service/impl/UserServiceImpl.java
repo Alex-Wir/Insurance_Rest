@@ -3,7 +3,6 @@ package com.it.app.service.impl;
 import com.it.app.component.LocalizedMessageSource;
 import com.it.app.model.User;
 import com.it.app.repository.UserRepository;
-import com.it.app.service.PointService;
 import com.it.app.service.RoleService;
 import com.it.app.service.UserService;
 import lombok.AllArgsConstructor;
@@ -21,7 +20,6 @@ public class UserServiceImpl implements UserService {
     private final LocalizedMessageSource localizedMessageSource;
     private final RoleService roleService;
     private final UserRepository userRepository;
-    private final PointService pointService;
 
     @Override
     public List<User> findAll() {

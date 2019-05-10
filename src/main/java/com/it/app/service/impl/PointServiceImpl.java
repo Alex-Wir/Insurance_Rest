@@ -2,17 +2,16 @@ package com.it.app.service.impl;
 
 import com.it.app.component.LocalizedMessageSource;
 import com.it.app.model.Point;
-import com.it.app.model.User;
 import com.it.app.repository.PointRepository;
 import com.it.app.service.AddressService;
 import com.it.app.service.PointService;
+import com.it.app.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @Transactional
@@ -22,26 +21,16 @@ public class PointServiceImpl implements PointService {
     private final LocalizedMessageSource localizedMessageSource;
     private final PointRepository pointRepository;
     private final AddressService addressService;
+    private final UserService userService;
 
     @Override
     public List<Point> findAll() {
         return pointRepository.findAll();
     }
 
-    //TODO
     @Override
     public List<Point> findAllByUserId(Long id) {
-        List<Point> allPoints = findAll();
-        List<Point> pointsWithUser = new ArrayList();
-        for (Point point : allPoints) {
-            Set<User> users = point.getUsers();
-            for (User user : users) {
-                if (user.getId() == id) {
-                    pointsWithUser.add(point);
-                }
-            }
-        }
-        return pointsWithUser;
+        return new ArrayList(userService.findById(id).getPoints());
     }
 
     @Override
