@@ -3,12 +3,14 @@ package com.it.app.controller;
 import com.it.app.dto.UserRegistrationRequestDto;
 import com.it.app.dto.request.AuthenticationRequestDto;
 import com.it.app.dto.response.TokenResponseDto;
+import com.it.app.dto.response.UserResponseDto;
 import com.it.app.model.Role;
 import com.it.app.model.User;
 import com.it.app.service.RoleService;
 import com.it.app.service.UserService;
 import com.it.app.service.security.TokenService;
 import lombok.AllArgsConstructor;
+import org.dozer.Mapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -31,6 +33,7 @@ public class AuthenticationController {
     private final TokenService tokenService;
     private final PasswordEncoder encoder;
     private final AuthenticationManager authenticationManager;
+    private final Mapper mapper;
 
     @PostMapping("/signIn")
     public TokenResponseDto authenticateUser(@RequestBody AuthenticationRequestDto authenticationRequestDto) {
@@ -48,7 +51,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/signUp")
-    public User registerUser(@RequestBody UserRegistrationRequestDto userRegistrationRequestDto) {
+    public UserResponseDto registerUser(@RequestBody UserRegistrationRequestDto userRegistrationRequestDto) {
         final User user = new User();
         user.setName(userRegistrationRequestDto.getUsername());
         user.setPassword(encoder.encode(userRegistrationRequestDto.getPassword()));
@@ -57,6 +60,7 @@ public class AuthenticationController {
                 .filter(Objects::nonNull)
                 .collect(Collectors.toSet());
         user.setRoles(roles);
-        return userService.save(user);
+        final UserResponseDto userResponseDto = mapper.map(userService.save(user), UserResponseDto.class);
+        return userResponseDto;
     }
 }
