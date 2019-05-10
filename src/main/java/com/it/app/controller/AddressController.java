@@ -5,6 +5,7 @@ import com.it.app.dto.request.AddressRequestDto;
 import com.it.app.dto.response.AddressResponseDto;
 import com.it.app.model.Address;
 import com.it.app.service.AddressService;
+import lombok.AllArgsConstructor;
 import org.dozer.Mapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,17 +18,12 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/addresses")
+@AllArgsConstructor
 public class AddressController {
 
     private final AddressService addressService;
     private final Mapper mapper;
     private final LocalizedMessageSource localizedMessageSource;
-
-    public AddressController(AddressService addressService, Mapper mapper, LocalizedMessageSource localizedMessageSource) {
-        this.addressService = addressService;
-        this.mapper = mapper;
-        this.localizedMessageSource = localizedMessageSource;
-    }
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<AddressResponseDto>> getAll() {

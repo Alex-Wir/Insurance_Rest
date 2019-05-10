@@ -5,6 +5,7 @@ import com.it.app.model.Pos;
 import com.it.app.repository.PosRepository;
 import com.it.app.service.PointService;
 import com.it.app.service.PosService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,17 +14,12 @@ import java.util.Objects;
 
 @Service
 @Transactional
+@AllArgsConstructor
 public class PosServiceImpl implements PosService {
 
     private final LocalizedMessageSource localizedMessageSource;
     private final PosRepository posRepository;
     private final PointService pointService;
-
-    public PosServiceImpl(LocalizedMessageSource localizedMessageSource, PosRepository posRepository, PointService pointService) {
-        this.localizedMessageSource = localizedMessageSource;
-        this.posRepository = posRepository;
-        this.pointService = pointService;
-    }
 
     @Override
     public List<Pos> findAll() {

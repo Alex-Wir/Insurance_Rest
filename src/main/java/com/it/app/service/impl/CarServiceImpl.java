@@ -4,6 +4,7 @@ import com.it.app.component.LocalizedMessageSource;
 import com.it.app.model.Car;
 import com.it.app.repository.CarRepository;
 import com.it.app.service.CarService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -11,16 +12,11 @@ import java.util.List;
 
 @Service
 @Transactional
+@AllArgsConstructor
 public class CarServiceImpl implements CarService {
 
     private final LocalizedMessageSource localizedMessageSource;
-
     private final CarRepository carRepository;
-
-    public CarServiceImpl(LocalizedMessageSource localizedMessageSource, CarRepository carRepository) {
-        this.localizedMessageSource = localizedMessageSource;
-        this.carRepository = carRepository;
-    }
 
     @Override
     public List<Car> findAll() {

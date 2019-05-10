@@ -4,6 +4,7 @@ import com.it.app.component.LocalizedMessageSource;
 import com.it.app.model.Role;
 import com.it.app.repository.RoleRepository;
 import com.it.app.service.RoleService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,16 +13,11 @@ import java.util.Objects;
 
 @Service
 @Transactional
+@AllArgsConstructor
 public class RoleServiceImpl implements RoleService {
 
     private final LocalizedMessageSource localizedMessageSource;
-
     private final RoleRepository roleRepository;
-
-    public RoleServiceImpl(RoleRepository roleRepository, LocalizedMessageSource localizedMessageSource) {
-        this.roleRepository = roleRepository;
-        this.localizedMessageSource = localizedMessageSource;
-    }
 
     @Override
     public List<Role> findAll() {

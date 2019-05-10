@@ -4,6 +4,7 @@ import com.it.app.component.LocalizedMessageSource;
 import com.it.app.model.Address;
 import com.it.app.repository.AddressRepository;
 import com.it.app.service.AddressService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,15 +12,11 @@ import java.util.List;
 
 @Service
 @Transactional
+@AllArgsConstructor
 public class AddressServiceImpl implements AddressService {
 
     private final AddressRepository addressRepository;
     private final LocalizedMessageSource localizedMessageSource;
-
-    public AddressServiceImpl(AddressRepository addressRepository, LocalizedMessageSource localizedMessageSource) {
-        this.addressRepository = addressRepository;
-        this.localizedMessageSource = localizedMessageSource;
-    }
 
     @Override
     public List<Address> findAll() {

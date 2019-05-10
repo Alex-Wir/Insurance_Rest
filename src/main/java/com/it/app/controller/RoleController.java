@@ -4,6 +4,7 @@ import com.it.app.component.LocalizedMessageSource;
 import com.it.app.dto.RoleDto;
 import com.it.app.model.Role;
 import com.it.app.service.RoleService;
+import lombok.AllArgsConstructor;
 import org.dozer.Mapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,20 +17,12 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/roles")
+@AllArgsConstructor
 public class RoleController {
 
     private final Mapper mapper;
-
     private final RoleService roleService;
-
     private final LocalizedMessageSource localizedMessageSource;
-
-    public RoleController(Mapper mapper, RoleService roleService, LocalizedMessageSource localizedMessageSource) {
-        this.mapper = mapper;
-        this.roleService = roleService;
-        this.localizedMessageSource = localizedMessageSource;
-    }
-
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<RoleDto>> getAll() {

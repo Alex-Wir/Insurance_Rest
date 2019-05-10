@@ -7,6 +7,7 @@ import com.it.app.service.CarService;
 import com.it.app.service.InsuranceService;
 import com.it.app.service.ShiftService;
 import com.it.app.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +16,7 @@ import java.util.Set;
 
 @Service
 @Transactional
+@AllArgsConstructor
 public class InsuranceServiceImpl implements InsuranceService {
 
     private final LocalizedMessageSource localizedMessageSource;
@@ -22,14 +24,6 @@ public class InsuranceServiceImpl implements InsuranceService {
     private final CarService carService;
     private final ShiftService shiftService;
     private final UserService userService;
-
-    public InsuranceServiceImpl(LocalizedMessageSource localizedMessageSource, InsuranceRepository insuranceRepository, CarService carService, ShiftService shiftService, UserService userService) {
-        this.localizedMessageSource = localizedMessageSource;
-        this.insuranceRepository = insuranceRepository;
-        this.carService = carService;
-        this.shiftService = shiftService;
-        this.userService = userService;
-    }
 
     @Override
     public List<Insurance> findAll() {

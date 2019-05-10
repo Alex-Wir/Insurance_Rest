@@ -28,6 +28,7 @@ public class PointServiceImpl implements PointService {
         return pointRepository.findAll();
     }
 
+    //TODO
     @Override
     public List<Point> findAllByUserId(Long id) {
         List<Point> allPoints = findAll();

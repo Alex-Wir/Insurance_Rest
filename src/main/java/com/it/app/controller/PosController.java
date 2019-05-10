@@ -6,6 +6,7 @@ import com.it.app.dto.response.PosResponseDto;
 import com.it.app.model.Point;
 import com.it.app.model.Pos;
 import com.it.app.service.PosService;
+import lombok.AllArgsConstructor;
 import org.dozer.Mapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,17 +19,12 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/poses")
+@AllArgsConstructor
 public class PosController {
 
     private final Mapper mapper;
     private final PosService posService;
     private final LocalizedMessageSource localizedMessageSource;
-
-    public PosController(Mapper mapper, PosService posService, LocalizedMessageSource localizedMessageSource) {
-        this.mapper = mapper;
-        this.posService = posService;
-        this.localizedMessageSource = localizedMessageSource;
-    }
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<PosResponseDto>> getAll() {

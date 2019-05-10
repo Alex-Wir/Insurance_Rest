@@ -5,6 +5,7 @@ import com.it.app.dto.request.CarRequestDto;
 import com.it.app.dto.response.CarResponseDto;
 import com.it.app.model.Car;
 import com.it.app.service.CarService;
+import lombok.AllArgsConstructor;
 import org.dozer.Mapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,19 +18,12 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/cars")
+@AllArgsConstructor
 public class CarController {
 
     private final Mapper mapper;
-
     private final CarService carService;
-
     private final LocalizedMessageSource localizedMessageSource;
-
-    public CarController(Mapper mapper, CarService carService, LocalizedMessageSource localizedMessageSource) {
-        this.mapper = mapper;
-        this.carService = carService;
-        this.localizedMessageSource = localizedMessageSource;
-    }
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<CarResponseDto>> getAll() {

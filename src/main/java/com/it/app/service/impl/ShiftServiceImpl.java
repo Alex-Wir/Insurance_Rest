@@ -6,6 +6,7 @@ import com.it.app.repository.ShiftRepository;
 import com.it.app.service.PosService;
 import com.it.app.service.ShiftService;
 import com.it.app.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -13,20 +14,13 @@ import java.util.List;
 
 @Service
 @Transactional
+@AllArgsConstructor
 public class ShiftServiceImpl implements ShiftService {
 
     private final LocalizedMessageSource localizedMessageSource;
     private final ShiftRepository shiftRepository;
     private final UserService userService;
     private final PosService posService;
-
-    public ShiftServiceImpl(LocalizedMessageSource localizedMessageSource, ShiftRepository shiftRepository,
-                            UserService userService, PosService posService) {
-        this.localizedMessageSource = localizedMessageSource;
-        this.shiftRepository = shiftRepository;
-        this.userService = userService;
-        this.posService = posService;
-    }
 
     @Override
     public List<Shift> findAll() {
