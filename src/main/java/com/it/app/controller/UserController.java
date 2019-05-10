@@ -86,13 +86,4 @@ public class UserController {
         return user;
     }
 
-    /*  TODO delete before pull request
-
-        private User getUser(UserRequestDto userRequestDto) {
-        final User user = mapper.map(userRequestDto, User.class);
-        final Role role = new Role();
-        role.setId(userRequestDto.getRoleId());
-        user.setRole(role);
-        return user;
-    }*/
 }

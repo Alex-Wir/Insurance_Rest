@@ -10,6 +10,8 @@ public interface UserService {
 
     User findById(Long id);
 
+    User findByName(String name);
+
     User save(User user);
 
     User update(User user);
