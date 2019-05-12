@@ -34,11 +34,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable().cors()
                 .and()
                 .authorizeRequests()
-                .mvcMatchers("/authentication/**", "/points",
+                .mvcMatchers("/authentication/**",
                         "/api/**", "/v2/api-docs", "/swagger-resources/**"
                 ).permitAll()
-                .mvcMatchers("/insurances/1", "/insurances/2", "/insurances/3", "/insurances/4").hasRole("CUSTOMER")
-                .mvcMatchers(HttpMethod.GET, "/shifts/**", "/insurances/**", "/cars/**", "/users/**").hasRole("USER")
+                .mvcMatchers(HttpMethod.GET, "/points").permitAll()
+                .mvcMatchers(HttpMethod.GET,"/insurances/1", "/insurances/2", "/insurances/3", "/insurances/4").hasRole("CUSTOMER")
+                .mvcMatchers("/shifts/**", "/insurances/**", "/cars/**", "/users/**").hasRole("USER")
                 .anyRequest().hasRole("ADMIN");
         http.addFilterBefore(new AuthenticationTokenFilter(tokenService, userDetailsService), UsernamePasswordAuthenticationFilter.class);
     }

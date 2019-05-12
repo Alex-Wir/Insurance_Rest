@@ -27,7 +27,7 @@ public class TokenServiceImpl implements TokenService {
 
     private static final String JWT_SECRET = "secret";
 
-    private static final Integer JWT_EXPIRATION_MILLIS = 600000;
+    private static final Integer JWT_EXPIRATION_MILLIS = 6000000;
 
     @Override
     public String generate(Authentication authentication) {
