@@ -60,6 +60,9 @@ public class PosController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
     public void delete(@PathVariable Long id) {
+        if (!posService.findById(id).getShifts().isEmpty()) {
+            throw new RuntimeException(localizedMessageSource.getMessage("controller.pos.hasShift", new Object[]{}));
+        }
         posService.deleteById(id);
     }
 

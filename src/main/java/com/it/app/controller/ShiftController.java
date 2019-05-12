@@ -82,6 +82,9 @@ public class ShiftController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
     public void delete(@PathVariable Long id) {
+        if (!shiftService.findById(id).getInsurances().isEmpty()) {
+            throw new RuntimeException(localizedMessageSource.getMessage("controller.shift.hasInsurance", new Object[]{}));
+        }
         shiftService.deleteById(id);
     }
 

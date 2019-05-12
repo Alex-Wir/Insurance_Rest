@@ -6,6 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "shift")
@@ -32,5 +33,8 @@ public class Shift {
     @JoinColumn(name = "pos_id", nullable = false)
     @NotNull(message = "{shift.pos.notNull}")
     private Pos pos;
+
+    @OneToMany(mappedBy = "shift")
+    private Set<Insurance> insurances;
 
 }

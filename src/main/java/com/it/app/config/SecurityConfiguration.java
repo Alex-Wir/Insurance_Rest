@@ -38,7 +38,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 ).permitAll()
                 .mvcMatchers(HttpMethod.GET, "/points").permitAll()
                 .mvcMatchers(HttpMethod.GET,"/insurances/1", "/insurances/2", "/insurances/3", "/insurances/4").hasRole("CUSTOMER")
-                .mvcMatchers("/shifts/**", "/insurances/**", "/cars/**", "/users/**").hasRole("USER")
+                .mvcMatchers("/shifts/**", "/insurances/**", "/cars/**", "/users/**").hasAnyRole("USER","ADMIN")
                 .anyRequest().hasRole("ADMIN");
         http.addFilterBefore(new AuthenticationTokenFilter(tokenService, userDetailsService), UsernamePasswordAuthenticationFilter.class);
     }

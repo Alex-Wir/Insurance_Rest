@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface PosRepository extends JpaRepository<Pos, Long> {
 
-    @Query("SELECT p FROM Pos p LEFT JOIN FETCH p.point WHERE p.id = ?1")
+    @Query("SELECT p FROM Pos p LEFT JOIN FETCH p.point LEFT JOIN FETCH p.shifts WHERE p.id = ?1")
     Optional<Pos> findById(Long id);
 
     @Query("SELECT p FROM Pos p LEFT JOIN FETCH p.point")

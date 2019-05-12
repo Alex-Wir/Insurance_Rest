@@ -36,4 +36,7 @@ public class Point {
     @NotNull(message = "{point.users.notNull}")
     private Set<User> users;
 
+    @OneToMany(mappedBy = "point")
+    private Set<Pos> poses;
+
 }

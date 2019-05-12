@@ -91,6 +91,9 @@ public class PointController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
     public void delete(@PathVariable Long id) {
+        if (!pointService.findById(id).getPoses().isEmpty()){
+            throw new RuntimeException(localizedMessageSource.getMessage("controller.point.hasPos", new Object[]{}));
+        }
         pointService.deleteById(id);
     }
 
