@@ -46,11 +46,11 @@ public class ShiftController {
      * @return
      */
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
-    public ResponseEntity<List<ShiftResponseDto>> getShiftsByUserId(@PathVariable Long id) {
+    public ResponseEntity<List<ShiftResponseDto>> getAllByUserId(@PathVariable Long id) {
         if (userService.findById(id) == null) {
             throw new RuntimeException(localizedMessageSource.getMessage("controller.user.unexpectedId", new Object[]{}));
         }
-        final List<Shift> shifts = shiftService.findShiftsByUserId(id);
+        final List<Shift> shifts = shiftService.findAllByUserId(id);
         final List<ShiftResponseDto> shiftResponseDtoList = shifts.stream()
                 .map((shift) -> mapper.map(shift, ShiftResponseDto.class))
                 .collect(Collectors.toList());

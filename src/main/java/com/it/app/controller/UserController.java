@@ -69,7 +69,7 @@ public class UserController {
         if (!insuranceService.findAllByUserId(id).isEmpty()) {
             throw new RuntimeException(localizedMessageSource.getMessage("controller.user.hasInsurance", new Object[]{}));
         }
-        if (!shiftService.findShiftsByUserId(id).isEmpty()) {
+        if (!shiftService.findAllByUserId(id).isEmpty()) {
             throw new RuntimeException(localizedMessageSource.getMessage("controller.user.hasShift", new Object[]{}));
         }
         userService.deleteById(id);

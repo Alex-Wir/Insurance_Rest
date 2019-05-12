@@ -18,5 +18,5 @@ public interface ShiftService {
 
     void deleteById(Long id);
 
-    List<Shift> findShiftsByUserId(Long id);
+    List<Shift> findAllByUserId(Long id);
 }

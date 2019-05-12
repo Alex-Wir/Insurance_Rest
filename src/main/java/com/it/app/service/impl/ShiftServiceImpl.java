@@ -33,7 +33,7 @@ public class ShiftServiceImpl implements ShiftService {
     }
 
     @Override
-    public List<Shift> findShiftsByUserId(Long id) {
+    public List<Shift> findAllByUserId(Long id) {
         return shiftRepository.findShiftsByUserId(id);
     }
 

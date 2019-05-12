@@ -54,7 +54,7 @@ public class InsuranceController {
      * @return
      */
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
-    public ResponseEntity<List<InsuranceResponseDto>> getInsurancesByUserId(@PathVariable Long id) {
+    public ResponseEntity<List<InsuranceResponseDto>> getAllByUserId(@PathVariable Long id) {
         if (userService.findById(id) == null) {
             throw new RuntimeException(localizedMessageSource.getMessage("controller.user.unexpectedId", new Object[]{}));
         }
