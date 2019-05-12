@@ -28,7 +28,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     //TODO fix /insurances/id for CUSTOMER
-    //TODO fix points - only GET
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().cors()
