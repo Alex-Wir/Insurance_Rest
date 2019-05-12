@@ -24,6 +24,11 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
+    public List<Car> findAllByNumber(String number) {
+        return carRepository.findAllByNumber(number);
+    }
+
+    @Override
     public Car findById(Long id) {
         return carRepository.findById(id).orElseThrow(() -> new RuntimeException(localizedMessageSource.getMessage("error.car.notExist", new Object[]{})));
     }

@@ -66,7 +66,7 @@ public class UserController {
     @ResponseStatus(value = HttpStatus.OK)
     public void delete(@PathVariable Long id) {
         //TODO delete point_user
-        if (!insuranceService.findInsurancesByUserId(id).isEmpty()) {
+        if (!insuranceService.findAllByUserId(id).isEmpty()) {
             throw new RuntimeException(localizedMessageSource.getMessage("controller.user.hasInsurance", new Object[]{}));
         }
         if (!shiftService.findShiftsByUserId(id).isEmpty()) {

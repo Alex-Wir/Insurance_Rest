@@ -9,6 +9,10 @@ public interface InsuranceService {
 
     List<Insurance> findAll();
 
+    List<Insurance> findAllByUserId(Long id);
+
+    List<Insurance> findAllByCarNumber(String number);
+
     Insurance findById(Long id);
 
     Insurance save(Insurance insurance);
@@ -18,7 +22,5 @@ public interface InsuranceService {
     void delete(Insurance insurance);
 
     void deleteById(Long id);
-
-    List<Insurance> findInsurancesByUserId(Long id);
 
 }

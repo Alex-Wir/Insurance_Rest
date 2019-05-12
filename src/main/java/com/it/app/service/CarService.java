@@ -8,6 +8,8 @@ public interface CarService {
 
     List<Car> findAll();
 
+    List<Car> findAllByNumber(String number);
+
     Car findById(Long id);
 
     Car save(Car car);

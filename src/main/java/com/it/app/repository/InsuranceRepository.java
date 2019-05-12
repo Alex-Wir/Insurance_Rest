@@ -16,6 +16,9 @@ public interface InsuranceRepository extends JpaRepository<Insurance, Long> {
     List<Insurance> findAll();
 
     @Query("SELECT i FROM Insurance i LEFT JOIN FETCH i.car LEFT JOIN FETCH i.shift LEFT JOIN FETCH i.user WHERE i.user.id = ?1")
-    List<Insurance> findInsurancesByUserId(Long id);
+    List<Insurance> findAllByUserId(Long id);
+
+    @Query("SELECT i FROM Insurance i LEFT JOIN FETCH i.car c LEFT JOIN FETCH i.shift LEFT JOIN FETCH i.user WHERE c.number = ?1")
+    List<Insurance> findAllByCarNumber(String number);
 
 }

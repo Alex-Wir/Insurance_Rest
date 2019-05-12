@@ -34,6 +34,21 @@ public class CarController {
         return new ResponseEntity<>(carResponseDtoList, HttpStatus.OK);
     }
 
+    /**
+     * find cars by car number
+     *
+     * @param number - car number
+     * @return
+     */
+    @RequestMapping(value = "/numbers/{number}", method = RequestMethod.GET)
+    public ResponseEntity<List<CarResponseDto>> getAllByNumber(@PathVariable String number) {
+        final List<Car> cars = carService.findAllByNumber(number);
+        final List<CarResponseDto> carResponseDtoList = cars.stream()
+                .map((car) -> mapper.map(car, CarResponseDto.class))
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(carResponseDtoList, HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<CarResponseDto> getOne(@PathVariable Long id) {
         final CarResponseDto carDto = mapper.map(carService.findById(id), CarResponseDto.class);

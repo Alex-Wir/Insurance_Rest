@@ -7,6 +7,7 @@ import com.it.app.model.Car;
 import com.it.app.model.Insurance;
 import com.it.app.model.Shift;
 import com.it.app.model.User;
+import com.it.app.service.CarService;
 import com.it.app.service.InsuranceService;
 import com.it.app.service.UserService;
 import lombok.AllArgsConstructor;
@@ -29,6 +30,7 @@ public class InsuranceController {
 
     private final InsuranceService insuranceService;
     private final UserService userService;
+    private final CarService carService;
     private final LocalizedMessageSource localizedMessageSource;
 
     @RequestMapping(method = RequestMethod.GET)
@@ -56,7 +58,24 @@ public class InsuranceController {
         if (userService.findById(id) == null) {
             throw new RuntimeException(localizedMessageSource.getMessage("controller.user.unexpectedId", new Object[]{}));
         }
-        final List<Insurance> insurances = insuranceService.findInsurancesByUserId(id);
+        final List<Insurance> insurances = insuranceService.findAllByUserId(id);
+        final List<InsuranceResponseDto> insuranceResponseDtoList = insurances.stream()
+                .map((insurance) -> mapper.map(insurance, InsuranceResponseDto.class)).collect(Collectors.toList());
+        return new ResponseEntity<>(insuranceResponseDtoList, HttpStatus.OK);
+    }
+
+    /**
+     * find insurances by car number
+     *
+     * @param carNumber - car number
+     * @return
+     */
+    @RequestMapping(value = "/cars/{carNumber}", method = RequestMethod.GET)
+    public ResponseEntity<List<InsuranceResponseDto>> getAllByCarNumber(@PathVariable String carNumber) {
+        if (carService.findAllByNumber(carNumber).isEmpty()) {
+            throw new RuntimeException(localizedMessageSource.getMessage("controller.car.unexpectedNumber", new Object[]{}));
+        }
+        final List<Insurance> insurances = insuranceService.findAllByCarNumber(carNumber);
         final List<InsuranceResponseDto> insuranceResponseDtoList = insurances.stream()
                 .map((insurance) -> mapper.map(insurance, InsuranceResponseDto.class)).collect(Collectors.toList());
         return new ResponseEntity<>(insuranceResponseDtoList, HttpStatus.OK);

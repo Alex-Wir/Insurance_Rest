@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 @Transactional
@@ -37,8 +36,13 @@ public class InsuranceServiceImpl implements InsuranceService {
     }
 
     @Override
-    public List<Insurance> findInsurancesByUserId(Long id) {
-        return insuranceRepository.findInsurancesByUserId(id);
+    public List<Insurance> findAllByUserId(Long id) {
+        return insuranceRepository.findAllByUserId(id);
+    }
+
+    @Override
+    public List<Insurance> findAllByCarNumber(String number) {
+        return insuranceRepository.findAllByCarNumber(number);
     }
 
     @Override
