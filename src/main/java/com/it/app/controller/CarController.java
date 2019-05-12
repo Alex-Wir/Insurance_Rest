@@ -5,6 +5,7 @@ import com.it.app.dto.request.CarRequestDto;
 import com.it.app.dto.response.CarResponseDto;
 import com.it.app.model.Car;
 import com.it.app.service.CarService;
+import com.it.app.service.InsuranceService;
 import lombok.AllArgsConstructor;
 import org.dozer.Mapper;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,7 @@ public class CarController {
 
     private final Mapper mapper;
     private final CarService carService;
+    private final InsuranceService insuranceService;
     private final LocalizedMessageSource localizedMessageSource;
 
     @RequestMapping(method = RequestMethod.GET)
@@ -74,9 +76,10 @@ public class CarController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
     public void delete(@PathVariable Long id) {
-        if (carService.findById(id) != null) {
-            carService.deleteById(id);
+        if (!insuranceService.findAllByCarNumber(carService.findById(id).getNumber()).isEmpty()) {
+            throw new RuntimeException(localizedMessageSource.getMessage("controller.car.hasInsurance", new Object[]{}));
         }
+        carService.deleteById(id);
     }
 
     private Car getCar(CarRequestDto carRequestDto) {
