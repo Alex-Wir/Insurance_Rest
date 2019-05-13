@@ -22,7 +22,9 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-
+/**
+ * Authentication controller
+ */
 @RestController
 @RequestMapping("/authentication")
 @AllArgsConstructor
@@ -35,6 +37,13 @@ public class AuthenticationController {
     private final AuthenticationManager authenticationManager;
     private final Mapper mapper;
 
+    /**
+     * Verify user
+     *
+     * @param authenticationRequestDto - Request for sign in
+     * @return - TokenResponseDto
+     */
+    //TODO add @Valid for AuthenticationRequestDto??
     @PostMapping("/signIn")
     public TokenResponseDto authenticateUser(@RequestBody AuthenticationRequestDto authenticationRequestDto) {
         String username = authenticationRequestDto.getUsername();
@@ -45,11 +54,24 @@ public class AuthenticationController {
         return new TokenResponseDto(tokenService.generate(authentication));
     }
 
+    /**
+     * Refresh existing token
+     *
+     * @param token - existing String Token
+     * @return - TokenResponseDto
+     */
     @PostMapping("/refresh")
     public TokenResponseDto refreshToken(@RequestParam String token) {
         return new TokenResponseDto(tokenService.refresh(token));
     }
 
+    /**
+     * Create new User
+     *
+     * @param userRegistrationRequestDto - new User's parameters
+     * @return - UserResponseDto
+     */
+    //TODO add @Valid for UserRegistrationRequestDto
     @PostMapping("/signUp")
     public UserResponseDto registerUser(@RequestBody UserRegistrationRequestDto userRegistrationRequestDto) {
         final User user = new User();

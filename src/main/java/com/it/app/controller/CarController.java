@@ -37,7 +37,7 @@ public class CarController {
     }
 
     /**
-     * find cars by car number
+     * Find all cars by car number
      *
      * @param number - car number
      * @return
