@@ -14,6 +14,8 @@ public interface InsuranceService {
 
     List<Insurance> findAllByYear(Long year);
 
+    List<Insurance> findAllByYearAndPoint(Long year, Long pointId);
+
     Insurance findById(Long id);
 
     Insurance save(Insurance insurance);

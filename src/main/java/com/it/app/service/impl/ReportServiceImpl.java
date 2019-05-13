@@ -1,7 +1,7 @@
 package com.it.app.service.impl;
 
 import com.it.app.component.LocalizedMessageSource;
-import com.it.app.dto.ReportYearDto;
+import com.it.app.dto.ReportDto;
 import com.it.app.dto.response.InsuranceResponseDto;
 import com.it.app.model.Insurance;
 import com.it.app.service.InsuranceService;
@@ -24,13 +24,21 @@ public class ReportServiceImpl implements ReportService {
     private final Mapper mapper;
 
     @Override
-    public ReportYearDto makeByYear(Long year) {
-        final ReportYearDto report = new ReportYearDto();
-        final List<Insurance> insurances = insuranceService.findAllByYear(year);
+    public ReportDto makeForYear(Long year) {
+        return makeReport(insuranceService.findAllByYear(year));
+    }
+
+    @Override
+    public ReportDto makeForYearAndPoint(Long year, Long pointId) {
+        return makeReport(insuranceService.findAllByYearAndPoint(year, pointId));
+    }
+
+    private ReportDto makeReport (List<Insurance> insurances){
+        final ReportDto report = new ReportDto();
         final List<InsuranceResponseDto> insuranceResponseDtoList = insurances.stream()
                 .map((insurance) -> mapper.map(insurance, InsuranceResponseDto.class)).collect(Collectors.toList());
         report.setInsurances(insuranceResponseDtoList);
-        report.setQuantity(report.getInsurances().size());
+        report.setQuantity(insuranceResponseDtoList.size());
         float sum = 0;
         for (InsuranceResponseDto insurance:report.getInsurances()){
             sum += insurance.getPayment();

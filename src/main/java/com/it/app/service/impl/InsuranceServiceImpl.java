@@ -54,6 +54,13 @@ public class InsuranceServiceImpl implements InsuranceService {
     }
 
     @Override
+    public List<Insurance> findAllByYearAndPoint(Long year, Long pointId) {
+        LocalDate yearBegin = LocalDate.of(year.intValue(), 01, 01);
+        LocalDate yearEnd = LocalDate.of(year.intValue(), 12, 31);
+        return insuranceRepository.findAllByYearAndPoint(yearBegin, yearEnd, pointId);
+    }
+
+    @Override
     public Insurance save(Insurance insurance) {
         validate(insurance.getId() != null, localizedMessageSource.getMessage("error.insurance.notHaveId", new Object[]{}));
         return saveAndFlush(insurance);

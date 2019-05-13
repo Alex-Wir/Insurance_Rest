@@ -8,7 +8,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class ReportYearDto {
+public class ReportDto {
 
     private long quantity;
     private float Sum;

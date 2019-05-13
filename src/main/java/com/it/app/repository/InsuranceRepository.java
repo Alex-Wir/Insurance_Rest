@@ -25,4 +25,7 @@ public interface InsuranceRepository extends JpaRepository<Insurance, Long> {
     @Query("SELECT i FROM Insurance i LEFT JOIN FETCH i.car LEFT JOIN FETCH i.user WHERE i.date>= ?1 and i.date<= ?2")
     List<Insurance> findAllByYear(LocalDate yearBegin, LocalDate yearEnd);
 
+    @Query("SELECT i FROM Insurance i LEFT JOIN FETCH i.car LEFT JOIN FETCH i.user LEFT JOIN FETCH i.shift s LEFT JOIN FETCH s.pos p LEFT JOIN FETCH p.point point WHERE i.date>= ?1 and i.date<= ?2 and point.id = ?3")
+    List<Insurance> findAllByYearAndPoint (LocalDate yearBegin, LocalDate yearEnd, Long pointId);
+
 }
