@@ -3,7 +3,6 @@ package com.it.app.service;
 import com.it.app.model.Insurance;
 
 import java.util.List;
-import java.util.Set;
 
 public interface InsuranceService {
 
@@ -12,6 +11,8 @@ public interface InsuranceService {
     List<Insurance> findAllByUserId(Long id);
 
     List<Insurance> findAllByCarNumber(String number);
+
+    List<Insurance> findAllByYear(Long year);
 
     Insurance findById(Long id);
 

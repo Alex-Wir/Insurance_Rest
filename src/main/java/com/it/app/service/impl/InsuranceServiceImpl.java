@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -43,6 +44,13 @@ public class InsuranceServiceImpl implements InsuranceService {
     @Override
     public List<Insurance> findAllByCarNumber(String number) {
         return insuranceRepository.findAllByCarNumber(number);
+    }
+
+    @Override
+    public List<Insurance> findAllByYear(Long year) {
+        LocalDate yearBegin = LocalDate.of(year.intValue(), 01, 01);
+        LocalDate yearEnd = LocalDate.of(year.intValue(), 12, 31);
+        return insuranceRepository.findAllByYear(yearBegin, yearEnd);
     }
 
     @Override

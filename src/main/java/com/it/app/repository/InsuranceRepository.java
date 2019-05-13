@@ -4,6 +4,7 @@ import com.it.app.model.Insurance;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,5 +21,8 @@ public interface InsuranceRepository extends JpaRepository<Insurance, Long> {
 
     @Query("SELECT i FROM Insurance i LEFT JOIN FETCH i.car c LEFT JOIN FETCH i.user WHERE c.number = ?1")
     List<Insurance> findAllByCarNumber(String number);
+
+    @Query("SELECT i FROM Insurance i LEFT JOIN FETCH i.car LEFT JOIN FETCH i.user WHERE i.date>= ?1 and i.date<= ?2")
+    List<Insurance> findAllByYear(LocalDate yearBegin, LocalDate yearEnd);
 
 }
