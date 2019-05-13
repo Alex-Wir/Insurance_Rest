@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -58,6 +59,13 @@ public class InsuranceServiceImpl implements InsuranceService {
         LocalDate yearBegin = LocalDate.of(year.intValue(), 01, 01);
         LocalDate yearEnd = LocalDate.of(year.intValue(), 12, 31);
         return insuranceRepository.findAllByYearAndPoint(yearBegin, yearEnd, pointId);
+    }
+
+    @Override
+    public List<Insurance> findAllByPeriodAndPos(String periodFrom, String periodTo, Long posId) {
+        LocalDate dateFrom = LocalDate.parse(periodFrom, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate dateTo = LocalDate.parse(periodTo, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        return insuranceRepository.findAllByPeriodAndPos(dateFrom, dateTo, posId);
     }
 
     @Override

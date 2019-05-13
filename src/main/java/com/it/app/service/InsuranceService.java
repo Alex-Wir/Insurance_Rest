@@ -16,6 +16,8 @@ public interface InsuranceService {
 
     List<Insurance> findAllByYearAndPoint(Long year, Long pointId);
 
+    List<Insurance> findAllByPeriodAndPos (String periodFrom, String periodTo, Long posId);
+
     Insurance findById(Long id);
 
     Insurance save(Insurance insurance);

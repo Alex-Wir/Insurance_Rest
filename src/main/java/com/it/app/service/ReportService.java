@@ -7,4 +7,6 @@ public interface ReportService {
     ReportDto makeForYear(Long year);
 
     ReportDto makeForYearAndPoint (Long year, Long pointId);
+
+    ReportDto makeForPeriodAndPos (String periodFrom, String periodTo, Long posId);
 }
