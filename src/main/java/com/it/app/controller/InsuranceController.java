@@ -14,6 +14,7 @@ import lombok.AllArgsConstructor;
 import org.dozer.Mapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -53,6 +54,7 @@ public class InsuranceController {
      * @param id - user id
      * @return
      */
+    @PreAuthorize("#id == authentication.principal.id or hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
     public ResponseEntity<List<InsuranceResponseDto>> getAllByUserId(@PathVariable Long id) {
         if (userService.findById(id) == null) {

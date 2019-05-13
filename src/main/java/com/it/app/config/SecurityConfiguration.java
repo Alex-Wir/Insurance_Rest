@@ -27,9 +27,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-    //TODO fix /insurances/users/id for CUSTOMER
-    //@PreAuthorize("id == currentUser.getId()") ??
-    //@PreAuthorize("#id == authentication.id") ??
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().cors()
@@ -39,8 +36,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/api/**", "/v2/api-docs", "/swagger-resources/**"
                 ).permitAll()
                 .mvcMatchers(HttpMethod.GET, "/points").permitAll()
-                .mvcMatchers(HttpMethod.GET,"/insurances/users/**").hasAnyRole("CUSTOMER","USER","ADMIN")
-                .mvcMatchers("/shifts/**", "/insurances/**", "/cars/**", "/users/**").hasAnyRole("USER","ADMIN")
+                .mvcMatchers(HttpMethod.GET, "/insurances/users/**").hasAnyRole("CUSTOMER", "USER", "ADMIN")
+                .mvcMatchers("/shifts/**", "/insurances/**", "/cars/**", "/users/**").hasAnyRole("USER", "ADMIN")
                 .anyRequest().hasRole("ADMIN");
         http.addFilterBefore(new AuthenticationTokenFilter(tokenService, userDetailsService), UsernamePasswordAuthenticationFilter.class);
     }
