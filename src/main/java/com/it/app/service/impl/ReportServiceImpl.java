@@ -28,12 +28,20 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public ReportDto makeForYearAndPoint(Long year, Long pointId) {
-        return makeReport(insuranceService.findAllByYearAndPoint(year, pointId));
+        String yearString = year.toString();
+        String yearBegin = yearString.concat("-01-01");
+        String yearEnd = yearString.concat("-12-31");
+        return makeReport(insuranceService.findAllByPeriodAndPoint(yearBegin, yearEnd, pointId));
     }
 
     @Override
     public ReportDto makeForPeriodAndPos(String periodFrom, String periodTo, Long posId) {
         return makeReport(insuranceService.findAllByPeriodAndPos(periodFrom, periodTo, posId));
+    }
+
+    @Override
+    public ReportDto makeForPeriodAndPoint(String periodFrom, String periodTo, Long pointId) {
+        return makeReport(insuranceService.findAllByPeriodAndPoint(periodFrom, periodTo, pointId));
     }
 
     private ReportDto makeReport(List<Insurance> insurances) {

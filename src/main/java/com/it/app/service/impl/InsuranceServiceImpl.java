@@ -55,17 +55,13 @@ public class InsuranceServiceImpl implements InsuranceService {
     }
 
     @Override
-    public List<Insurance> findAllByYearAndPoint(Long year, Long pointId) {
-        LocalDate yearBegin = LocalDate.of(year.intValue(), 01, 01);
-        LocalDate yearEnd = LocalDate.of(year.intValue(), 12, 31);
-        return insuranceRepository.findAllByYearAndPoint(yearBegin, yearEnd, pointId);
+    public List<Insurance> findAllByPeriodAndPos(String periodFrom, String periodTo, Long posId) {
+        return insuranceRepository.findAllByPeriodAndPos(getDate(periodFrom), getDate(periodTo), posId);
     }
 
     @Override
-    public List<Insurance> findAllByPeriodAndPos(String periodFrom, String periodTo, Long posId) {
-        LocalDate dateFrom = LocalDate.parse(periodFrom, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        LocalDate dateTo = LocalDate.parse(periodTo, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        return insuranceRepository.findAllByPeriodAndPos(dateFrom, dateTo, posId);
+    public List<Insurance> findAllByPeriodAndPoint(String periodFrom, String periodTo, Long pointId) {
+        return insuranceRepository.findAllByPeriodAndPoint(getDate(periodFrom), getDate(periodTo), pointId);
     }
 
     @Override
@@ -92,6 +88,10 @@ public class InsuranceServiceImpl implements InsuranceService {
     public void deleteById(Long id) {
         findById(id);
         insuranceRepository.deleteById(id);
+    }
+
+    private LocalDate getDate(String dateString) {
+        return LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
     private Insurance saveAndFlush(Insurance insurance) {

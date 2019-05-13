@@ -14,9 +14,9 @@ public interface InsuranceService {
 
     List<Insurance> findAllByYear(Long year);
 
-    List<Insurance> findAllByYearAndPoint(Long year, Long pointId);
+    List<Insurance> findAllByPeriodAndPos(String periodFrom, String periodTo, Long posId);
 
-    List<Insurance> findAllByPeriodAndPos (String periodFrom, String periodTo, Long posId);
+    List<Insurance> findAllByPeriodAndPoint(String periodFrom, String periodTo, Long pointId);
 
     Insurance findById(Long id);
 

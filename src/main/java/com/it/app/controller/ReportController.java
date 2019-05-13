@@ -24,7 +24,7 @@ public class ReportController {
      * @param year - year
      * @return
      */
-    @RequestMapping(value = "/{year}", method = RequestMethod.GET)
+    @GetMapping(value = "/{year}")
     public ResponseEntity<ReportDto> makeForYear(@PathVariable Long year) {
         final ReportDto reportDto = reportService.makeForYear(year);
         return new ResponseEntity<>(reportDto, HttpStatus.OK);
@@ -37,7 +37,7 @@ public class ReportController {
      * @param pointId - point id
      * @return
      */
-    @RequestMapping(value = "/{year}/points/{pointId}", method = RequestMethod.GET)
+    @GetMapping(value = "/{year}/points/{pointId}")
     public ResponseEntity<ReportDto> makeForYearAndPoint(@PathVariable Long year, @PathVariable Long pointId) {
         pointService.findById(pointId);
         final ReportDto reportDto = reportService.makeForYearAndPoint(year, pointId);
@@ -59,5 +59,22 @@ public class ReportController {
         final ReportDto reportDto = reportService.makeForPeriodAndPos(from, to, posId);
         return new ResponseEntity<>(reportDto, HttpStatus.OK);
     }
+
+    /**
+     * find insurances for the period and point id. Calculate sum of payments and quantity of insurances
+     *
+     * @param pointId - pos id
+     * @param from    - beginning of period
+     * @param to      - end of period
+     * @return
+     */
+    @GetMapping("/points/{pointId}")
+    public ResponseEntity<ReportDto> makeForPeriodAndPoint(@PathVariable Long pointId,
+                                                           @RequestParam String from, @RequestParam String to) {
+        pointService.findById(pointId);
+        final ReportDto reportDto = reportService.makeForPeriodAndPoint(from, to, pointId);
+        return new ResponseEntity<>(reportDto, HttpStatus.OK);
+    }
+
 
 }
