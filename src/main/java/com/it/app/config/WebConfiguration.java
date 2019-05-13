@@ -9,8 +9,18 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.util.Collections;
 
+/**
+ * Web configuration class, imports the Spring MVC configuration
+ */
 @EnableWebMvc
 public class WebConfiguration {
+
+    /**
+     * Create Dozer Mapper Bean
+     * Add configuration from dozerJdk8Converters.xml to mapping LocalDateTime
+     *
+     * @return - Dozer Mapper instance
+     */
     @Bean
     public Mapper mapper() {
         DozerBeanMapper beanMapper = new DozerBeanMapper();
@@ -18,6 +28,11 @@ public class WebConfiguration {
         return beanMapper;
     }
 
+    /**
+     * Create BCryptPasswordEncoder Bean for encoding users' passwords
+     *
+     * @return - BCryptPasswordEncoder instance
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

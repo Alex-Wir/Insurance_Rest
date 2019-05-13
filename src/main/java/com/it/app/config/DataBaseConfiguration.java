@@ -18,6 +18,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
+/**
+ * DataBase configuration class
+ */
 @PropertySource("classpath:database.properties")
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = {
@@ -34,9 +37,6 @@ public class DataBaseConfiguration {
     @Value("${entitymanager.packages.to.scan}")
     private String packageToScan;
 
-    @Value("${hibernate.dialect}")
-    private String hibernateDialect;
-
     @Value("${hibernate.show_sql}")
     private String hibernateShowSQL;
 
@@ -47,7 +47,11 @@ public class DataBaseConfiguration {
     private String driverClass;
 
     @Value("${h2.connection.url}")
-    private String url;*/
+    private String url;
+
+    @Value("${h2.hibernate.dialect}")
+    private String hibernateDialect;
+    */
 
     @Value("${connection.driver_class}")
     private String driverClass;
@@ -55,7 +59,14 @@ public class DataBaseConfiguration {
     @Value("${connection.url}")
     private String url;
 
-    //enable for MySQL database
+    @Value("${hibernate.dialect}")
+    private String hibernateDialect;
+
+    /**
+     * Create DataSource object that contains connect configuration to DataBase
+     *
+     * @return DataSource instance
+     */
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource driver = new DriverManagerDataSource();
@@ -63,7 +74,6 @@ public class DataBaseConfiguration {
         driver.setUrl(url);
         driver.setUsername(username);
         driver.setPassword(password);
-
         return driver;
     }
 
@@ -74,6 +84,11 @@ public class DataBaseConfiguration {
         return builder.setType(EmbeddedDatabaseType.H2).addScript("/import.sql").build();
     }*/
 
+    /**
+     * Create LocalContainerEntityManagerFactoryBean
+     *
+     * @return LocalContainerEntityManagerFactoryBean instance
+     */
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
@@ -85,6 +100,12 @@ public class DataBaseConfiguration {
         return localContainerEntityManagerFactoryBean;
     }
 
+    /**
+     * Create PlatformTransactionManager
+     *
+     * @param emf - EntityManagerFactory object
+     * @return PlatformTransactionManager instance
+     */
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
