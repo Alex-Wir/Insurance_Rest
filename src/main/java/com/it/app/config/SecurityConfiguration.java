@@ -39,7 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/api/**", "/v2/api-docs", "/swagger-resources/**"
                 ).permitAll()
                 .mvcMatchers(HttpMethod.GET, "/points").permitAll()
-                .mvcMatchers(HttpMethod.GET,"/insurances/users/**").hasRole("CUSTOMER")
+                .mvcMatchers(HttpMethod.GET,"/insurances/users/**").hasAnyRole("CUSTOMER","USER","ADMIN")
                 .mvcMatchers("/shifts/**", "/insurances/**", "/cars/**", "/users/**").hasAnyRole("USER","ADMIN")
                 .anyRequest().hasRole("ADMIN");
         http.addFilterBefore(new AuthenticationTokenFilter(tokenService, userDetailsService), UsernamePasswordAuthenticationFilter.class);
