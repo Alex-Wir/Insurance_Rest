@@ -6,6 +6,9 @@ import lombok.Setter;
 
 import java.util.List;
 
+/**
+ * Response DTO class for Report
+ */
 @Getter
 @Setter
 public class ReportDto {

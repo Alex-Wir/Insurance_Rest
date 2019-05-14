@@ -8,6 +8,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 
+/**
+ * Insurance entity
+ */
 @Entity
 @Table(name = "insurance")
 @Getter

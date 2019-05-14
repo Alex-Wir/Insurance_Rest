@@ -8,6 +8,9 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+/**
+ * Request DTO class for Address
+ */
 @Getter
 @Setter
 public class AddressRequestDto {

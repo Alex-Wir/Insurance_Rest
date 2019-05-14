@@ -8,6 +8,9 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+/**
+ * Shift entity
+ */
 @Entity
 @Table(name = "shift")
 @Getter

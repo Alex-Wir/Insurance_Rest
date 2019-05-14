@@ -1,6 +1,6 @@
 package com.it.app.controller;
 
-import com.it.app.dto.UserRegistrationRequestDto;
+import com.it.app.dto.request.UserRegistrationRequestDto;
 import com.it.app.dto.request.AuthenticationRequestDto;
 import com.it.app.dto.response.TokenResponseDto;
 import com.it.app.dto.response.UserResponseDto;

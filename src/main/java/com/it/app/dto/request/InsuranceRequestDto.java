@@ -8,6 +8,9 @@ import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Request DTO class for Insurance
+ */
 @Getter
 @NoArgsConstructor
 public class InsuranceRequestDto {

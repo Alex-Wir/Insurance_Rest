@@ -2,6 +2,9 @@ package com.it.app.dto.response;
 
 import lombok.Getter;
 
+/**
+ * Response DTO class for Shift
+ */
 @Getter
 public class ShiftResponseDto {
 

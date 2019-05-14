@@ -7,6 +7,9 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Request DTO class for Shift
+ */
 @Getter
 @NoArgsConstructor
 public class ShiftRequestDto {

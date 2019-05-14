@@ -3,8 +3,9 @@ package com.it.app.dto.response;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
+/**
+ * Response DTO class for Insurance
+ */
 @Getter
 @Setter
 public class InsuranceResponseDto {
