@@ -14,6 +14,6 @@ import java.util.List;
 public class ReportDto {
 
     private long quantity;
-    private float Sum;
+    private float sum;
     private List<InsuranceResponseDto> insurances;
 }
