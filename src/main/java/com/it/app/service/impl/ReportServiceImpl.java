@@ -13,6 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Implementation Service for ReportDTO
+ */
 @Service
 @Transactional
 @AllArgsConstructor

@@ -7,6 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * JPA Repository for Shift entity
+ */
 public interface ShiftRepository extends JpaRepository<Shift, Long> {
 
     @Query("SELECT s FROM Shift s LEFT JOIN FETCH s.user LEFT JOIN FETCH s.pos LEFT JOIN FETCH s.insurances WHERE s.id = ?1")

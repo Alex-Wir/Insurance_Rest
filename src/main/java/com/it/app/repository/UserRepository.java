@@ -7,6 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * JPA Repository for User entity
+ */
 public interface UserRepository extends JpaRepository<User, Long> {
 
     boolean existsByName(String name);

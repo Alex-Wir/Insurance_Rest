@@ -2,6 +2,9 @@ package com.it.app.service;
 
 import com.it.app.dto.ReportDto;
 
+/**
+ * Service interface for ReportDTO
+ */
 public interface ReportService {
 
     ReportDto makeForYear(Long year);

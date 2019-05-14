@@ -7,6 +7,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Objects;
 
+/**
+ * Class handling information for user authentication
+ */
 @AllArgsConstructor
 public class AuthenticationUserDetails implements UserDetails {
 

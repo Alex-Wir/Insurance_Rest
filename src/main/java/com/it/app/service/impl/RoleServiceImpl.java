@@ -11,6 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Implementation Service for Role entity
+ */
 @Service
 @Transactional
 @AllArgsConstructor

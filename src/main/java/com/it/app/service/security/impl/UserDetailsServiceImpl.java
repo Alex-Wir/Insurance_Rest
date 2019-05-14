@@ -13,12 +13,22 @@ import org.springframework.stereotype.Service;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Implementation UserDetailsService interface
+ */
 @Service
 @AllArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserService userService;
 
+    /**
+     * Find user by name and check his granted authority
+     *
+     * @param username - the username identifying the user whose data is required
+     * @return - AuthenticationUserDetails with authorities
+     * @throws UsernameNotFoundException - if the user could not be found or the user has no GrantedAuthority
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         final User user = userService.findByName(username);

@@ -1,6 +1,7 @@
 package com.it.app.security.filter;
 
 import com.it.app.service.security.TokenService;
+import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Authentication Token handling class
+ */
+@AllArgsConstructor
 public class AuthenticationTokenFilter extends OncePerRequestFilter {
     private static final String AUTHORIZATION = "Authorization";
     private static final String BEARER = "Bearer ";
@@ -21,11 +26,16 @@ public class AuthenticationTokenFilter extends OncePerRequestFilter {
     private TokenService tokenService;
     private UserDetailsService userDetailsService;
 
-    public AuthenticationTokenFilter(TokenService tokenService, UserDetailsService userDetailsService) {
-        this.tokenService = tokenService;
-        this.userDetailsService = userDetailsService;
-    }
-
+    /**
+     * Validate Token from request. Create UsernamePasswordAuthenticationToken for username from request Token.
+     * Register this authentication in SecurityContext
+     *
+     * @param httpRequest         - the ServletRequest object contains the client's request
+     * @param httpServletResponse - the ServletResponse object contains the filter's response
+     * @param chain               - the FilterChain for invoking the next filter or the resource
+     * @throws IOException      - if an I/O related error has occurred during the processing
+     * @throws ServletException - if an exception occurs that interferes with the filter's normal operation
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse, FilterChain chain) throws IOException, ServletException {
         String token = getToken(httpRequest);

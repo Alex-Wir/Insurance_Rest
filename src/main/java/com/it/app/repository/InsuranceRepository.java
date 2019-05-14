@@ -8,6 +8,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * JPA Repository for Insurance entity
+ */
 public interface InsuranceRepository extends JpaRepository<Insurance, Long> {
 
     @Query("SELECT i FROM Insurance i LEFT JOIN FETCH i.car LEFT JOIN FETCH i.user WHERE i.id = ?1")

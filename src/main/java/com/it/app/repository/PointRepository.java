@@ -7,6 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * JPA Repository for Point entity
+ */
 public interface PointRepository extends JpaRepository<Point, Long> {
 
     @Query("SELECT p FROM Point p LEFT JOIN FETCH p.address")

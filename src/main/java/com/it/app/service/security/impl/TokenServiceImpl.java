@@ -3,17 +3,21 @@ package com.it.app.service.security.impl;
 import com.it.app.security.model.AuthenticationUserDetails;
 import com.it.app.service.security.TokenService;
 import io.jsonwebtoken.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
+/**
+ * Implementation Token service interface
+ */
 @Service
+@Slf4j
 public class TokenServiceImpl implements TokenService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TokenServiceImpl.class);
+    //TODO delete
+    //private static final Logger LOGGER = LoggerFactory.getLogger(TokenServiceImpl.class);
 
     private static final String INVALID_JWT_SIGNATURE_MESSAGE = "Invalid JWT signature";
 
@@ -29,17 +33,34 @@ public class TokenServiceImpl implements TokenService {
 
     private static final Integer JWT_EXPIRATION_MILLIS = 6000000;
 
+    /**
+     * Generate JWT
+     *
+     * @param authentication - Authentication object
+     * @return - String JWT
+     */
     @Override
     public String generate(Authentication authentication) {
         return generate(((AuthenticationUserDetails) authentication.getPrincipal()).getUsername());
     }
 
+    /**
+     * Refresh existing JWT
+     *
+     * @param token - existing JWT
+     * @return - new JWT
+     */
     @Override
     public String refresh(String token) {
         return generate(extractUsername(token));
     }
 
-
+    /**
+     * Extract username from JWT
+     *
+     * @param token - JWT
+     * @return - String JWT subject (unique identifies the subject of the JWT)
+     */
     @Override
     public String extractUsername(String token) {
         return Jwts.parser()
@@ -48,25 +69,31 @@ public class TokenServiceImpl implements TokenService {
                 .getBody().getSubject();
     }
 
+    /**
+     * Validate Token by JWT_SECRET
+     *
+     * @param authToken - JWT for validation
+     * @return - true, if JWT validate successful
+     */
     @Override
     public boolean validate(String authToken) {
         try {
             Jwts.parser().setSigningKey(JWT_SECRET).parseClaimsJws(authToken);
             return true;
         } catch (SignatureException e) {
-            LOGGER.error(INVALID_JWT_SIGNATURE_MESSAGE, e);
+            log.error(INVALID_JWT_SIGNATURE_MESSAGE, e);
             throw e;
         } catch (MalformedJwtException e) {
-            LOGGER.error(INVALID_JWT_TOKEN_MESSAGE, e);
+            log.error(INVALID_JWT_TOKEN_MESSAGE, e);
             throw e;
         } catch (ExpiredJwtException e) {
-            LOGGER.error(EXPIRED_JWT_TOKEN_MESSAGE, e);
+            log.error(EXPIRED_JWT_TOKEN_MESSAGE, e);
             throw e;
         } catch (UnsupportedJwtException e) {
-            LOGGER.error(UNSUPPORTED_JWT_TOKEN_MESSAGE, e);
+            log.error(UNSUPPORTED_JWT_TOKEN_MESSAGE, e);
             throw e;
         } catch (IllegalArgumentException e) {
-            LOGGER.error(JWT_CLAIMS_STRING_IS_EMPTY_MESSAGE, e);
+            log.error(JWT_CLAIMS_STRING_IS_EMPTY_MESSAGE, e);
             throw e;
         }
     }

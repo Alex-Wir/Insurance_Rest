@@ -15,6 +15,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+/**
+ * Implementation Service for Insurance entity
+ */
 @Service
 @Transactional
 @AllArgsConstructor

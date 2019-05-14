@@ -12,6 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Implementation Service for User entity
+ */
 @Service
 @Transactional
 @AllArgsConstructor

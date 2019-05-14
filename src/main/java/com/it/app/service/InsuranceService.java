@@ -4,6 +4,9 @@ import com.it.app.model.Insurance;
 
 import java.util.List;
 
+/**
+ * Service interface for Insurance entity
+ */
 public interface InsuranceService {
 
     List<Insurance> findAll();
