@@ -22,6 +22,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * Insurance controller
+ */
 @RequestMapping("/insurances")
 @RestController
 @AllArgsConstructor
@@ -34,6 +37,11 @@ public class InsuranceController {
     private final CarService carService;
     private final LocalizedMessageSource localizedMessageSource;
 
+    /**
+     * Find all Insurances
+     *
+     * @return - ResponseEntity with List<InsuranceResponseDto> and HttpStatus
+     */
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<InsuranceResponseDto>> getAll() {
         final List<Insurance> insurances = insuranceService.findAll();
@@ -42,6 +50,12 @@ public class InsuranceController {
         return new ResponseEntity<>(insuranceResponseDtoList, HttpStatus.OK);
     }
 
+    /**
+     * Find Insurance by id
+     *
+     * @param id - Insurance id
+     * @return - ResponseEntity with InsuranceResponseDto and HttpStatus
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<InsuranceResponseDto> getOne(@PathVariable Long id) {
         final InsuranceResponseDto insuranceResponseDto = mapper.map(insuranceService.findById(id), InsuranceResponseDto.class);
@@ -49,10 +63,10 @@ public class InsuranceController {
     }
 
     /**
-     * find insurances by user id
+     * Find all Insurances by User id
      *
-     * @param id - user id
-     * @return
+     * @param id - User id
+     * @return -  ResponseEntity with List<InsuranceResponseDto> and HttpStatus
      */
     @PreAuthorize("#id == authentication.principal.id or hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
@@ -67,10 +81,10 @@ public class InsuranceController {
     }
 
     /**
-     * find insurances by car number
+     * Find all insurances by Car number
      *
-     * @param carNumber - car number
-     * @return
+     * @param carNumber - Car number
+     * @return - ResponseEntity with List<InsuranceResponseDto> and HttpStatus
      */
     @RequestMapping(value = "/cars/{carNumber}", method = RequestMethod.GET)
     public ResponseEntity<List<InsuranceResponseDto>> getAllByCarNumber(@PathVariable String carNumber) {
@@ -83,6 +97,12 @@ public class InsuranceController {
         return new ResponseEntity<>(insuranceResponseDtoList, HttpStatus.OK);
     }
 
+    /**
+     * Save transient Insurance
+     *
+     * @param insuranceRequestDto - transient Insurance
+     * @return - ResponseEntity with InsuranceResponseDto and HttpStatus
+     */
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<InsuranceResponseDto> save(@Valid @RequestBody InsuranceRequestDto insuranceRequestDto) {
         insuranceRequestDto.setId(null);
@@ -90,7 +110,13 @@ public class InsuranceController {
         return new ResponseEntity<>(insuranceResponseDto, HttpStatus.OK);
     }
 
-
+    /**
+     * Update persistent Insurance by id
+     *
+     * @param insuranceRequestDto, - request with updated Insurance
+     * @param id                   - Insurance id
+     * @return - ResponseEntity with InsuranceResponseDto and HttpStatus
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<InsuranceResponseDto> update(@Valid @RequestBody InsuranceRequestDto insuranceRequestDto, @PathVariable Long id) {
         if (!Objects.equals(id, insuranceRequestDto.getId())) {
@@ -100,6 +126,11 @@ public class InsuranceController {
         return new ResponseEntity<>(insuranceResponseDto, HttpStatus.OK);
     }
 
+    /**
+     * Delete Insurance by id
+     *
+     * @param id - Insurance id
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
     public void delete(@PathVariable Long id) {

@@ -46,7 +46,7 @@ public class AddressController {
      * Find Address by id
      *
      * @param id - Address id
-     * @return - ResponceEntity with AddressResponseDto and HttpStatus
+     * @return - ResponseEntity with AddressResponseDto and HttpStatus
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<AddressResponseDto> getOne(@PathVariable Long id) {
@@ -69,9 +69,9 @@ public class AddressController {
     }
 
     /**
-     * Change persistent Address by id
+     * Update persistent Address by id
      *
-     * @param addressRequestDto - request with changed Address
+     * @param addressRequestDto - request with updated Address
      * @param id                - Address id
      * @return - ResponseEntity with AddressResponseDto and HttpStatus
      */

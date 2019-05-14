@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Report controller
+ */
 @RestController
 @RequestMapping("/reports")
 @AllArgsConstructor
@@ -19,10 +22,10 @@ public class ReportController {
     private final PosService posService;
 
     /**
-     * find insurances by year. Calculate sum of payments and quantity of insurances
+     * Find all Insurances by year. Calculate sum of payments and quantity of Insurances
      *
      * @param year - year
-     * @return
+     * @return - ResponseEntity with ReportDto and HttpStatus
      */
     @GetMapping(value = "/{year}")
     public ResponseEntity<ReportDto> makeForYear(@PathVariable Long year) {
@@ -31,11 +34,11 @@ public class ReportController {
     }
 
     /**
-     * find insurances by year and point id. Calculate sum of payments and quantity of insurances
+     * Find all Insurances by year and Point id. Calculate sum of payments and quantity of Insurances
      *
      * @param year    - year
-     * @param pointId - point id
-     * @return
+     * @param pointId - Point id
+     * @return - ResponseEntity with ReportDto and HttpStatus
      */
     @GetMapping(value = "/{year}/points/{pointId}")
     public ResponseEntity<ReportDto> makeForYearAndPoint(@PathVariable Long year, @PathVariable Long pointId) {
@@ -45,12 +48,12 @@ public class ReportController {
     }
 
     /**
-     * find insurances for the period and pos id. Calculate sum of payments and quantity of insurances
+     * Find all Insurances for the period and Pos id. Calculate sum of payments and quantity of Insurances
      *
-     * @param posId - pos id
+     * @param posId - Pos id
      * @param from  - beginning of period
      * @param to    - end of period
-     * @return
+     * @return - ResponseEntity with ReportDto and HttpStatus
      */
     @GetMapping("/poses/{posId}")
     public ResponseEntity<ReportDto> makeForPeriodAndPos(@PathVariable Long posId,
@@ -61,12 +64,12 @@ public class ReportController {
     }
 
     /**
-     * find insurances for the period and point id. Calculate sum of payments and quantity of insurances
+     * Find all Insurances for the period and Point id. Calculate sum of payments and quantity of Insurances
      *
-     * @param pointId - pos id
+     * @param pointId - Point id
      * @param from    - beginning of period
      * @param to      - end of period
-     * @return
+     * @return - ResponseEntity with ReportDto and HttpStatus
      */
     @GetMapping("/points/{pointId}")
     public ResponseEntity<ReportDto> makeForPeriodAndPoint(@PathVariable Long pointId,
@@ -75,6 +78,4 @@ public class ReportController {
         final ReportDto reportDto = reportService.makeForPeriodAndPoint(from, to, pointId);
         return new ResponseEntity<>(reportDto, HttpStatus.OK);
     }
-
-
 }

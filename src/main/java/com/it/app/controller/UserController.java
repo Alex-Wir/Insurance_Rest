@@ -20,6 +20,9 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * User controller
+ */
 @RestController
 @RequestMapping("/users")
 @AllArgsConstructor
@@ -31,6 +34,11 @@ public class UserController {
     private final InsuranceService insuranceService;
     private final LocalizedMessageSource localizedMessageSource;
 
+    /**
+     * Find all Users
+     *
+     * @return - ResponseEntity with List<UserResponseDto> and HttpStatus
+     */
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<UserResponseDto>> getAll() {
         final List<User> users = userService.findAll();
@@ -40,12 +48,24 @@ public class UserController {
         return new ResponseEntity<>(userResponseDtoList, HttpStatus.OK);
     }
 
+    /**
+     * Find User by id
+     *
+     * @param id - User id
+     * @return - ResponseEntity with UserResponseDto and HttpStatus
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<UserResponseDto> getOne(@PathVariable Long id) {
         final UserResponseDto userResponseDto = mapper.map(userService.findById(id), UserResponseDto.class);
         return new ResponseEntity<>(userResponseDto, HttpStatus.OK);
     }
 
+    /**
+     * Save transient User
+     *
+     * @param userRequestDto - transient User
+     * @return - ResponseEntity with UserResponseDto and HttpStatus
+     */
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<UserResponseDto> save(@Valid @RequestBody UserRequestDto userRequestDto) {
         userRequestDto.setId(null);
@@ -53,6 +73,13 @@ public class UserController {
         return new ResponseEntity<>(userResponseDto, HttpStatus.OK);
     }
 
+    /**
+     * Update persistent User by id
+     *
+     * @param userRequestDto - request with updated User
+     * @param id             - User id
+     * @return - ResponseEntity with UserResponseDto and HttpStatus
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<UserResponseDto> update(@Valid @RequestBody UserRequestDto userRequestDto, @PathVariable Long id) {
         if (!Objects.equals(id, userRequestDto.getId())) {
@@ -62,6 +89,11 @@ public class UserController {
         return new ResponseEntity<>(userResponseDto, HttpStatus.OK);
     }
 
+    /**
+     * Delete User by id
+     *
+     * @param id - User id
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
     public void delete(@PathVariable Long id) {
@@ -85,5 +117,4 @@ public class UserController {
         user.setRoles(roleSet);
         return user;
     }
-
 }

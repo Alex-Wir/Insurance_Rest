@@ -17,6 +17,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * Car controller
+ */
 @RestController
 @RequestMapping("/cars")
 @AllArgsConstructor
@@ -27,6 +30,11 @@ public class CarController {
     private final InsuranceService insuranceService;
     private final LocalizedMessageSource localizedMessageSource;
 
+    /**
+     * Find all Cars
+     *
+     * @return - ResponseEntity with List<CarResponseDto> and HttpStatus
+     */
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<CarResponseDto>> getAll() {
         final List<Car> cars = carService.findAll();
@@ -37,10 +45,10 @@ public class CarController {
     }
 
     /**
-     * Find all cars by car number
+     * Find all Cars by car number
      *
-     * @param number - car number
-     * @return
+     * @param number - Car number
+     * @return - ResponseEntity with List<CarResponseDto> and HttpStatus
      */
     @RequestMapping(value = "/numbers/{number}", method = RequestMethod.GET)
     public ResponseEntity<List<CarResponseDto>> getAllByNumber(@PathVariable String number) {
@@ -51,12 +59,24 @@ public class CarController {
         return new ResponseEntity<>(carResponseDtoList, HttpStatus.OK);
     }
 
+    /**
+     * Find Car by id
+     *
+     * @param id - Car id
+     * @return - ResponseEntity with CarResponseDto and HttpStatus
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<CarResponseDto> getOne(@PathVariable Long id) {
         final CarResponseDto carDto = mapper.map(carService.findById(id), CarResponseDto.class);
         return new ResponseEntity<>(carDto, HttpStatus.OK);
     }
 
+    /**
+     * Save transient Car
+     *
+     * @param carRequestDto - transient Car
+     * @return - ResponseEntity with CarResponseDto and HttpStatus
+     */
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<CarResponseDto> save(@Valid @RequestBody CarRequestDto carRequestDto) {
         carRequestDto.setId(null);
@@ -64,6 +84,13 @@ public class CarController {
         return new ResponseEntity<>(carResponseDto, HttpStatus.OK);
     }
 
+    /**
+     * Update persistent Car by id
+     *
+     * @param carRequestDto - request with updated Car
+     * @param id            - Car id
+     * @return - ResponseEntity with CarResponseDto and HttpStatus
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<CarResponseDto> update(@Valid @RequestBody CarRequestDto carRequestDto, @PathVariable Long id) {
         if (!Objects.equals(id, carRequestDto.getId())) {
@@ -73,6 +100,11 @@ public class CarController {
         return new ResponseEntity<>(carResponseDto, HttpStatus.OK);
     }
 
+    /**
+     * Delete Car by id
+     *
+     * @param id - Car id
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
     public void delete(@PathVariable Long id) {

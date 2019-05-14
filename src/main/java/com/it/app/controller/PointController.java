@@ -21,6 +21,9 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Point controller
+ */
 @RestController
 @RequestMapping("/points")
 @AllArgsConstructor
@@ -31,6 +34,11 @@ public class PointController {
     private final UserService userService;
     private final LocalizedMessageSource localizedMessageSource;
 
+    /**
+     * Find all Points
+     *
+     * @return - ResponseEntity with List<PointResponseDto> and HttpStatus
+     */
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<PointResponseDto>> getAll() {
         final List<Point> points = pointService.findAll();
@@ -40,10 +48,10 @@ public class PointController {
     }
 
     /**
-     * find all points by user id
+     * Find all Points by User id
      *
-     * @param id - user id
-     * @return
+     * @param id - User id
+     * @return - ResponseEntity with List<PointResponseDto> and HttpStatus
      */
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
     public ResponseEntity<List<PointResponseDto>> getAllByUserId(@PathVariable Long id) {
@@ -54,6 +62,12 @@ public class PointController {
         return new ResponseEntity<>(pointResponseDtoList, HttpStatus.OK);
     }
 
+    /**
+     * Find Point by id
+     *
+     * @param id - Point id
+     * @return - ResponseEntity with PointResponseDto and HttpStatus
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<PointResponseDto> getOne(@PathVariable Long id) {
         final PointResponseDto pointResponseDto = mapper.map(pointService.findById(id), PointResponseDto.class);
@@ -61,10 +75,10 @@ public class PointController {
     }
 
     /**
-     * Return info with users by point id
+     * Find Point with details by id
      *
-     * @param id - point id
-     * @return
+     * @param id - Point id
+     * @return - ResponseEntity with PointWithUsersResponseDto and HttpStatus
      */
     @RequestMapping(value = "/{id}/users", method = RequestMethod.GET)
     public ResponseEntity<PointWithUsersResponseDto> getOneWithUsers(@PathVariable Long id) {
@@ -72,6 +86,12 @@ public class PointController {
         return new ResponseEntity<>(pointResponseDto, HttpStatus.OK);
     }
 
+    /**
+     * Save transient Point
+     *
+     * @param pointRequestDto - transient Point
+     * @return - ResponseEntity with PointWithUsersResponseDto and HttpStatus
+     */
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<PointWithUsersResponseDto> save(@Valid @RequestBody PointRequestDto pointRequestDto) {
         pointRequestDto.setId(null);
@@ -79,6 +99,13 @@ public class PointController {
         return new ResponseEntity<>(pointResponseDto, HttpStatus.OK);
     }
 
+    /**
+     * Update persistent Point by id
+     *
+     * @param pointRequestDto - request with updated Point
+     * @param id              - Point id
+     * @return - ResponseEntity with PointWithUsersResponseDto and HttpStatus
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<PointWithUsersResponseDto> update(@Valid @RequestBody PointRequestDto pointRequestDto, @PathVariable Long id) {
         if (!Objects.equals(id, pointRequestDto.getId())) {
@@ -88,10 +115,15 @@ public class PointController {
         return new ResponseEntity<>(pointResponseDto, HttpStatus.OK);
     }
 
+    /**
+     * Delete Point by id
+     *
+     * @param id - Point id
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
     public void delete(@PathVariable Long id) {
-        if (!pointService.findById(id).getPoses().isEmpty()){
+        if (!pointService.findById(id).getPoses().isEmpty()) {
             throw new RuntimeException(localizedMessageSource.getMessage("controller.point.hasPos", new Object[]{}));
         }
         pointService.deleteById(id);
