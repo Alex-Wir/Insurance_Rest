@@ -30,11 +30,8 @@
     <swagger>2.9.2</swagger>
     <io.jsonwebtoken.jjwt>0.9.1</io.jsonwebtoken.jjwt>
 
-    <javax.el>3.0.1-b08</javax.el>
     <mockito>2.27.0</mockito>
     <junit>5.5.0-M1</junit>
-    <jsonpath>2.4.0</jsonpath>
-    <hamcrest>2.1</hamcrest>
 
   </properties>
 
@@ -153,33 +150,9 @@
     </dependency>
 
     <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-test</artifactId>
-      <version>${org.spring.core}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.hamcrest</groupId>
-      <artifactId>hamcrest-library</artifactId>
-      <version>${hamcrest}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.jayway.jsonpath</groupId>
-      <artifactId>json-path</artifactId>
-      <version>${jsonpath}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
       <version>${junit}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
-      <version>${mockito}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -188,14 +161,7 @@
       <version>${mockito}</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.glassfish</groupId>
-      <artifactId>javax.el</artifactId>
-      <version>${javax.el}</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
-
 
   <build>
     <plugins>
