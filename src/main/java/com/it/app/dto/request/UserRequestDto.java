@@ -27,7 +27,7 @@ public class UserRequestDto {
     @Size(min = 3, max = 100, message = "{user.password.size}")
     private String password;
 
-    @NotNull(message = "{user.role.notNull}")
+    @NotEmpty(message = "{user.role.notNull}")
     private Set<Long> roleIds;
 
 }

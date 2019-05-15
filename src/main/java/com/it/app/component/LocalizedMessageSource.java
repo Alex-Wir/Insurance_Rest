@@ -29,7 +29,6 @@ public class LocalizedMessageSource {
      * @param arguments   - unused peace of shit
      * @return - String Message
      */
-    //TODO - delete Object[] arguments
     public String getMessage(String messageCode, Object[] arguments) {
         Locale locale = LocaleContextHolder.getLocale();
         locale = localeList.contains(locale) ? locale : Locale.getDefault();

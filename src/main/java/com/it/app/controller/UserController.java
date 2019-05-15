@@ -97,7 +97,6 @@ public class UserController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
     public void delete(@PathVariable Long id) {
-        //TODO delete point_user
         if (!insuranceService.findAllByUserId(id).isEmpty()) {
             throw new RuntimeException(localizedMessageSource.getMessage("controller.user.hasInsurance", new Object[]{}));
         }

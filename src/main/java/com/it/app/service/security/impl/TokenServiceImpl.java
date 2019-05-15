@@ -16,9 +16,6 @@ import java.util.Date;
 @Slf4j
 public class TokenServiceImpl implements TokenService {
 
-    //TODO delete
-    //private static final Logger LOGGER = LoggerFactory.getLogger(TokenServiceImpl.class);
-
     private static final String INVALID_JWT_SIGNATURE_MESSAGE = "Invalid JWT signature";
 
     private static final String INVALID_JWT_TOKEN_MESSAGE = "Invalid JWT token";

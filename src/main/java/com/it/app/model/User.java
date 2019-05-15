@@ -38,7 +38,7 @@ public class User {
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    @NotNull(message = "{user.role.notNull}")
+    @NotEmpty(message = "{user.role.notNull}")
     private Set<Role> roles;
 
     @ManyToMany(mappedBy = "users")

@@ -1,7 +1,7 @@
 package com.it.app.controller;
 
-import com.it.app.dto.request.UserRegistrationRequestDto;
 import com.it.app.dto.request.AuthenticationRequestDto;
+import com.it.app.dto.request.UserRegistrationRequestDto;
 import com.it.app.dto.response.TokenResponseDto;
 import com.it.app.dto.response.UserResponseDto;
 import com.it.app.model.Role;
@@ -18,6 +18,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -43,9 +44,8 @@ public class AuthenticationController {
      * @param authenticationRequestDto - Request for sign in
      * @return - TokenResponseDto
      */
-    //TODO add @Valid for AuthenticationRequestDto??
     @PostMapping("/signIn")
-    public TokenResponseDto authenticateUser(@RequestBody AuthenticationRequestDto authenticationRequestDto) {
+    public TokenResponseDto authenticateUser(@Valid @RequestBody AuthenticationRequestDto authenticationRequestDto) {
         String username = authenticationRequestDto.getUsername();
         String password = authenticationRequestDto.getPassword();
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
@@ -71,9 +71,8 @@ public class AuthenticationController {
      * @param userRegistrationRequestDto - new User's parameters
      * @return - UserResponseDto
      */
-    //TODO add @Valid for UserRegistrationRequestDto
     @PostMapping("/signUp")
-    public UserResponseDto registerUser(@RequestBody UserRegistrationRequestDto userRegistrationRequestDto) {
+    public UserResponseDto registerUser(@Valid @RequestBody UserRegistrationRequestDto userRegistrationRequestDto) {
         final User user = new User();
         user.setName(userRegistrationRequestDto.getUsername());
         user.setPassword(encoder.encode(userRegistrationRequestDto.getPassword()));
