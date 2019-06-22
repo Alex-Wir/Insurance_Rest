@@ -11,9 +11,13 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Set;
 
+/**
+ * Implementation Service for Insurance entity
+ */
 @Service
 @Transactional
 @AllArgsConstructor
@@ -37,8 +41,30 @@ public class InsuranceServiceImpl implements InsuranceService {
     }
 
     @Override
-    public List<Insurance> findInsurancesByUserId(Long id) {
-        return insuranceRepository.findInsurancesByUserId(id);
+    public List<Insurance> findAllByUserId(Long id) {
+        return insuranceRepository.findAllByUserId(id);
+    }
+
+    @Override
+    public List<Insurance> findAllByCarNumber(String number) {
+        return insuranceRepository.findAllByCarNumber(number);
+    }
+
+    @Override
+    public List<Insurance> findAllByYear(Long year) {
+        LocalDate yearBegin = LocalDate.of(year.intValue(), 01, 01);
+        LocalDate yearEnd = LocalDate.of(year.intValue(), 12, 31);
+        return insuranceRepository.findAllByYear(yearBegin, yearEnd);
+    }
+
+    @Override
+    public List<Insurance> findAllByPeriodAndPos(String periodFrom, String periodTo, Long posId) {
+        return insuranceRepository.findAllByPeriodAndPos(getDate(periodFrom), getDate(periodTo), posId);
+    }
+
+    @Override
+    public List<Insurance> findAllByPeriodAndPoint(String periodFrom, String periodTo, Long pointId) {
+        return insuranceRepository.findAllByPeriodAndPoint(getDate(periodFrom), getDate(periodTo), pointId);
     }
 
     @Override
@@ -65,6 +91,10 @@ public class InsuranceServiceImpl implements InsuranceService {
     public void deleteById(Long id) {
         findById(id);
         insuranceRepository.deleteById(id);
+    }
+
+    private LocalDate getDate(String dateString) {
+        return LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
     private Insurance saveAndFlush(Insurance insurance) {

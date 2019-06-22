@@ -9,6 +9,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
+/**
+ * Point entity
+ */
 @Entity
 @Table(name = "point")
 @Getter
@@ -33,7 +36,10 @@ public class Point {
     @JoinTable(name = "point_user",
             joinColumns = @JoinColumn(name = "point_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
-    @NotNull(message = "{point.users.notNull}")
+    @NotEmpty(message = "{point.users.notNull}")
     private Set<User> users;
+
+    @OneToMany(mappedBy = "point")
+    private Set<Pos> poses;
 
 }

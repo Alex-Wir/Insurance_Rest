@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ * Implementation Service for Shift entity
+ */
 @Service
 @Transactional
 @AllArgsConstructor
@@ -33,7 +36,7 @@ public class ShiftServiceImpl implements ShiftService {
     }
 
     @Override
-    public List<Shift> findShiftsByUserId(Long id) {
+    public List<Shift> findAllByUserId(Long id) {
         return shiftRepository.findShiftsByUserId(id);
     }
 

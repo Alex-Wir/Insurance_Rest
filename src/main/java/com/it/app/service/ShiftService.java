@@ -4,6 +4,9 @@ import com.it.app.model.Shift;
 
 import java.util.List;
 
+/**
+ * Service interface for Shift entity
+ */
 public interface ShiftService {
 
     List<Shift> findAll();
@@ -18,5 +21,5 @@ public interface ShiftService {
 
     void deleteById(Long id);
 
-    List<Shift> findShiftsByUserId(Long id);
+    List<Shift> findAllByUserId(Long id);
 }

@@ -4,6 +4,9 @@ import com.it.app.model.Address;
 
 import java.util.List;
 
+/**
+ * Service interface for Address entity
+ */
 public interface AddressService {
 
     List<Address> findAll();

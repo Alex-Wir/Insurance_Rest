@@ -4,6 +4,9 @@ import com.it.app.model.Pos;
 
 import java.util.List;
 
+/**
+ * Service interface for Pos entity
+ */
 public interface PosService {
 
     List<Pos> findAll();

@@ -5,6 +5,9 @@ import lombok.Setter;
 
 import java.util.Set;
 
+/**
+ * Response DTO class for Point (with Users)
+ */
 @Getter
 @Setter
 public class PointWithUsersResponseDto {

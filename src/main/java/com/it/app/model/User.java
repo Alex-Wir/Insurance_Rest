@@ -9,6 +9,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
+/**
+ * User entity
+ */
 @Entity
 @Table(name = "user")
 @Getter
@@ -25,11 +28,17 @@ public class User {
     @Size(min = 3, max = 50, message = "{user.name.size}")
     private String name;
 
+    @Column(nullable = false)
+    @NotNull(message = "{user.password.notNull}")
+    @NotEmpty(message = "{user.password.notEmpty}")
+    @Size(min = 3, max = 100, message = "{user.password.size}")
+    private String password;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    @NotNull(message = "{user.role.notNull}")
+    @NotEmpty(message = "{user.role.notNull}")
     private Set<Role> roles;
 
     @ManyToMany(mappedBy = "users")

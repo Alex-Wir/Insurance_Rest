@@ -4,6 +4,9 @@ import com.it.app.model.Point;
 
 import java.util.List;
 
+/**
+ * Service interface for Point entity
+ */
 public interface PointService {
 
     List<Point> findAll();

@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.HttpStatus;
 
+/**
+ * Response DTO class including error status and message
+ */
 @Getter
 @Setter
 @AllArgsConstructor

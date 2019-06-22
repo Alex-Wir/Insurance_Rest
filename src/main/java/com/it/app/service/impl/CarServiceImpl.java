@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ * Implementation Service for Car entity
+ */
 @Service
 @Transactional
 @AllArgsConstructor
@@ -21,6 +24,11 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<Car> findAll() {
         return carRepository.findAll();
+    }
+
+    @Override
+    public List<Car> findAllByNumber(String number) {
+        return carRepository.findAllByNumber(number);
     }
 
     @Override

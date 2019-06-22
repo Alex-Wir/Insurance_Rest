@@ -12,6 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Implementation Service for User entity
+ */
 @Service
 @Transactional
 @AllArgsConstructor
@@ -29,6 +32,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findById(Long id) {
         return userRepository.findById(id).orElseThrow(() -> new RuntimeException(localizedMessageSource.getMessage("error.user.notExist", new Object[]{})));
+    }
+
+    @Override
+    public User findByName(String name) {
+        return userRepository.findByName(name);
     }
 
     @Override
@@ -59,7 +67,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteById(Long id) {
         findById(id);
-        //TODO delete user from all points
         userRepository.deleteById(id);
     }
 

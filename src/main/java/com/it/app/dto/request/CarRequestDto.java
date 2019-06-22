@@ -8,6 +8,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+/**
+ * Request DTO class for Car
+ */
 @Getter
 @Setter
 public class CarRequestDto {

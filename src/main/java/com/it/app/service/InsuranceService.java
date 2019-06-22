@@ -3,11 +3,23 @@ package com.it.app.service;
 import com.it.app.model.Insurance;
 
 import java.util.List;
-import java.util.Set;
 
+/**
+ * Service interface for Insurance entity
+ */
 public interface InsuranceService {
 
     List<Insurance> findAll();
+
+    List<Insurance> findAllByUserId(Long id);
+
+    List<Insurance> findAllByCarNumber(String number);
+
+    List<Insurance> findAllByYear(Long year);
+
+    List<Insurance> findAllByPeriodAndPos(String periodFrom, String periodTo, Long posId);
+
+    List<Insurance> findAllByPeriodAndPoint(String periodFrom, String periodTo, Long pointId);
 
     Insurance findById(Long id);
 
@@ -18,7 +30,5 @@ public interface InsuranceService {
     void delete(Insurance insurance);
 
     void deleteById(Long id);
-
-    List<Insurance> findInsurancesByUserId(Long id);
 
 }

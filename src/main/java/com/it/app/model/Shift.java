@@ -6,7 +6,11 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.Set;
 
+/**
+ * Shift entity
+ */
 @Entity
 @Table(name = "shift")
 @Getter
@@ -20,7 +24,6 @@ public class Shift {
     @NotNull(message = "{shift.opening.notNull")
     private LocalDateTime openingTime;
 
-    //TODO must be Null when shift is opening?
     @NotNull(message = "{shift.closing.notNull}")
     private LocalDateTime closingTime;
 
@@ -33,5 +36,8 @@ public class Shift {
     @JoinColumn(name = "pos_id", nullable = false)
     @NotNull(message = "{shift.pos.notNull}")
     private Pos pos;
+
+    @OneToMany(mappedBy = "shift")
+    private Set<Insurance> insurances;
 
 }

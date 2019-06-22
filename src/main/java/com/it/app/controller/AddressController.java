@@ -16,6 +16,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * Address controller
+ */
 @RestController
 @RequestMapping("/addresses")
 @AllArgsConstructor
@@ -25,6 +28,11 @@ public class AddressController {
     private final Mapper mapper;
     private final LocalizedMessageSource localizedMessageSource;
 
+    /**
+     * Find all Addresses
+     *
+     * @return - ResponseEntity with List<AddressResponseDto> and HttpStatus
+     */
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<AddressResponseDto>> getAll() {
         final List<Address> addresses = addressService.findAll();
@@ -34,12 +42,24 @@ public class AddressController {
         return new ResponseEntity<>(addressResponseDtoList, HttpStatus.OK);
     }
 
+    /**
+     * Find Address by id
+     *
+     * @param id - Address id
+     * @return - ResponseEntity with AddressResponseDto and HttpStatus
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<AddressResponseDto> getOne(@PathVariable Long id) {
         final AddressResponseDto addressDto = mapper.map(addressService.findById(id), AddressResponseDto.class);
         return new ResponseEntity<>(addressDto, HttpStatus.OK);
     }
 
+    /**
+     * Save transient Address
+     *
+     * @param addressRequestDto - transient Address
+     * @return - ResponseEntity with AddressResponseDto and HttpStatus
+     */
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<AddressResponseDto> save(@Valid @RequestBody AddressRequestDto addressRequestDto) {
         addressRequestDto.setId(null);
@@ -48,6 +68,13 @@ public class AddressController {
         return new ResponseEntity<>(addressResponseDto, HttpStatus.OK);
     }
 
+    /**
+     * Update persistent Address by id
+     *
+     * @param addressRequestDto - request with updated Address
+     * @param id                - Address id
+     * @return - ResponseEntity with AddressResponseDto and HttpStatus
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<AddressResponseDto> update(@Valid @RequestBody AddressRequestDto addressRequestDto,
                                                      @PathVariable Long id) {
@@ -60,6 +87,11 @@ public class AddressController {
         return new ResponseEntity<>(addressResponseDto, HttpStatus.OK);
     }
 
+    /**
+     * Delete Address by id
+     *
+     * @param id - Address id
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
     public void delete(@PathVariable Long id) {
@@ -69,8 +101,7 @@ public class AddressController {
     }
 
     private Address getAddress(AddressRequestDto addressRequestDto) {
-        final Address address = mapper.map(addressRequestDto, Address.class);
-        return address;
+        return mapper.map(addressRequestDto, Address.class);
     }
 
 }

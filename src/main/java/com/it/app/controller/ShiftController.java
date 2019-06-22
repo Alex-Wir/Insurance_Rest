@@ -20,6 +20,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * Shift controller
+ */
 @RestController
 @RequestMapping("/shifts")
 @AllArgsConstructor
@@ -30,6 +33,11 @@ public class ShiftController {
     private final UserService userService;
     private final LocalizedMessageSource localizedMessageSource;
 
+    /**
+     * Find all Shifts
+     *
+     * @return - ResponseEntity with List<ShiftResponseDto> and HttpStatus
+     */
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<ShiftResponseDto>> getAll() {
         final List<Shift> shifts = shiftService.findAll();
@@ -40,29 +48,41 @@ public class ShiftController {
     }
 
     /**
-     * find shifts by user id
+     * Find all Shifts by User id
      *
-     * @param id - user id
-     * @return
+     * @param id - User id
+     * @return - ResponseEntity with List<ShiftResponseDto> and HttpStatus
      */
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
-    public ResponseEntity<List<ShiftResponseDto>> getShiftsByUserId(@PathVariable Long id) {
+    public ResponseEntity<List<ShiftResponseDto>> getAllByUserId(@PathVariable Long id) {
         if (userService.findById(id) == null) {
             throw new RuntimeException(localizedMessageSource.getMessage("controller.user.unexpectedId", new Object[]{}));
         }
-        final List<Shift> shifts = shiftService.findShiftsByUserId(id);
+        final List<Shift> shifts = shiftService.findAllByUserId(id);
         final List<ShiftResponseDto> shiftResponseDtoList = shifts.stream()
                 .map((shift) -> mapper.map(shift, ShiftResponseDto.class))
                 .collect(Collectors.toList());
         return new ResponseEntity<>(shiftResponseDtoList, HttpStatus.OK);
     }
 
+    /**
+     * Find Shift by id
+     *
+     * @param id - Shift id
+     * @return - ResponseEntity with ShiftResponseDto and HttpStatus
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<ShiftResponseDto> getOne(@PathVariable Long id) {
         final ShiftResponseDto shiftResponseDto = mapper.map(shiftService.findById(id), ShiftResponseDto.class);
         return new ResponseEntity<>(shiftResponseDto, HttpStatus.OK);
     }
 
+    /**
+     * Save transient Shift
+     *
+     * @param shiftRequestDto - transient Shift
+     * @return - ResponseEntity with ShiftResponseDto and HttpStatus
+     */
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<ShiftResponseDto> save(@Valid @RequestBody ShiftRequestDto shiftRequestDto) {
         shiftRequestDto.setId(null);
@@ -70,6 +90,13 @@ public class ShiftController {
         return new ResponseEntity<>(shiftResponseDto, HttpStatus.OK);
     }
 
+    /**
+     * Update persistent Shift by id
+     *
+     * @param shiftRequestDto - request with updated Shift
+     * @param id              - Shift id
+     * @return - ResponseEntity with ShiftResponseDto and HttpStatus
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<ShiftResponseDto> update(@Valid @RequestBody ShiftRequestDto shiftRequestDto, @PathVariable Long id) {
         if (!Objects.equals(id, shiftRequestDto.getId())) {
@@ -79,9 +106,17 @@ public class ShiftController {
         return new ResponseEntity<>(shiftResponseDto, HttpStatus.OK);
     }
 
+    /**
+     * Delete Shift by id
+     *
+     * @param id - Shift id
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
     public void delete(@PathVariable Long id) {
+        if (!shiftService.findById(id).getInsurances().isEmpty()) {
+            throw new RuntimeException(localizedMessageSource.getMessage("controller.shift.hasInsurance", new Object[]{}));
+        }
         shiftService.deleteById(id);
     }
 

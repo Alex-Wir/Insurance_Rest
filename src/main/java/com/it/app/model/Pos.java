@@ -7,7 +7,11 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
+/**
+ * Pos entity
+ */
 @Entity
 @Table(name = "pos")
 @Getter
@@ -28,5 +32,8 @@ public class Pos {
     @JoinColumn(name = "point_id", nullable = false)
     @NotNull(message = "{pos.point.notNull}")
     private Point point;
+
+    @OneToMany(mappedBy = "pos")
+    private Set<Shift> shifts;
 
 }

@@ -6,6 +6,9 @@ import lombok.Setter;
 
 import java.util.Set;
 
+/**
+ * Response DTO class for User (with Roles)
+ */
 @Getter
 @Setter
 public class UserResponseDto {

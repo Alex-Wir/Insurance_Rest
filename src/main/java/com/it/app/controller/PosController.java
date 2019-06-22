@@ -17,6 +17,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * Pos controller
+ */
 @RestController
 @RequestMapping("/poses")
 @AllArgsConstructor
@@ -26,6 +29,11 @@ public class PosController {
     private final PosService posService;
     private final LocalizedMessageSource localizedMessageSource;
 
+    /**
+     * Find all Poses
+     *
+     * @return - ResponseEntity with List<PosResponseDto> and HttpStatus
+     */
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<PosResponseDto>> getAll() {
         final List<Pos> poses = posService.findAll();
@@ -35,12 +43,24 @@ public class PosController {
         return new ResponseEntity<>(posResponseDtoList, HttpStatus.OK);
     }
 
+    /**
+     * Find Pos by id
+     *
+     * @param id - Pos id
+     * @return - ResponseEntity with PosResponseDto and HttpStatus
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<PosResponseDto> getOne(@PathVariable Long id) {
         final PosResponseDto posResponseDto = mapper.map(posService.findById(id), PosResponseDto.class);
         return new ResponseEntity<>(posResponseDto, HttpStatus.OK);
     }
 
+    /**
+     * Save transient Pos
+     *
+     * @param posRequestDto - transient Pos
+     * @return - ResponseEntity with PosResponseDto and HttpStatus
+     */
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<PosResponseDto> save(@Valid @RequestBody PosRequestDto posRequestDto) {
         posRequestDto.setId(null);
@@ -48,6 +68,13 @@ public class PosController {
         return new ResponseEntity<>(posResponseDto, HttpStatus.OK);
     }
 
+    /**
+     * Update persistent Pos by id
+     *
+     * @param posRequestDto - request with updated Pos
+     * @param id            - Pos id
+     * @return - ResponseEntity with PosResponseDto and HttpStatus
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<PosResponseDto> update(@Valid @RequestBody PosRequestDto posRequestDto, @PathVariable Long id) {
         if (!Objects.equals(id, posRequestDto.getId())) {
@@ -57,9 +84,17 @@ public class PosController {
         return new ResponseEntity<>(posResponseDto, HttpStatus.OK);
     }
 
+    /**
+     * Delete Pos by id
+     *
+     * @param id - Pos id
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
     public void delete(@PathVariable Long id) {
+        if (!posService.findById(id).getShifts().isEmpty()) {
+            throw new RuntimeException(localizedMessageSource.getMessage("controller.pos.hasShift", new Object[]{}));
+        }
         posService.deleteById(id);
     }
 

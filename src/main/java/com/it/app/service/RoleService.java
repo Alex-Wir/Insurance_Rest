@@ -4,11 +4,16 @@ import com.it.app.model.Role;
 
 import java.util.List;
 
+/**
+ * Service interface for Role entity
+ */
 public interface RoleService {
 
     List<Role> findAll();
 
     Role findById(Long id);
+
+    Role findByName(String name);
 
     Role save(Role role);
 

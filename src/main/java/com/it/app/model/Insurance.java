@@ -6,7 +6,11 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+import java.time.LocalDate;
 
+/**
+ * Insurance entity
+ */
 @Entity
 @Table(name = "insurance")
 @Getter
@@ -18,16 +22,28 @@ public class Insurance {
     private Long id;
 
     @Column(nullable = false)
-    @NotNull(message = "insurance.payment.notNull")
-    @Positive(message = "insurance.payment.positive")
+    @NotNull(message = "{insurance.payment.notNull}")
+    @Positive(message = "{insurance.payment.positive}")
     private Float payment;
 
     @Column(nullable = false)
-    @NotNull(message = "insurance.amount.notNull")
-    @Positive(message = "insurance.amount.positive")
+    @NotNull(message = "{insurance.amount.notNull}")
+    @Positive(message = "{insurance.amount.positive}")
     private Float amount;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @Column(nullable = false)
+    @NotNull(message = "{insurance.periodFrom.notNull}")
+    private LocalDate periodFrom;
+
+    @Column(nullable = false)
+    @NotNull(message = "{insurance.periodTo.notNull}")
+    private LocalDate periodTo;
+
+    @Column(nullable = false)
+    @NotNull(message = "{insurance.date.notNull}")
+    private LocalDate date;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "car_id", nullable = false)
     @NotNull(message = "{insurance.car.notNull}")
     private Car car;

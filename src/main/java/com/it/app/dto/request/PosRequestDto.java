@@ -7,6 +7,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ * Request DTO class for Pos
+ */
 @Getter
 @Setter
 public class PosRequestDto {

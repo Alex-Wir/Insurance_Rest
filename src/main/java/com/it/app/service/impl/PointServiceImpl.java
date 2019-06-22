@@ -13,6 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementation Service for Point entity
+ */
 @Service
 @Transactional
 @AllArgsConstructor
